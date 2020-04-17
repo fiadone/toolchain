@@ -4,7 +4,8 @@ module.exports = [
     name: 'modules',
     message: 'Which modules do you need?',
     choices: [
-      'client'
+      'client',
+      'server'
     ]
   }
 ]

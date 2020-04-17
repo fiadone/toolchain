@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    "axios",
+    "dotenv",
+    "express",
+    "express-session",
+    "http-errors",
+    "twig",
+    "uuid"
+  ],
+  "devDependencies": []
+}
