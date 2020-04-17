@@ -1,4 +1,8 @@
 {
-  "dependencies": [],
-  "devDependencies": []
+  "dependencies": [
+    "axios"
+  ],
+  "devDependencies": [
+    "jest"
+  ]
 }
