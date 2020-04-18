@@ -62,7 +62,7 @@ function addConfig(key, value, context, force) {
       reject()
     }
 
-    const args = [`--add ${key}`, `--value ${value}`]
+    const args = [`--add ${key}`, `--value '${value}'`]
 
     if (context) {
       args.push(`--context ${context}`)

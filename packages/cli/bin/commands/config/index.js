@@ -37,9 +37,17 @@ if (add && !force) {
 
 if (add) {
   if (context) {
-    packageJson[context][key] = value
+    try {
+      packageJson[context][key] = JSON.parse(value)
+    } catch (err) {
+      packageJson[context][key] = value
+    }
   } else {
-    packageJson[key] = value
+    try {
+      packageJson[key] = JSON.parse(value)
+    } catch (err) {
+      packageJson[key] = value
+    }
   }
 }
 
