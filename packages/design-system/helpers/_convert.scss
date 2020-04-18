@@ -1,0 +1,28 @@
+/**
+ * Converts pixel to rem
+ * @param int $px The size (in px) to be converted
+ * @param int $context The conversion factor
+ * @param int $threshold The conversion threshold 
+ */
+ @function rem($px, $context: 16, $threshold: 4) {
+  @if $px > $threshold {
+    @return #{$px / $context}rem;
+  } @else {
+    @return #{$px}px;   
+  }
+}
+
+/**
+ * Converts pixel to em
+ * @param int $px The size (in px) to be converted
+ * @param int $context The conversion factor
+ * @param int $threshold The conversion threshold 
+ */
+ @function em($px, $context: 16, $threshold: 4) {
+  @if $px > $threshold {
+    @return #{$px / $context}em;
+  } @else {
+    @return #{$px}px;   
+  }
+}
+

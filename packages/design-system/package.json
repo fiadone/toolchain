@@ -1,0 +1,11 @@
+{
+  "name": "@fiad/design-system",
+  "version": "0.0.1",
+  "description": "A collection of utilities to enhance styles development",
+  "main": "_.scss",
+  "author": "Andrea 'Fiad' Fiadone",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
