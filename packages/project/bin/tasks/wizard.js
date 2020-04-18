@@ -8,7 +8,7 @@ const args = [
   `--handler ${path.resolve(__dirname, 'setup.js')}`
 ]
 
-module.exports = function configure() {
+module.exports = function () {
   return new Promise(resolve => {
     const cmd = spawn(`npx @fiad/cli wizard`, args, { shell: true, stdio: 'inherit' })
     cmd.on('exit', code => resolve(code === 0))
