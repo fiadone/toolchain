@@ -51,10 +51,8 @@ if (remove) {
   }
 }
 
-process.stdout.write(chalk.blue('Updating package.json... '))
-
 fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), err => {
-  const result = err ? chalk.red('✘\n') : chalk.green('✔\n')
-  process.stdout.write(result)
+  if (err) {
+    process.stdout.write(chalk.red(`${err}\n`))
+  }
 })
-  
