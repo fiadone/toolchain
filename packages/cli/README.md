@@ -53,6 +53,30 @@ __JSON manifest schema:__
 
 ---
 
+##### CONFIG
+
+Handles package.json updates.
+
+```
+npx @fiad/cli config --add build --value "webpack --env.production" --context scripts --force
+```
+
+```
+npx @fiad/cli config --remove build --context scripts
+```
+
+__Params:__
+
+- *--add*: the key of property to be added (required*)
+- *--remove*: the key of property to be remove (required*)
+- *--context*: the parent property path (optional with root level as default)
+- *--value*: the value of the property to be added (available and required in combination with *--add* only)
+- *--force*: if passed, forces property override (available in combination with *--add* only)
+
+(*) *--add* and *--remove* are reciprocally exclusive, so only one of them is required
+
+---
+
 ##### WIZARD
 
 A survey provider to collect user preferences (based on *[inquirer.js](https://github.com/SBoudrias/Inquirer.js)*).
