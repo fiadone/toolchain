@@ -6,9 +6,9 @@ A collection of utilities to enhance styles development
 
 ## Get started
 
+#### Installation
 ```
-cd my-project
-npx @fiad/design-system
+npm i @fiad/design-system
 ```
 
 ## Contents
