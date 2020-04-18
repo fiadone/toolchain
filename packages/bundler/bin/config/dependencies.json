@@ -20,6 +20,7 @@
     "terser-webpack-plugin",
     "webpack",
     "webpack-cli",
-    "webpack-dev-server"
+    "webpack-dev-server",
+    "webpack-node-externals"
   ]
 }

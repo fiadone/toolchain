@@ -1,5 +1,6 @@
 const { addConfig } = require('@fiad/cli')
 
-module.exports = function () {
-  addConfig('start', '"node app.js"', 'scripts', true)
+module.exports = async function () {
+  await addConfig('start-dev', '"node app.js"', 'scripts', true)
+  await addConfig('start', '"NODE_ENV=production node app.js"', 'scripts', true)
 }

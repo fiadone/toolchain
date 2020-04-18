@@ -9,6 +9,8 @@
     "uuid"
   ],
   "devDependencies": [
-    "jest"
+    "jest",
+    "webpack",
+    "webpack-dev-middleware"
   ]
 }

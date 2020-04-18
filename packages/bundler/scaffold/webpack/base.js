@@ -7,6 +7,7 @@ module.exports = {
   entry: path.resolve(config.paths.srcFolder, 'index.js'),
   output: {
     path: config.paths.distFolder,
+    filename: 'bundle.js',
     jsonpFunction: 'jsonpFunction'
   },
   module: {
