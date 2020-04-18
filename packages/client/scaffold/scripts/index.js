@@ -1,4 +1,6 @@
-import Application from './containers/Application'
+import '../styles'
+
+import Application from './controllers/Application'
 
 Application.init()
 

@@ -1,7 +1,8 @@
 /*=========*/
 /* VENDORS */
 /*=========*/
-
+@import '../../node_modules/minireset.css/minireset.css';
+@import '../../node_modules/@fiad/design-system/';
 
 /*========*/
 /* GLOBAL */
@@ -13,9 +14,10 @@
 /*============*/
 /* COMPONENTS */
 /*============*/
-
+@import 'components/header';
+@import 'components/footer';
 
 /*=======*/
 /* PAGES */
 /*=======*/
-
+@import 'pages/homepage';

@@ -1,6 +1,8 @@
 {
   "dependencies": [
-    "axios"
+    "@fiad/design-system",
+    "axios",
+    "minireset.css"
   ],
   "devDependencies": [
     "jest"
