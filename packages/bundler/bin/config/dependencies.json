@@ -1,0 +1,25 @@
+{
+  "devDependencies": [
+    "@babel/cli",
+    "@babel/core",
+    "@babel/preset-env",
+    "babel-loader",
+    "clean-webpack-plugin",
+    "copy-webpack-plugin",
+    "css-loader",
+    "cssnano",
+    "html-webpack-plugin",
+    "mini-css-extract-plugin",
+    "node-sass",
+    "postcss",
+    "postcss-loader",
+    "postcss-import",
+    "postcss-preset-env",
+    "sass-loader",
+    "style-loader",
+    "terser-webpack-plugin",
+    "webpack",
+    "webpack-cli",
+    "webpack-dev-server"
+  ]
+}
