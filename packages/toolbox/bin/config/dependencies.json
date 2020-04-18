@@ -1,0 +1,7 @@
+{
+  "dependencies": [
+    "gsap",
+    "ismobilejs",
+    "lodash"
+  ]
+}
