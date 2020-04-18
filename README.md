@@ -4,8 +4,11 @@ A smart toolchain for modern front-end development
 
 ---
 
+## Packages
+
 - [@fiad/bundler](./packages/bundler/README.md)
 - [@fiad/cli](./packages/cli/README.md)
 - [@fiad/client](./packages/client/README.md)
+- [@fiad/design-system](./packages/design-system/README.md)
 - [@fiad/project](./packages/project/README.md)
 - [@fiad/server](./packages/server/README.md)
