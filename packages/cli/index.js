@@ -44,9 +44,59 @@ function scaffold(source, destination, context) {
       args.push(`--context ${context}`)
     }
 
-    const cmd = spawn('npx @fiad/cli clone', args, { shell: true, stdio: 'inherit' })
+    const cmd = spawn('npx @fiad/cli scaffold', args, { shell: true, stdio: 'inherit' })
     cmd.on('exit', code => resolve(code === 0))
   })
 }
 
-module.exports = { install, scaffold }
+/**
+ * Adds/overrides a package.json configuration property
+ * @param {string} key The key of the package.json property to be added/overwritten
+ * @param {string} value The value of the package.json property to be added
+ * @param {string} context The parent property group key
+ * @param {boolean} force Override flag
+ */
+function addConfig(key, value, context, force) {
+  return new Promise((resolve, reject) => {
+    if (!key || typeof value === 'undefined') {
+      reject()
+    }
+
+    const args = [`--add ${key}`, `--value ${value}`]
+
+    if (context) {
+      args.push(`--context ${context}`)
+    }
+
+    if (force) {
+      args.push('--force')
+    }
+
+    const cmd = spawn('npx @fiad/cli config', args, { shell: true, stdio: 'inherit' })
+    cmd.on('exit', code => resolve(code === 0))
+  })
+}
+
+/**
+ * Removes a package.json configuration property
+ * @param {string} key The key of the package.json property to be removed
+ * @param {string} context The parent property group key
+ */
+function removeConfig(key, context) {
+  return new Promise((resolve, reject) => {
+    if (!key) {
+      reject()
+    }
+
+    const args = [`--remove ${key}`]
+
+    if (context) {
+      args.push(`--context ${context}`)
+    }
+
+    const cmd = spawn('npx @fiad/cli config', args, { shell: true, stdio: 'inherit' })
+    cmd.on('exit', code => resolve(code === 0))
+  })
+}
+
+module.exports = { install, scaffold, addConfig, removeConfig }

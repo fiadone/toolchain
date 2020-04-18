@@ -6,12 +6,12 @@ A simple command line interface that helps in scaffolding and configuring operat
 
 ## COMMANDS LIST
 
-#### CLONE
+#### SCAFFOLD
 
 Handles recursive files copying from a source directory to a destination one.
 
 ```
-npx @fiad/cli clone --src src/path --dest dest/path --context your-module
+npx @fiad/cli scaffold --src src/path --dest dest/path --context your-module
 ```
 
 __Params:__
