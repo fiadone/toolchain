@@ -4,7 +4,7 @@ const chalk = require('chalk')
 const init = require('./init')
 const scaffold = require('./scaffold')
 
-module.exports = function setup({ modules = [] }) {
+module.exports = function ({ modules = [] }) {
   process.stdout.write('\n')
   modules
     .reduce((pipeline, pkg) => (
