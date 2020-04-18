@@ -13,3 +13,4 @@ npx @fiad/project my-project
 ## Installable modules
 
 - [@fiad/client](https://github.com/fiadone/carpentry/tree/master/packages/client)
+- [@fiad/server](https://github.com/fiadone/carpentry/tree/master/packages/server)
