@@ -19,11 +19,11 @@ npx @fiad/toolbox
 
 ## Contents
 
-* [detect](./detect/README.md)
-* [dom](./dom/README.md)
-* [events](./events/README.md)
-* [math](./math/README.md)
-* [share](./share/README.md)
-* [store](./store/README.md)
-* [stream](./stream/README.md)
-* [strings](./strings/README.md)
+* [detect](./detect)
+* [dom](./dom)
+* [events](./events)
+* [math](./math)
+* [share](./share)
+* [store](./store)
+* [stream](./stream)
+* [strings](./strings)
