@@ -4,13 +4,15 @@
     "dotenv",
     "express",
     "express-session",
-    "http-errors",
+    "minimist",
+    "morgan",
     "twig",
     "uuid"
   ],
   "devDependencies": [
     "jest",
     "webpack",
-    "webpack-dev-middleware"
+    "webpack-dev-middleware",
+    "webpack-hot-middleware"
   ]
 }

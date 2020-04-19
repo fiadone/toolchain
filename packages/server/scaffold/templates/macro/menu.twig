@@ -1,9 +1,0 @@
-{% macro menu(items = []) %}
-  <nav class="menu">
-    {% for item in items %}
-      <a class="menu_item" href="{{ item.url }}" target="{{ item.target }}" rel="{{ item.rel }}">
-        {{ item.label|raw }}
-      </a>
-    {% endfor %}
-  </nav>
-{% endmacro %}
