@@ -5,6 +5,7 @@ const init = require('./init')
 const scaffold = require('./scaffold')
 const install = require('./install')
 const config = require('./config')
+const inject = require('./inject')
 
 module.exports = function ({ modules = [] }) {
   process.stdout.write('\n')
@@ -16,10 +17,7 @@ module.exports = function ({ modules = [] }) {
     .then(() => {
       // modules installation pipeline
       return modules.reduce((pipeline, pkg) => {
-        return pipeline.then(() => new Promise(resolve => {
-          const cmd = spawn(`npx @fiad/${pkg}`, [], { shell: true, stdio: 'inherit' })
-          cmd.on('exit', code => resolve(code === 0))
-        }))
+        return pipeline.then(() => inject(pkg))
       }, Promise.resolve())
     })
     .then(() => {
