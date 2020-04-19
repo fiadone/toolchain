@@ -4,22 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title></title>
-  <link rel="stylesheet" href="/assets/style.css">
+  {% block meta %}{% endblock %}
   {% block head %}{% endblock %}
 </head>
 <body>
-  {% include 'partials/header.twig' %}
-
+  {% include './partials/header.twig' %}
   <main>
     {% block content %}{% endblock %}
-    {% include 'partials/footer.twig' %}
+    {% include './partials/footer.twig' %}
   </main>
-
-  {% include 'partials/cookies-banner.twig' %}
-
-  <script type="text/javascript" src="/assets/bundle.js"></script>
-  
+  {% include './partials/cookies-banner.twig' %}
   {% block scripts %}{% endblock %}
 </body>
 </html>
