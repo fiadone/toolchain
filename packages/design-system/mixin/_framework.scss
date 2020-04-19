@@ -1,5 +1,3 @@
-@use 'sass:map';
-
 /*
  * A generator of functional css classes
  * @param $config The rules configuration map
@@ -16,28 +14,28 @@
         ),
         "value": (
           "0": 0,
-          "1": $scalar,
-          "2": $scalar * 2,
-          "3": $scalar * 3,
-          "4": $scalar * 4,
-          "5": $scalar * 5,
-          "6": $scalar * 6,
-          "7": $scalar * 7,
-          "8": $scalar * 8
+          "1": #{$scalar}px,
+          "2": #{$scalar * 2}px,
+          "3": #{$scalar * 3}px,
+          "4": #{$scalar * 4}px,
+          "5": #{$scalar * 5}px,
+          "6": #{$scalar * 6}px,
+          "7": #{$scalar * 7}px,
+          "8": #{$scalar * 8}px
         )
       )
     ));
  */
 @mixin framework-rules($config) {
   @each $selector, $specs in $config {
-    $-property: map.get($specs, 'property');
-    $-breakpoints: map.get($specs, 'breakpoints');
-    $-value: map.get($specs, 'value');
+    $-property: map-get($specs, 'property');
+    $-breakpoints: map-get($specs, 'breakpoints');
+    $-value: map-get($specs, 'value');
     @if type-of($-property) == 'map' {
       @each $prop-key, $prop-value in $-property {
-        $selector: if($prop-key == '_', $selector, $selector + $prop-key);
+        $-selector: if($prop-key == '_', $selector, $selector + $prop-key);
         @include framework-rules((
-          "#{$selector}": (
+          "#{$-selector}": (
             "property": $prop-value,
             "breakpoints": $-breakpoints,
             "value": $-value
@@ -46,9 +44,9 @@
       }
     } @else if type-of($-value) == 'map' {
       @each $mod, $value in $-value {
-        $selector: $selector + '-' + $mod;
+        $-selector: $selector + '-' + $mod;
         @include framework-rules((
-          "#{$selector}": (
+          "#{$-selector}": (
             "property": $-property,
             "breakpoints": $-breakpoints,
             "value": $value
@@ -56,12 +54,12 @@
         ));
       }
     } @else {
-      #{$selector} {
+      #{'.' + $selector} {
         #{$-property}: $-value;
       }
-      @if global-variable-exists($breakpoints) and mixin-exists(screen-query) and type-of($-breakpoints) == 'list' {
+      @if global-variable-exists('breakpoints') and mixin-exists('screen-query') and type-of($-breakpoints) == 'list' {
         @each $breakpoint in $-breakpoints {
-          #{$breakpoint + ':' + $selector} {
+          #{'.' + $breakpoint + ':' + $selector} {
             @include screen-query($breakpoint) {
               #{$-property}: $-value;
             }
