@@ -1,12 +1,13 @@
 const path = require('path')
-const config = require('../bundler.config')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { src, distPath, staticPages = {} } = require('../bundler.config')
 
 module.exports = {
   entry: {
-    app: path.resolve(config.srcPath.scripts, 'index.js')
+    app: path.resolve(src.scriptsPath, 'index.js')
   },
   output: {
-    path: config.distPath,
+    path: distPath,
     filename: '[name].js',
     chunkFilename: '[name].js',
     jsonpFunction: 'jsonpFunction'
@@ -14,14 +15,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.twig$/,
+        loader: 'twig-loader',
+        options: {
+          allowInlineIncludes: true
+        }
+      },
+      {
+        test: /\.js$/,
         exclude: /node_modules\/(?!(@fiad)\/).*/,
         loader: 'babel-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.css', '.scss']
+    extensions: ['.js', '.json', '.css', '.scss'],
+    alias: {
+      '@root': path.resolve(__dirname, '..')
+    }
   },
   optimization: {
     splitChunks: {
@@ -33,5 +44,17 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  plugins: (
+    Object
+      .entries(staticPages)
+      .map(([filename, { template, data }]) => (
+        new HtmlWebpackPlugin({
+          filename: `../${filename}.html`,
+          minify: false,
+          template: template,
+          templateParameters: data
+        })
+      ))
+  )
 }

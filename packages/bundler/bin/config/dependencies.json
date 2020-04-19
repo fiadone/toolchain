@@ -23,6 +23,7 @@
     "sass-loader",
     "style-loader",
     "terser-webpack-plugin",
+    "twig-loader",
     "webpack",
     "webpack-cli",
     "webpack-dev-server",

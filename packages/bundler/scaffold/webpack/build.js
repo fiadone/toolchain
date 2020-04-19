@@ -2,7 +2,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const config = require('../bundler.config')
+const { src, distPath } = require('../bundler.config')
 const base = require('./base')
 
 module.exports = {
@@ -37,13 +37,14 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyPlugin([
       {
-        from: config.srcPath.static,
-        to: config.distPath
+        from: src.staticPath,
+        to: distPath
       }
     ]),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[name].css'
-    })
+    }),
+    ...base.plugins
   ]
 }

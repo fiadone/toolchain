@@ -2,10 +2,16 @@ const path = require('path')
 
 module.exports = {
   publicPath: '/public/',
-  srcPath: {
-    scripts: path.join(__dirname, 'client/scripts'),
-    styles: path.join(__dirname, 'client/styles'),
-    static: path.join(__dirname, 'client/static')
+  src: {
+    scriptsPath: path.join(__dirname, 'client/scripts'),
+    stylesPath: path.join(__dirname, 'client/styles'),
+    staticPath: path.join(__dirname, 'client/static')
   },
-  distPath: path.join(__dirname, 'public/assets')
+  distPath: path.join(__dirname, 'public/assets'),
+  staticPages: {
+    index: {
+      template: path.join(__dirname, 'views/templates/homepage.twig'),
+      data: require('./mock/homepage')
+    }
+  }
 }
