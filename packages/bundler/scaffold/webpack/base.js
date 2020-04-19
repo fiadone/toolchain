@@ -1,13 +1,14 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const config = require('../bundler.config')
 
 module.exports = {
-  entry: path.resolve(config.paths.srcFolder, 'index.js'),
+  entry: {
+    app: path.resolve(config.srcPath.scripts, 'index.js')
+  },
   output: {
-    path: config.paths.distFolder,
-    filename: 'bundle.js',
+    path: config.distPath,
+    filename: '[name].js',
+    chunkFilename: '[name].js',
     jsonpFunction: 'jsonpFunction'
   },
   module: {
@@ -23,7 +24,6 @@ module.exports = {
     extensions: ['.js', '.json', '.css', '.scss']
   },
   optimization: {
-    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendor: {
@@ -33,14 +33,5 @@ module.exports = {
         }
       }
     }
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new CopyPlugin([
-      {
-        from: config.paths.staticFolder,
-        to: config.paths.distFolder
-      }
-    ])
-  ]
+  }
 }

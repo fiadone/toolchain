@@ -1,1 +1,3 @@
-module.exports = process.env.production ? require('./webpack/build') : require('./webpack/dev')
+const config = process.env.config || 'build'
+
+module.exports = require(`./webpack/${config}`)
