@@ -4,16 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   {% block meta %}{% endblock %}
+
+  <link rel="stylesheet" href="assets/app.css">
+
   {% block head %}{% endblock %}
 </head>
 <body>
   {% include './partials/header.twig' %}
+
   <main>
     {% block content %}{% endblock %}
     {% include './partials/footer.twig' %}
   </main>
+
   {% include './partials/cookies-banner.twig' %}
+
+  <script src="assets/vendors.js"></script>
+  <script src="assets/app.js"></script>
+
   {% block scripts %}{% endblock %}
 </body>
 </html>
