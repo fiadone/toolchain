@@ -7,30 +7,16 @@ module.exports = {
   mode: 'development',
   devtool: 'eval',
   watch: true,
+  watchOptions: {
+    ignored: /node_modules/
+  },
   devServer: {
     contentBase: path.resolve(base.output.path, '..'),
     hot: true,
+    host: 'localhost',
     port: 3000,
-    historyApiFallback: true
-  },
-  module: {
-    ...base.module,
-    rules: [
-      ...base.module.rules,
-      {
-        test: /\.(s)?css$/,
-        loader: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      }
-    ]
+    historyApiFallback: true,
+    writeToDisk: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
