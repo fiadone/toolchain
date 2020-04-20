@@ -6,6 +6,7 @@
     "express-session",
     "minimist",
     "morgan",
+    "multer",
     "twig",
     "uuid"
   ],

@@ -14,7 +14,7 @@ const session = require('./server/middlewares/session')
 const apiCtrl = require('./server/controllers/api')
 const defaultCtrl = require('./server/controllers/default')
 
-const { dev } = minimist(process.argv.slice(2))
+const { env } = minimist(process.argv.slice(2))
 
 const app = express()
 const port = 3000
@@ -22,10 +22,12 @@ const port = 3000
 app.set('view engine', 'twig')
 app.set('views', path.join(__dirname, 'views'))
 
-if (dev) {
-  app.use(webpack(port))
-} else {
+if (env === 'production') {
   app.set('trust proxy', 1)
+}
+
+if (env === 'development') {
+  app.use(webpack(port))
 }
 
 app.use(logger('tiny'))
