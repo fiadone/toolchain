@@ -23,7 +23,7 @@ if (!dependencies.length && !devDependencies.length) {
   process.stdout.write(chalk.blue(`Installing ${dependenciesString}... `))
 
   if (dependencies.length) {
-    await install(dependencies.join(' '), null, yarn)
+    await install(dependencies.join(' '), '', yarn)
   }
 
   if (devDependencies.length) {
