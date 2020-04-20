@@ -11,9 +11,9 @@ module.exports = function ({ modules = [] }) {
   process.stdout.write('\n')
 
   init()
+    .then(config)
     .then(scaffold)
     .then(install)
-    .then(config)
     .then(() => {
       // modules installation pipeline
       return modules.reduce((pipeline, pkg) => {
