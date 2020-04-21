@@ -6,7 +6,7 @@
 
 import detect from 'ismobilejs'
 
-export default {
-  ...detect(navigator.userAgent),
-  touch: 'touchstart' in window
-}
+const { windows, amazon, other, ...mobile } = detect(navigator.userAgent)
+const touch = 'touchstart' in window
+
+export { mobile, touch }
