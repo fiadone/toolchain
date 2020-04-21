@@ -24,6 +24,7 @@ npx @fiad/toolbox
 * [events](./events)
 * [math](./math)
 * [share](./share)
+* [scroll](./scroll)
 * [store](./store)
 * [stream](./stream)
 * [strings](./strings)
