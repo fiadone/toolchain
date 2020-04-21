@@ -10,30 +10,25 @@ import EventsBus from './bus'
 
 class EventsManager {
   /**
-   * @constructor
+   * The inner instance of event bus
+   * @private
+   * @type {EventBus}
    */
-  constructor() {
-    /**
-     * The inner instance of event bus
-     * @private
-     * @type {EventBus}
-     */
-    this.#bus = new EventsBus()
+  #bus = new EventsBus()
 
-    /**
-     * The mapping object of events alias/type
-     * @private
-     * @type {object}
-     */
-    this.#aliases = {}
+  /**
+   * The mapping object of events alias/type
+   * @private
+   * @type {object}
+   */
+  #aliases = {}
 
-    /**
-     * The listeners
-     * @private
-     * @type {object}
-     */
-    this.#listeners = {}
-  }
+  /**
+   * The listeners
+   * @private
+   * @type {object}
+   */
+  #listeners = {}
 
   /**
    * Checks if the given target supports native event listeners
@@ -174,12 +169,12 @@ class EventsManager {
 
   /**
    * Handles event un-subscription
-   * @param {(string|string[])} alias The event alias
+   * @param {(string|string[])} type The event type (alias)
    * @param {...any} args 
    */
-  off(alias, ...args) {
-    if (Array.isArray(alias)) {
-      alias.forEach(a => this.off(a, ...args))
+  off(type, ...args) {
+    if (Array.isArray(type)) {
+      type.forEach(a => this.off(a, ...args))
       return
     }
 
@@ -231,7 +226,7 @@ class EventsManager {
 const instance = new EventsManager()
 
 export default {
-  on: instance.on,
-  off: instance.off,
-  dispatch: instance.dispatch
+  on: (...args) => instance.on(...args),
+  off: (...args) => instance.off(...args),
+  dispatch: (...args) => instance.dispatch(...args)
 }

@@ -6,16 +6,11 @@
 
 class EventsBus {
   /**
-   * @constructor
+   * The subscribed callbacks collection (grouped by event type)
+   * @type {object}
+   * @private
    */
-  constructor() {
-    /**
-     * The subscribed callbacks collection (grouped by event type)
-     * @type {object}
-     * @private
-     */
-    this.#subscriptions = {}
-  }
+  #subscriptions = {}
 
   /**
    * Arranges and executes a subscription callback
