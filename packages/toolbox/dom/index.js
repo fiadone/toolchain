@@ -101,7 +101,7 @@ export function enhance(el, props) {
  * @param {boolean} enhanced Defines if returned element has to be enhanced
  * @returns {HTMLElement}
  */
-export function get(selector, context = document, enhanced = true) {
+export function getElement(selector, { context = document, enhanced = false } = {}) {
   const el = context.querySelector(selector)
 
   return enhanced ? enhance(el) : el
@@ -114,7 +114,7 @@ export function get(selector, context = document, enhanced = true) {
  * @param {boolean} enhanced Defines if returned element has to be enhanced
  * @returns {HTMLElement[]}
  */
-export function getAll(selector, context = document, enhanced = true) {
+export function getElements(selector, { context = document, enhanced = false } = {}) {
   const els = context.querySelectorAll(selector)
 
   return Array.from(els).map(el => (enhanced ? enhance(el) : el))
