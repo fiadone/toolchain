@@ -1,7 +1,7 @@
 /**
  * @module SmoothScroll
  * @package @fiad/toolbox
- * @description A smooth scroll handler
+ * @description A performing smooth scroll handler not affecting native scroll behaviors
  */
 
 import gsap from 'gsap'
