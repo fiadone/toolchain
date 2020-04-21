@@ -1,5 +1,5 @@
 # @fiad/toolbox/share
 
-A social sharing management utility
+A simple social sharing management utility
 
 ---

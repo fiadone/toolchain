@@ -1,7 +1,7 @@
 /**
  * @module detect
  * @package @fiad/toolbox
- * @description An helper that detects information about application's environment
+ * @description A simple collector of device info
  */
 
 import detect from 'ismobilejs'

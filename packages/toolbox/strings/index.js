@@ -1,7 +1,7 @@
 /**
  * @module strings
  * @package @fiad/toolbox
- * @description A collection of utilities to transform strings
+ * @description A collection of utility functions for strings manipulation
  */
 
 /**

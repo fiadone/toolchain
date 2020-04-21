@@ -1,7 +1,7 @@
 /**
  * @module math
  * @package @fiad/toolbox
- * @description A collection of additional math functions
+ * @description A collection of math utility functions
  */
 
 /**

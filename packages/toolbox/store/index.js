@@ -1,7 +1,7 @@
 /**
  * @module Store
  * @package @fiad/toolbox
- * @description A simple state manager
+ * @description A simple state management handler
  */
 
 import isEqual from 'lodash/isEqual'

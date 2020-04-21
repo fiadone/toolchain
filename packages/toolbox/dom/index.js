@@ -1,7 +1,7 @@
 /**
  * @module dom
  * @package @fiad/toolbox
- * @description A collection of utilities to manage DOM
+ * @description A collection of utility functions to mandage DOM elements
  */
 
 import Stream from '@fiad/toolbox/stream'

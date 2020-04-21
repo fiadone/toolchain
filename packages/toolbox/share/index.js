@@ -1,7 +1,7 @@
 /**
  * @module ShareManager
  * @package @fiad/toolbox
- * @description An helper to manage social sharing based on browser dialogs
+ * @description A simple social sharing management utility
  */
 
 import Stream from '@fiad/toolbox/stream'

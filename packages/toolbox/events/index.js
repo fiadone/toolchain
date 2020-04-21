@@ -1,7 +1,7 @@
 /**
  * @module EventsManager
  * @package @fiad/toolbox
- * @description A custom events handler 
+ * @description A simple and performing events management system
  */
 
 import Stream from '@fiad/toolbox/stream'

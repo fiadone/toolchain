@@ -1,7 +1,7 @@
 /**
  * @module Stream
  * @package @fiad/toolbox
- * @description A custom logger to handle formatted console outputs
+ * @description A consistent logger and error management system
  */
 class Stream {
   /**
