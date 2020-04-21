@@ -14,7 +14,7 @@ module.exports = {
   // staticPages: {
   //   index: {
   //     template: path.join(__dirname, 'views/templates/homepage.twig'),
-  //     data: () => require(path.join(__dirname, 'mock/homepage'))
+  //     mock: path.join(__dirname, 'mock/homepage.json')
   //   }
   // }
 }

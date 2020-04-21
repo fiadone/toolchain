@@ -68,10 +68,14 @@ module.exports = {
     }),
     ...Object
       .entries(staticPages)
-      .map(([filename, { template, data }]) => (
+      .map(([filename, { template, mock }]) => (
         new HtmlWebpackPlugin({
           template: template,
-          templateParameters: data,
+          templateParameters: compilation => {
+            compilation.fileDependencies.add(mock)
+            delete require.cache[require.resolve(mock)]
+            return require(mock)
+          },
           filename: `../${filename}.html`,
           inject: false
         })
