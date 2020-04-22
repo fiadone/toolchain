@@ -23,7 +23,7 @@ class Stream {
     const sign = [namespace, context]
       .filter(p => !!p)
       .map(p => `[${p.trim()}]`)
-      .join()
+      .join('')
   
     return `${sign} ${message.trim()}`
   }
@@ -61,6 +61,8 @@ class Stream {
    * @throws {string}
    */
   static throw({ message, context, namespace = Stream.namespace } = {}) {
-    throw buildOutput(message, context, namespace)
+    throw Stream.#buildMessage(message, context, namespace)
   }
 }
+
+export default Stream
