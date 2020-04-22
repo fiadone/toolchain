@@ -19,10 +19,14 @@ class Stream {
    * @param {(string|null)} context The log context (module, package, component, etc)
    * @param {(string|null)} namespace The log namespace
    */
-  static #buildMessage(message, context, namespace) {
+  static #buildMessage(message = '', context = '', namespace = '') {
+    if (typeof message !== 'string' || !message) {
+      return ''
+    }
+
     const sign = [namespace, context]
-      .filter(p => !!p)
-      .map(p => `[${p.trim()}]`)
+      .filter(p => typeof p === 'string' && !!p.trim())
+      .map(p => {`[${p.trim()}]`})
       .join('')
   
     return `${sign} ${message.trim()}`
@@ -31,9 +35,10 @@ class Stream {
   /**
    * Logs a formatted message
    * @static
+   * @param {string} message The log message
    * @param {object} config The log configuration object 
    */
-  static log({ message, type = 'info', data, context, namespace = Stream.namespace } = {}) {
+  static log(message, { type = 'info', data, context, namespace = Stream.namespace } = {}) {
     const output = Stream.#buildMessage(message, context, namespace)
 
     switch (type) {
@@ -57,10 +62,11 @@ class Stream {
   /**
    * Throws a formatted error message
    * @static
+   * @param {string} message The error message
    * @param {object} config The log configuration object
    * @throws {string}
    */
-  static throw({ message, context, namespace = Stream.namespace } = {}) {
+  static throw(message, { context, namespace = Stream.namespace } = {}) {
     throw Stream.#buildMessage(message, context, namespace)
   }
 }

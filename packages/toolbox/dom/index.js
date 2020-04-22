@@ -23,10 +23,7 @@ export function isDOMElement(object) {
  */
 export function getScrollY(el) {
   if (!(el instanceof HTMLElement)) {
-    Stream.throw({
-      message: 'Missing or invalid argument. Please provide an instance of HTMLElement.',
-      context: 'dom'
-    })
+    Stream.throw('Missing or invalid argument. Please provide an instance of HTMLElement.', { context: 'dom' })
   }
 
   const { y = 0, top = 0 } = el.getBoundingClientRect()
@@ -43,7 +40,7 @@ export function getScrollRatio(el) {
   const y = getScrollY(el)
   const ratio = (window.innerHeight - y) / (window.innerHeight + el.clientHeight)
 
-  return clamp(ratio, [0, 1])
+  return clamp(ratio, 0, 1)
 }
 
 /**
@@ -54,9 +51,17 @@ export function getScrollRatio(el) {
 export function getIntersectionRatio(el) {
   const y = getScrollY(el)
 
-  return y >= 0
-    ? Math.min(1, ((window.innerHeight - y) / el.clientHeight))
-    : Math.min(window.innerHeight, (el.clientHeight - Math.abs(y))) / el.clientHeight
+  const ratio = y >= 0
+    ? (window.innerHeight - y) / el.clientHeight
+    : (el.clientHeight - Math.abs(y)) / el.clientHeight
+
+  return clamp(ratio, 0, 1)
+}
+
+export function isInViewport(el) {
+  const y = getScrollY(el)
+
+  return y <= (window.innerHeight + window.scrollY) && y >= -1 * (el.clientHeight)
 }
 
 /**
@@ -67,10 +72,7 @@ export function getIntersectionRatio(el) {
  */
 export function enhance(el, props) {
   if (!(el instanceof HTMLElement)) {
-    Stream.throw({
-      message: 'Missing or invalid argument. Please provide an instance of HTMLElement.',
-      context: 'dom'
-    })
+    Stream.throw('Missing or invalid argument. Please provide an instance of HTMLElement.', { context: 'dom' })
   }
 
   // binding custom properties
@@ -79,7 +81,7 @@ export function enhance(el, props) {
   }
 
   // adding scroll info getter
-  el.prototype.getScroll = function() {
+  el.getScroll = function() {
     const y = getScrollY(this)
     const ratio = getScrollRatio(this)
 
@@ -87,8 +89,12 @@ export function enhance(el, props) {
   }
 
   // adding intersection info getter
-  el.prototype.getIntersection = function() {
+  el.getIntersection = function() {
     return getIntersectionRatio(this)
+  }
+
+  el.isInViewport = function () {
+    return isInViewport(this)
   }
 
   return el
