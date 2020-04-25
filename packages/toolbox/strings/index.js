@@ -49,8 +49,8 @@ export function uncapitalize(string) {
  */
 export function camelCase(string) {
   return deconstruct(string)
-    .map((word, i) => (i > 0) ? capitalize(word) : uncapitalize(word))
-    .join()
+    .map((word, i) => (i > 0) ? capitalize(word.toLowerCase()) : word.toLowerCase())
+    .join('')
 }
 
 /**
@@ -61,7 +61,7 @@ export function camelCase(string) {
  * pascalCase('my string') --> 'MyString'
  */
 export function pascalCase(string) {
-  return capitalize(camelCase(string))
+  return capitalize(camelCase(string.toLowerCase()))
 }
 
 /**
@@ -72,7 +72,9 @@ export function pascalCase(string) {
  * snakeCase('my string') --> 'my_string'
  */
 export function snakeCase(string) {
-  return deconstruct(string).join('_')
+  return deconstruct(string)
+    .map(word => word.toLowerCase())
+    .join('_')
 }
 
 /**
@@ -83,5 +85,7 @@ export function snakeCase(string) {
  * kebabCase('my string') --> 'my-string'
  */
 export function kebabCase(string) {
-  return deconstruct(string).join('-')
+  return deconstruct(string)
+    .map(word => word.toLowerCase())
+    .join('-')
 }
