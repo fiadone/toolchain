@@ -7,32 +7,32 @@ import {
   kebabCase
 } from '@fiad/toolbox/strings'
 
-test('Should capitalize the string', () => {
+test('It should capitalize the given string', () => {
   const result = capitalize('string')
   expect(result).toBe('String')
 })
 
-test('Should uncapitalize the string', () => {
+test('It should uncapitalize the given string', () => {
   const result = uncapitalize('String')
   expect(result).toBe('string')
 })
 
-test('Should make the string camel-case', () => {
+test('It should make the given string camel-case', () => {
   const result = camelCase('string example')
   expect(result).toBe('stringExample')
 })
 
-test('Should make the string pascal-case', () => {
+test('It should make the given string pascal-case', () => {
   const result = pascalCase('string example')
   expect(result).toBe('StringExample')
 })
 
-test('Should make the string snake-case', () => {
+test('It should make the given string snake-case', () => {
   const result = snakeCase('String Example')
   expect(result).toBe('string_example')
 })
 
-test('Should make the string kebab-case', () => {
+test('It should make the given string kebab-case', () => {
   const result = kebabCase('String Example')
   expect(result).toBe('string-example')
 })
