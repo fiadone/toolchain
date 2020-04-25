@@ -9,7 +9,7 @@ class Stream {
    * @type {string}
    * @static
    */
-  static namespace = '@fiad'
+  static namespace
 
   /**
    * Generates the log output
@@ -28,7 +28,7 @@ class Stream {
       .filter(p => typeof p === 'string' && !!p.trim())
       .map(p => {`[${p.trim()}]`})
       .join('')
-  
+
     return `${sign} ${message.trim()}`
   }
 
@@ -36,7 +36,7 @@ class Stream {
    * Logs a formatted message
    * @static
    * @param {string} message The log message
-   * @param {object} config The log configuration object 
+   * @param {object} config The log configuration object
    */
   static log(message, { type = 'info', data, context, namespace = Stream.namespace } = {}) {
     const output = Stream.#buildMessage(message, context, namespace)

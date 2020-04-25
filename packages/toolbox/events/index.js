@@ -44,7 +44,7 @@ class EventsManager {
    * Subscription getter
    * @private
    * @static
-   * @param {Array} args 
+   * @param {Array} args
    */
   static #getSubscriptionData(args) {
     let callback
@@ -82,7 +82,8 @@ class EventsManager {
           already in use for a different event type
         `,
         type: 'warn',
-        context: 'EventsManager'
+        namespace: '@fiad',
+        context: 'events'
       })
       return
     }
@@ -140,7 +141,7 @@ class EventsManager {
   /**
    * Handles event subscription
    * @param {(string|string[])} type The event type to be listened to
-   * @param {...any} args 
+   * @param {...any} args
    */
   on(type, ...args) {
     if (Array.isArray(type)) {
@@ -170,7 +171,7 @@ class EventsManager {
   /**
    * Handles event un-subscription
    * @param {(string|string[])} type The event type (alias)
-   * @param {...any} args 
+   * @param {...any} args
    */
   off(type, ...args) {
     if (Array.isArray(type)) {

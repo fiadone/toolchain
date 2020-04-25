@@ -50,6 +50,7 @@ class ShareManager {
     if (!generators[target]) {
       Stream.log(`Unable to generate share link: unknown platform "${target}".`, {
         type: 'warn',
+        namespace: '@fiad',
         context: 'share'
       })
       return
