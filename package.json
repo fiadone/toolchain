@@ -16,6 +16,6 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
-    "test": "jest"
+    "test": "jest --coverage"
   }
 }
