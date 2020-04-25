@@ -1,0 +1,79 @@
+/*==========================*/
+/* SIZES AND RESPONSIVENESS */
+/*==========================*/
+$breakpoints: (
+  "sm": 768,
+  "md": 1024,
+  "lg": 1366,
+  "xl": 1600
+);
+
+$md-breakpoints: map-merge($breakpoints, (
+  "tablet": map-get($breakpoints, 'sm'),
+  "desktop": map-get($breakpoints, 'md')
+));
+
+$scalar: 8;
+$radius: 4;
+
+/*===================*/
+/* THEMES AND COLORS */
+/*===================*/
+$theme: 'light';
+$themes: (
+  "dark": (
+    "primary": #F9F8EF,
+    "primary-contrast": #235789,
+    "secondary": #393D3F,
+    "secondary-contrast": #E7DFC6,
+    "tertiary": #F9F8EF,
+    "tertiary-contrast": #DB5461,
+    "text": #F9F8EF,
+    "border": #B9BDBF
+  ),
+  "light": (
+    "primary": #235789,
+    "primary-contrast": #F9F8EF,
+    "secondary": #E7DFC6,
+    "secondary-contrast": #393D3F,
+    "tertiary": #DB5461,
+    "tertiary-contrast": #F9F8EF,
+    "text": #393D3F,
+    "border": #B9BDBF
+  )
+);
+
+$colors: (
+  "success": #3D993D,
+  "warning": #FFAB35,
+  "error": #BF2E11,
+  "cyan": #5BCEE5,
+  "magenta": #FF3366,
+  "yellow": #FFD24C,
+  "black": #000000,
+  "red": #B23F35,
+  "green": #6B993D,
+  "blue": #235789,
+  "indigo": #242F40,
+  "white": #FFFFFF,
+  "ivory": #F9F8EF,
+  "grey-light": #B9BDBF,
+  "grey": #797D7F,
+  "grey-dark": #393D3F,
+  "onyx": #090D0F
+);
+
+/*============*/
+/* TYPOGRAPHY */
+/*============*/
+
+
+/*============*/
+/* ANIMATIONS */
+/*============*/
+$duration: .3s;
+
+/*===============*/
+/* MISCELLANEOUS */
+/*===============*/
+$shadow: 0 0 2em rgba(0, 0, 0, .2);

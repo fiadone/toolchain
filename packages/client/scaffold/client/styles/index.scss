@@ -1,13 +1,15 @@
 /*=========*/
 /* VENDORS */
 /*=========*/
-@import '../../node_modules/minireset.css/minireset.css';
+@import 'sass-mq';
+@import 'minireset.css';
 @import '@fiad/design-system';
 
 /*========*/
 /* GLOBAL */
 /*========*/
 @import 'global/variables';
+@import 'global/helpers';
 @import 'global/typography';
 @import 'global/layout';
 

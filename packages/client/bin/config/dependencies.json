@@ -2,9 +2,7 @@
   "dependencies": [
     "@fiad/design-system",
     "axios",
-    "minireset.css"
-  ],
-  "devDependencies": [
-    "jest"
+    "minireset.css",
+    "sass-mq"
   ]
 }
