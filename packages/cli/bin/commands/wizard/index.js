@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const path = require('path')
 const fs = require('fs-extra')
 const minimist = require('minimist')
 const clear = require('clear')
@@ -8,7 +7,7 @@ const chalk = require('chalk')
 const figlet = require('figlet')
 const inquirer = require('inquirer')
 
-const { heading, color, questions, handler } = minimist(process.argv.slice(2))
+const { heading, headingColor, info, infoColor, questions, handler } = minimist(process.argv.slice(2))
 const baseErrorString = 'Attempt to start wizard failed.'
 
 if (!questions || !fs.existsSync(questions)) {
@@ -33,8 +32,15 @@ clear()
 
 // printing heading
 if (heading) {
-  const headingStyle = chalk[color] || chalk.white
+  const headingStyle = chalk[headingColor] || chalk.white
   process.stdout.write(headingStyle(`${figlet.textSync(heading, { horizontalLayout: 'full' })}\n\n`))
+}
+
+// printing info
+if (info) {
+  const infoStyle = chalk[infoColor] || chalk.white
+  process.stdout.write(infoStyle(`\n${info}\n\n`))
+  process.stdout.write('--------\n\n')
 }
 
 // wizard

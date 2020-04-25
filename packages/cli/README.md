@@ -58,7 +58,7 @@ __JSON manifest schema:__
 Handles package.json updates.
 
 ```
-npx @fiad/cli config --add build --value "webpack --env.production" --context scripts --force
+npx @fiad/cli config --add build --value "webpack --mode production" --context scripts --force
 ```
 
 ```
