@@ -13,10 +13,10 @@ import { lerp } from '@fiad/toolbox/math'
 class SmoothScroll {
   /**
    * @constructor
-   * @param {(object|null)} config The configuration object 
+   * @param {(object|null)} config The configuration object
    */
   constructor({ inertia = 0.2 } = {}) {
-    this.root = document.body
+    this.root = getElement('[data-scroll-root]') || document.body
     this.wrapper = getElement('[data-scroll-wrapper]')
     this.content = getElement('[data-scroll-content]')
     this.y = window.scrollY
@@ -46,12 +46,12 @@ class SmoothScroll {
   /**
    * Initializes component
    */
-  init() {    
+  init() {
     if (this.wrapper && this.content) {
       this.enabled = true
       this.setRootHeight()
 
-      gsap.set(this.root, { overscrollBehavior: 'none' })
+      gsap.set(document.body, { overscrollBehavior: 'none' })
       gsap.set(this.wrapper, {
         width: '100%',
         height: '100%',
@@ -71,7 +71,7 @@ class SmoothScroll {
   destroy() {
     if (this.enabled) {
       EventsManager.off('resize', window, this.onResize)
-  
+
       gsap.ticker.remove(this.requestScrollFrame)
       gsap.set(this.root, { clearProps: 'height, overflow-behavior' })
       gsap.set(this.wrapper, { clearProps: 'width, height, position, top, left' })
