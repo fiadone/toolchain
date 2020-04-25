@@ -8,7 +8,7 @@
  * Whatsapp share link generator
  * @param {object} data The data to be shared
  */
-export function whatsapp({ url, description }) {
+export function whatsapp({ url = window.location.href, description } = {}) {
   const text = description ? `${description} ${url}` : url
   return `https://wa.me/?text=${encodeURIComponent(text)}`
 }
@@ -17,7 +17,7 @@ export function whatsapp({ url, description }) {
  * Telegram share link generator
  * @param {object} data The data to be shared
  */
-export function telegram({ url, description }) {
+export function telegram({ url = window.location.href, description } = {}) {
   const queryString = `?url=${url}&text=${description}`
   return `https://telegram.me/share/url${encodeURIComponent(queryString)}`
 }
@@ -26,7 +26,7 @@ export function telegram({ url, description }) {
  * Facebook share link generator
  * @param {object} data The data to be shared
  */
-export function facebook({ url }) {
+export function facebook({ url = window.location.href } = {}) {
   return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
 }
 
@@ -34,7 +34,7 @@ export function facebook({ url }) {
  * Twitter share link generator
  * @param {object} data The data to be shared
  */
-export function twitter({ url, description }) {
+export function twitter({ url = window.location.href, description } = {}) {
   const status = description ? `${url} ${description}` : url
   return `https://twitter.com/home?status=${encodeURIComponent(status)}`
 }
@@ -43,7 +43,7 @@ export function twitter({ url, description }) {
  * Google+ share link generator
  * @param {object} data The data to be shared
  */
-export function googleplus({ url }) {
+export function googleplus({ url = window.location.href } = {}) {
   return `https://plus.google.com/share?url=${encodeURIComponent(url)}`
 }
 
@@ -51,7 +51,7 @@ export function googleplus({ url }) {
  * LinkedIn share link generator
  * @param {object} data The data to be shared
  */
-export function linkedin({ url, title, description }) {
+export function linkedin({ url = window.location.href, title, description } = {}) {
   const queryString = `?mini=true&url=${url}&title=${title}&summary=${description}`
   return `https://www.linkedin.com/shareArticle${encodeURIComponent(queryString)}`
 }
@@ -60,7 +60,7 @@ export function linkedin({ url, title, description }) {
  * Mail share link generator
  * @param {object} data The data to be shared
  */
-export function mail({ url, title, description }) {
+export function mail({ url = window.location.href, title, description } = {}) {
   const body = description ? `${url} ${description}` : url
   return `mailto:?subject=${title}&body=${body}`
 }
