@@ -1,0 +1,26 @@
+/**
+ * Creates a responsive auto-scaling system
+ * @param int $mobileNaturalSize The natural size of mobile design
+ * @param int $desktopNaturalSize The natural size of desktop design
+ * @param list $mobileBreakpoints The list of mobile scaling breakpoints
+ * @param list $desktopBreakpoints The list of desktop scaling breakpoints
+ */
+ @mixin auto-scaling(
+  $mobileNaturalSize: 320,
+  $desktopNaturalSize: 1024,
+  $mobileBreakpoints: (320, 375, 414, 640, 768, 992),
+  $desktopBreakpoints: (1024, 1152, 1280, 1366, 1440, 1600, 1920, 2560)
+) {
+  // generating mobile rules
+  @each $breakpoint in $mobileBreakpoints {
+    @media screen and (min-width: #{$breakpoint}px) {
+      font-size: #{floor($breakpoint * 100 / $mobileNaturalSize) + "%"};
+    }
+  }
+  // generating desktop rules
+  @each $breakpoint in $desktopBreakpoints {
+    @media screen and (min-width: #{$breakpoint}px) {
+      font-size: #{floor($breakpoint * 100 / $desktopNaturalSize) + "%"};
+    }
+  }
+}
