@@ -9,13 +9,33 @@ import EventsBus from '@fiad/toolbox/events/bus'
 
 class Store {
   /**
+   * The original store's state
+   * @private
+   * @type {object}
+   */
+  #originalState = {}
+
+  /**
+   * The store's state
+   * @private
+   * @type {object}
+   */
+  #state = {}
+
+  /**
+   * The inner instance of event bus
+   * @private
+   * @type {EventBus}
+   */
+  #bus = new EventsBus()
+
+  /**
    * @constructor
    * @param {object} state The initial store's state
    */
   constructor(state = {}) {
     this.#originalState = state
     this.#state = state
-    this.#bus = new EventsBus()
   }
 
   /**
