@@ -13,6 +13,5 @@ npm i @fiad/design-system
 
 ## Contents
 
-* [variables](https://github.com/fiadone/carpentry/tree/master/packages/design-system/config/)
-* [helpers](https://github.com/fiadone/carpentry/tree/master/packages/design-system/helpers/)
-* [mixin](https://github.com/fiadone/carpentry/tree/master/packages/design-system/mixin/)
+* [functions](https://github.com/fiadone/carpentry/tree/master/packages/design-system/functions)
+* [mixin](https://github.com/fiadone/carpentry/tree/master/packages/design-system/mixin)
