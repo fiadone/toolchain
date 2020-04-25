@@ -4,7 +4,6 @@
  * @description A simple state management handler
  */
 
-import isEqual from 'lodash/isEqual'
 import EventsBus from '@fiad/toolbox/events/bus'
 
 class Store {
@@ -53,7 +52,7 @@ class Store {
   set(...args) {
     switch (typeof args[0]) {
       case 'string':
-        if (!isEqual(this.get(args[0]), args[1])) {
+        if (JSON.stringify(this.get(args[0])) !== JSON.stringify(args[1])) {
           this.#state[args[0]] = args[1]
           this.#bus.dispatch(args[0], args[1])
         }
