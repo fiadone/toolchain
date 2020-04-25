@@ -6,7 +6,7 @@
 
 import gsap from 'gsap'
 import debounce from 'lodash/debounce'
-import { getElement, getElements } from '@fiad/toolbox/dom'
+import { getElement } from '@fiad/toolbox/dom'
 import EventsManager from '@fiad/toolbox/events'
 import { lerp } from '@fiad/toolbox/math'
 
@@ -19,18 +19,8 @@ class SmoothScroll {
     this.root = document.body
     this.wrapper = getElement('[data-scroll-wrapper]')
     this.content = getElement('[data-scroll-content]')
-    this.items = getElements('[data-scroll-item]', { enhanced: true })
     this.y = window.scrollY
     this.inertia = inertia
-  }
-
-  /**
-   * Scroll target element(s) getter
-   */
-  get target() {
-    return this.items.length
-      ? this.items.filter(el => el.inViewport())
-      : this.content
   }
 
   /**
@@ -50,7 +40,7 @@ class SmoothScroll {
    */
   requestScrollFrame = () => {
     this.y = lerp(this.y, window.scrollY, this.inertia)
-    gsap.set(this.target, { y: -this.y })
+    gsap.set(this.content, { y: -this.y, force3D: true })
   }
 
   /**
