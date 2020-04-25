@@ -19,12 +19,13 @@ npx @fiad/toolbox
 
 ## Contents
 
+* [cache](./cache)
 * [detect](./detect)
 * [dom](./dom)
 * [events](./events)
 * [math](./math)
 * [share](./share)
-* [scroll](./scroll)
+* [smooth-scroll](./smooth-scroll)
 * [store](./store)
 * [stream](./stream)
 * [strings](./strings)
