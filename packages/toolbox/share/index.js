@@ -47,7 +47,7 @@ class ShareManager {
    * @param {object} data The data to be shared
    */
   static generateUrl(target, data = {}) {
-    if (!generators.hasOwnProperty(target)) {
+    if (!generators[target]) {
       Stream.log(`Unable to generate share link: unknown platform "${target}".`, {
         type: 'warn',
         context: 'share'
@@ -67,7 +67,7 @@ class ShareManager {
 
     if (url) {
       window.open(url, '_blank', 'width=640,height=480')
-    } 
+    }
   }
 }
 
