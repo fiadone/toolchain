@@ -1,6 +1,10 @@
 {
   "devDependencies": [
+    "@babel/core",
+    "@babel/preset-env",
+    "babel-jest",
     "eslint",
+    "jest",
     "prettier"
   ]
 }

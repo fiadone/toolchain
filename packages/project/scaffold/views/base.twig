@@ -12,11 +12,13 @@
   {% block head %}{% endblock %}
 </head>
 <body>
-  {% include './partials/header.twig' %}
+  {% include './partials/header.twig' with { sticky: true } %}
 
-  <main>
-    {% block content %}{% endblock %}
-    {% include './partials/footer.twig' %}
+  <main id="content" data-scroll-wrapper>
+    <div data-scroll-content>
+      {% block content %}{% endblock %}
+      {% include './partials/footer.twig' %}
+    </div>
   </main>
 
   {% include './partials/cookies-banner.twig' %}
