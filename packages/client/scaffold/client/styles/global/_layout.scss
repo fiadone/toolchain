@@ -2,12 +2,6 @@ html {
   @include auto-scaling(375, 1440);
 }
 
-#content {
-  .header--sticky ~ & {
-    padding-top: $header-height;
-  }
-}
-
 .container {
   padding: 0 1rem;
   overflow: auto;
