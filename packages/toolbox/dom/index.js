@@ -4,7 +4,6 @@
  * @description A collection of utility functions to mandage DOM elements
  */
 
-import Stream from '@fiad/toolbox/stream'
 import { clamp } from '@fiad/toolbox/math'
 
 /**
@@ -13,22 +12,7 @@ import { clamp } from '@fiad/toolbox/math'
  * @returns {boolean}
  */
 export function isDOMElement(object) {
-  return object instanceof HTMLDocument
-    || object instanceof HTMLElement
-}
-/**
- * Retrieves the current scroll position of the target element
- * @param {HTMLElement} el The target element
- * @returns {number}
- */
-export function getScrollY(el) {
-  if (!(el instanceof HTMLElement)) {
-    Stream.throw('Missing or invalid argument. Please provide an instance of HTMLElement.', { context: 'dom' })
-  }
-
-  const { y = 0, top = 0 } = el.getBoundingClientRect()
-
-  return y || top
+  return object instanceof HTMLDocument || object instanceof HTMLElement
 }
 
 /**
@@ -37,31 +21,26 @@ export function getScrollY(el) {
  * @returns {number}
  */
 export function getScrollRatio(el) {
-  const y = getScrollY(el)
-  const ratio = (window.innerHeight - y) / (window.innerHeight + el.clientHeight)
+  const { top } = el.getBoundingClientRect()
+  const ratio = (window.innerHeight - top) / (window.innerHeight + el.clientHeight)
 
   return clamp(ratio, 0, 1)
 }
 
 /**
- * Returns a value between 0 and 1 that tells how much of the target element is currently visible in the viewport
+ * Returns the size of the element portion intersecting the viewport
  * @param {HTMLElement} el The target element
  * @returns {number}
  */
-export function getIntersectionRatio(el) {
-  const y = getScrollY(el)
+export function getIntersection(el) {
+  const { top } = el.getBoundingClientRect()
+  const size = top >= 0 ? window.innerHeight - top : (el.clientHeight - Math.abs(top))
+  const ratio = size / el.clientHeight
 
-  const ratio = y >= 0
-    ? (window.innerHeight - y) / el.clientHeight
-    : (el.clientHeight - Math.abs(y)) / el.clientHeight
-
-  return clamp(ratio, 0, 1)
-}
-
-export function isInViewport(el) {
-  const y = getScrollY(el)
-
-  return y <= (window.innerHeight + window.scrollY) && y >= -1 * (el.clientHeight)
+  return {
+    size: clamp(size, 0, el.clientHeight),
+    ratio: clamp(ratio, 0, 1)
+  }
 }
 
 /**
@@ -70,32 +49,18 @@ export function isInViewport(el) {
  * @param {object} props Custom enhancing properties
  * @returns {HTMLElement}
  */
-export function enhance(el, props) {
-  if (!(el instanceof HTMLElement)) {
-    Stream.throw('Missing or invalid argument. Please provide an instance of HTMLElement.', { context: 'dom' })
-  }
+export function enhance(el, props = {}) {
+  if (!(el instanceof HTMLElement)) return null
 
-  // binding custom properties
-  if (typeof props === 'object') {
-    Object.assign(el, props)
-  }
-
-  // adding scroll info getter
-  el.getScroll = function() {
-    const y = getScrollY(this)
-    const ratio = getScrollRatio(this)
-
-    return { y, ratio }
-  }
-
-  // adding intersection info getter
-  el.getIntersection = function() {
-    return getIntersectionRatio(this)
-  }
-
-  el.isInViewport = function () {
-    return isInViewport(this)
-  }
+  Object.assign(el, {
+    ...props,
+    scrollRatio: function() {
+      return getScrollRatio(this)
+    },
+    intersection: function() {
+      return getIntersection(this)
+    }
+  })
 
   return el
 }
@@ -133,9 +98,7 @@ export function getElements(selector, { context = document, enhanced = false } =
  * @returns {(boolean|string)}
  */
 export function match(el, selector) {
-  if (!el || !selector) {
-    return false
-  }
+  if (!el || !selector) return false
 
   return Array.isArray(selector)
     ? el.matches(selector)
@@ -149,9 +112,7 @@ export function match(el, selector) {
  * @returns {boolean}
  */
 export function isDescendantOf(el, selector) {
-  if (!el || !selector) {
-    return false
-  }
+  if (!el || !selector) return false
 
   return Array.isArray(selector)
     ? selector.some(entry => !!el.closest(entry))
