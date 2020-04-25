@@ -14,3 +14,4 @@ npx @fiad/project my-project
 
 - [@fiad/client](https://github.com/fiadone/carpentry/tree/master/packages/client)
 - [@fiad/server](https://github.com/fiadone/carpentry/tree/master/packages/server)
+- [@fiad/toolbox](https://github.com/fiadone/carpentry/tree/master/packages/toolbox)

@@ -23,5 +23,5 @@ module.exports = function ({ modules = [] }) {
     .then(() => {
       process.stdout.write(chalk.green(`\n🎉 All ready! Let's code 🤟\n\n`))
       process.exit(0)
-    })    
+    })
 }
