@@ -3,7 +3,6 @@
  * @description A smart collection of front-end development tools and utilities
  */
 
-export * as cache from './cache'
 export { default as Cursor } from './cursor'
 export * as detect from './detect'
 export * as dom from './dom'
