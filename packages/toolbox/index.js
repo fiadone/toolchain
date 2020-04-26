@@ -4,6 +4,7 @@
  */
 
 export * as cache from './cache'
+export { default as Cursor } from './cursor'
 export * as detect from './detect'
 export * as dom from './dom'
 export { default as EventsManager } from './events'

@@ -20,6 +20,7 @@ npx @fiad/toolbox
 ## Contents
 
 * [cache](./cache)
+* [cursor](./cursor)
 * [detect](./detect)
 * [dom](./dom)
 * [events](./events)
