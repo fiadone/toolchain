@@ -30,4 +30,4 @@ npx @fiad/toolbox
 * [store](./store)
 * [stream](./stream)
 * [strings](./strings)
-* [strings](./utils)
+* [utils](./utils)
