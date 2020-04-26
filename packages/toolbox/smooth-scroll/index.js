@@ -5,9 +5,9 @@
  */
 
 import gsap from 'gsap'
-import debounce from 'lodash/debounce'
 import { getElement } from '@fiad/toolbox/dom'
 import EventsManager from '@fiad/toolbox/events'
+import { debounce } from '@fiad/toolbox/events/helpers'
 import { lerp } from '@fiad/toolbox/math'
 
 class SmoothScroll {

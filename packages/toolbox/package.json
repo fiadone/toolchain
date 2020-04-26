@@ -15,13 +15,11 @@
   },
   "peerDependencies": {
     "gsap": ">= 3.2.6",
-    "ismobilejs": ">= 1.0.4",
-    "lodash": ">= 4.17.15"
+    "ismobilejs": ">= 1.0.4"
   },
   "dependencies": {
     "gsap": "^3.2.6",
-    "ismobilejs": "^1.0.4",
-    "lodash": "^4.17.15"
+    "ismobilejs": "^1.0.4"
   },
   "publishConfig": {
     "access": "public"
