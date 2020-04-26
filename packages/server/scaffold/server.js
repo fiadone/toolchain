@@ -14,8 +14,7 @@ const session = require('./server/middlewares/session')
 const apiCtrl = require('./server/controllers/api')
 const defaultCtrl = require('./server/controllers/default')
 
-const { env } = minimist(process.argv.slice(2))
-
+const env = process.env.NODE_ENV
 const app = express()
 const port = 3000
 

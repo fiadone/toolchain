@@ -1,13 +1,14 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { src, distPath, staticPages = {} } = require('../bundler.config')
+const { src, distPath, staticPages } = require('../../bundler.config')
+const { generateStaticPages } = require('../helpers')
 
 module.exports = {
   entry: {
     app: path.resolve(src.scriptsPath, 'index.js')
   },
+  mode: process.env.NODE_ENV,
   output: {
     path: distPath,
     filename: '[name].js',
@@ -43,7 +44,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.scss'],
     alias: {
-      '@root': path.resolve(__dirname, '..')
+      '@root': path.resolve(__dirname, '../../')
     }
   },
   optimization: {
@@ -66,19 +67,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[name].css'
     }),
-    ...Object
-      .entries(staticPages)
-      .map(([filename, { template, mock }]) => (
-        new HtmlWebpackPlugin({
-          template: template,
-          templateParameters: compilation => {
-            compilation.fileDependencies.add(mock)
-            delete require.cache[require.resolve(mock)]
-            return require(mock)
-          },
-          filename: `../${filename}.html`,
-          inject: false
-        })
-      ))
+    ...generateStaticPages(staticPages)
   ]
 }

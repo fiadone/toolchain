@@ -4,7 +4,6 @@ const base = require('./base')
 
 module.exports = {
   ...base,
-  mode: 'development',
   devtool: 'eval',
   watch: true,
   watchOptions: {

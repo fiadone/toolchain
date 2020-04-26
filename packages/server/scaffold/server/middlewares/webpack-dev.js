@@ -6,7 +6,7 @@ function getConfig(port) {
   let config
 
   try {
-    config = require('../../webpack/dev')
+    config = require('../../bundler/config/dev')
   } catch (err) {
     return null
   }

@@ -4,7 +4,6 @@ const base = require('./base')
 
 module.exports = {
   ...base,
-  mode: 'production',
   optimization: {
     ...base.optimization,
     minimize: true,
