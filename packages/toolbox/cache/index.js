@@ -18,7 +18,7 @@ export function memoize(fn) {
     const key = JSON.stringify(args)
 
     if (!cache.hasOwnProperty(key)) {
-      cache[key] = fn(args)
+      cache[key] = fn.apply(this, args)
     }
 
     return cache[key]
