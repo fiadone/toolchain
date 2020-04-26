@@ -11,7 +11,7 @@
     "uuid"
   ],
   "devDependencies": [
-    "webpack",
+    "nodemon",
     "webpack-dev-middleware",
     "webpack-hot-middleware"
   ]

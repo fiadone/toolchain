@@ -3,7 +3,6 @@
 require('dotenv').config()
 
 const path = require('path')
-const minimist = require('minimist')
 const http = require('http')
 const express = require('express')
 const logger = require('morgan')
