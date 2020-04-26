@@ -82,7 +82,7 @@ __Params:__
 A survey provider to collect user preferences (based on *[inquirer.js](https://github.com/SBoudrias/Inquirer.js)*).
 
 ```
-npx @fiad/cli wizard --questions path/to/questions.js --handler path/to/handler.js --heading Foo --color blue
+npx @fiad/cli wizard --questions path/to/questions.js --handler path/to/handler.js --heading Foo --headingColor blue --info "Welcome folks!" --infoColor yellow
 ```
 
 __Params:__
@@ -90,7 +90,9 @@ __Params:__
 - *questions*: the questions repository filepath (required)
 - *handler*: the answers handler filepath (required)
 - *heading*: a heading banner text to customize the wizard (optional)
-- *color*: the heading banner text color (optional)
+- *headingColor*: the heading banner text color (optional)
+- *info*: an intro text to shortly describe the process (optional)
+- *infoColor*: the intro text color (optional)
 
 __Questions file schema:__
 ```js
