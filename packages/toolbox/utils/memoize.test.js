@@ -1,4 +1,4 @@
-import { memoize } from '@fiad/toolbox/cache'
+import { memoize } from '.'
 
 test('It should throw an error because the given argument is not a function', () => {
   expect(() => memoize('not a function')).toThrow()

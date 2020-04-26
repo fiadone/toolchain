@@ -1,10 +1,4 @@
 /**
- * @module cache
- * @package @fiad/toolbox
- * @description A collection of caching utility functions
- */
-
-/**
  * Handles function results caching
  * @param {function} fn The function to memoize
  * @returns {function}
