@@ -1,0 +1,13 @@
+/**
+ * Checks if the given arguments are equal
+ * @param {any} a
+ * @param {any} b
+ * @returns {boolean}
+ */
+export default function equals(a, b) {
+  if (typeof a !== typeof b) return false
+
+  if (a instanceof HTMLElement && b instanceof HTMLElement) return a === b
+
+  return JSON.stringify(a) === JSON.stringify(b)
+}
