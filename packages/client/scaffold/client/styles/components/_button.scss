@@ -1,0 +1,51 @@
+.button {
+  @extend %button;
+  border: solid 2px currentColor;
+  border-radius: rem($radius);
+  transition-property: background-color, border-color, color, opacity;
+  transition-duration: $duration;
+}
+
+.button--primary {
+  background-color: map-get($colors, 'primary');
+  border-color: map-get($colors, 'primary');
+  color: map-get($colors, 'primary-contrast');
+
+  &:hover {
+    background-color: transparent;
+    color: map-get($colors, 'primary');
+  }
+}
+
+.button--secondary {
+  background-color: map-get($colors, 'secondary');
+  border-color: map-get($colors, 'secondary');
+  color: map-get($colors, 'secondary-contrast');
+
+  &:hover {
+    background-color: transparent;
+    color: map-get($colors, 'secondary');
+  }
+}
+
+.button--tertiary {
+  background-color: map-get($colors, 'tertiary');
+  border-color: map-get($colors, 'tertiary');
+  color: map-get($colors, 'tertiary-contrast');
+
+  &:hover {
+    background-color: transparent;
+    color: map-get($colors, 'tertiary');
+  }
+}
+
+.button--disabled,
+.button[disabled] {
+  opacity: .5;
+  pointer-events: none !important;
+}
+
+.button_label {
+  flex-grow: 1;
+  text-align: center;
+}

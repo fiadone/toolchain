@@ -1,0 +1,15 @@
+.field {
+  position: relative;
+}
+
+.field__label {
+  display: block;
+}
+
+.field__error {
+  color: map-get($colors, 'error');
+}
+
+.field__input {
+  @extend %input;
+}

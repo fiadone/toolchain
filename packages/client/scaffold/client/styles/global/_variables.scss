@@ -19,31 +19,16 @@ $radius: 4;
 /*===================*/
 /* THEMES AND COLORS */
 /*===================*/
-$theme: 'light';
-$themes: (
-  "dark": (
-    "primary": #F9F8EF,
-    "primary-contrast": #235789,
-    "secondary": #393D3F,
-    "secondary-contrast": #E7DFC6,
-    "tertiary": #F9F8EF,
-    "tertiary-contrast": #DB5461,
-    "text": #F9F8EF,
-    "border": #B9BDBF
-  ),
-  "light": (
-    "primary": #235789,
-    "primary-contrast": #F9F8EF,
-    "secondary": #E7DFC6,
-    "secondary-contrast": #393D3F,
-    "tertiary": #DB5461,
-    "tertiary-contrast": #F9F8EF,
-    "text": #393D3F,
-    "border": #B9BDBF
-  )
-);
-
 $colors: (
+  "primary": #235789,
+  "primary-contrast": #F9F8EF,
+  "secondary": #E7DFC6,
+  "secondary-contrast": #393D3F,
+  "tertiary": #DB5461,
+  "tertiary-contrast": #F9F8EF,
+  "text-dark": #393D3F,
+  "text-light": #F9F8EF,
+  "border": #B9BDBF,
   "success": #3D993D,
   "warning": #FFAB35,
   "error": #BF2E11,
@@ -66,7 +51,7 @@ $colors: (
 /*============*/
 /* TYPOGRAPHY */
 /*============*/
-
+$icon-font: 'icons';
 
 /*============*/
 /* ANIMATIONS */

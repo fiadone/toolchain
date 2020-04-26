@@ -1,0 +1,6 @@
+[class^="icon-"],
+[class*=" icon-"] {
+  @extend %icon;
+
+  font-family: $icon-font !important;
+}
