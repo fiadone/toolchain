@@ -7,7 +7,7 @@
 import gsap from 'gsap'
 import { getElement } from '@fiad/toolbox/dom'
 import EventsManager from '@fiad/toolbox/events'
-import { debounce } from '@fiad/toolbox/events/helpers'
+import debounce from '@fiad/toolbox/utils/debounce'
 import { lerp } from '@fiad/toolbox/math'
 
 class SmoothScroll {

@@ -5,6 +5,7 @@
  */
 
 import EventsBus from '@fiad/toolbox/events/bus'
+import equals from '@fiad/toolbox/utils/equals'
 
 class Store {
   /**
@@ -52,9 +53,9 @@ class Store {
   set(...args) {
     switch (typeof args[0]) {
       case 'string':
-        if (JSON.stringify(this.get(args[0])) !== JSON.stringify(args[1])) {
+        if (!equals(this.get(args[0]), args[1])) {
           this.#state[args[0]] = args[1]
-          this.#bus.dispatch(args[0], args[1])
+          this.#bus.dispatch(args[0], { payload: { [args[0]]: args[1] } })
         }
         break
       case 'function':
@@ -77,20 +78,28 @@ class Store {
 
   /**
    * Adds a listener that observes changes on the given property
-   * @param {string} key The property to be observed
+   * @param {(string|string[])} key The property (or properties) to be observed
    * @param {function} callback The handler to be called when a property update occurs
    */
   observe(key, callback) {
-    this.#bus.subscribe(key, callback)
+    if (Array.isArray(key)) {
+      key.forEach(k => this.#bus.subscribe(k, callback))
+    } else {
+      this.#bus.subscribe(key, callback)
+    }
   }
 
   /**
    * Removes the listener that observes changes on the given property
-   * @param {string} key The property to be unobserved
+   * @param {(string|string[])} key The property (or properties) to be unobserved
    * @param {function} callback The handler that no longer needs to be called when a property update occurs
    */
   unobserve(key, callback) {
-    this.#bus.unsubscribe(key, callback)
+    if (Array.isArray(key)) {
+      key.forEach(k => this.#bus.unsubscribe(k, callback))
+    } else {
+      this.#bus.unsubscribe(key, callback)
+    }
   }
 }
 

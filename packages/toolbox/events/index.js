@@ -5,7 +5,6 @@
  */
 
 import Stream from '@fiad/toolbox/stream'
-import { isDOMElement } from '@fiad/toolbox/dom'
 import EventsBus from './bus'
 
 class EventsManager {
@@ -37,7 +36,9 @@ class EventsManager {
    * @param {any} target The target to perform check on
    */
   static #supportsEventListeners(target) {
-    return target === window || isDOMElement(target)
+    return target === window
+      || target instanceof HTMLDocument
+      || target instanceof HTMLElement
   }
 
   /**
