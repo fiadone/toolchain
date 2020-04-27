@@ -7,7 +7,6 @@ const http = require('http')
 const express = require('express')
 const logger = require('morgan')
 
-const webpack = require('./server/middlewares/webpack-dev')
 const session = require('./server/middlewares/session')
 
 const apiCtrl = require('./server/controllers/api')
@@ -25,7 +24,7 @@ if (env === 'production') {
 }
 
 if (env === 'development') {
-  app.use(webpack(port))
+  app.use(require('./server/middlewares/webpack-dev')(port))
 }
 
 app.use(logger('tiny'))

@@ -1,7 +1,3 @@
-const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require('webpack-hot-middleware')
-
 function getConfig(port) {
   let config
 
@@ -37,8 +33,13 @@ module.exports = function (port) {
   const config = getConfig(port)
 
   if (!config) {
-    return (req, res, next) => next('Missing basic webpack configuration.')
+    // skipping middleware
+    return (req, res, next) => next()
   }
+
+  const webpack = require('webpack')
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const webpackHotMiddleware = require('webpack-hot-middleware')
 
   const compiler = webpack(config)
 
