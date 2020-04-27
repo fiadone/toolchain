@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  * @param {Array} config The static pages configuration object
  * @returns {Array}
  */
-export function generateStaticPages(config) {
+function generateStaticPages(config) {
   if (!config || typeof config !== 'object') return []
 
   const staticPages = Object.entries(config)
@@ -22,4 +22,8 @@ export function generateStaticPages(config) {
       inject: false
     })
   })
+}
+
+module.exports = {
+  generateStaticPages
 }
