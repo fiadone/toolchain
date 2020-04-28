@@ -15,3 +15,4 @@ npm i @fiad/design-system
 
 * [functions](https://github.com/fiadone/carpentry/tree/master/packages/design-system/functions)
 * [mixin](https://github.com/fiadone/carpentry/tree/master/packages/design-system/mixin)
+* [components](https://github.com/fiadone/carpentry/tree/master/packages/design-system/components)
