@@ -5,5 +5,6 @@ const install = require('./tasks/install')
 const config = require('./tasks/config')
 
 scaffold()
-  .then(install)
   .then(config)
+  .then(install)
+  .catch(null)

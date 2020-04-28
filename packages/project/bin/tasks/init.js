@@ -1,20 +1,21 @@
 const fs = require('fs-extra')
 const { spawn } = require('child_process')
-const chalk = require('chalk')
+const { suspense } = require('@fiad/cli/utils')
 
 module.exports = function () {
   return new Promise(resolve => {
-    process.stdout.write(chalk.blue('Initializing project... '))
+    const message = 'Initializing project'
+    const complete = suspense(message, { color: 'blue' })
 
     if (fs.existsSync(`${process.cwd()}/package.json`)) {
-      process.stdout.write(chalk.green('✔\n'))
+      complete(true)
       resolve()
       return
     }
 
-    const cmd = spawn('npm init', ['-y'], { shell: true })
-    cmd.on('exit', () => {
-      process.stdout.write(chalk.green('✔\n'))
+    const child = spawn('npm init', ['-y'], { shell: true })
+    child.once('exit', () => {
+      complete(true)
       resolve()
     })
   })

@@ -1,7 +1,8 @@
 html {
+  font-family: $font-default;
+  font-variant-ligatures: none;
   text-size-adjust: none;
   text-rendering: optimizeLegibility;
-  font-variant-ligatures: none;
   color: map-get($colors, 'text-dark');
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

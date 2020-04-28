@@ -2,4 +2,4 @@
 
 const install = require('./tasks/install')
 
-install()
+install().catch(null)

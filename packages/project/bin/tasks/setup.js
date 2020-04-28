@@ -1,4 +1,3 @@
-const { spawn } = require('child_process')
 const chalk = require('chalk')
 
 const init = require('./init')
@@ -24,4 +23,5 @@ module.exports = function ({ modules = [] }) {
       process.stdout.write(chalk.green(`\n🎉 All ready! Let's code 🤟\n\n`))
       process.exit(0)
     })
+    .catch(null)
 }

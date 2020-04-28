@@ -1,8 +1,11 @@
-const fs = require('fs-extra')
-const path = require('path')
-const { addConfig } = require('@fiad/cli')
+const chalk = require('chalk')
+const { config } = require('@fiad/cli')
 
 module.exports = async function () {
-  await addConfig('dev', '"NODE_ENV=development nodemon server.js"', 'scripts', true)
-  await addConfig('start', '"NODE_ENV=production node server.js"', 'scripts', true)
+  try {
+    await config.add('dev', '"NODE_ENV=development nodemon server.js"', 'scripts', true)
+    await config.add('start', '"NODE_ENV=production node server.js"', 'scripts', true)
+  } catch (err) {
+    process.stdout.write(chalk.red(`${err}\n`))
+  }
 }
