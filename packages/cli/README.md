@@ -92,10 +92,10 @@ __Params:__
 __Config file schema:__
 ```js
 module.exports = {
-  heading: 'Foo',
-  headingColor: 'blue',
-  info: 'Welcome folks!',
-  infoColor: 'yellow',
+  header: 'Foo', // header text printed as a figlet banner
+  headerColor: 'blue',
+  description: 'Welcome folks!', // a simple prefatory description
+  descriptionColor: 'yellow',
   questions: [
     // inquirer questions definition here
   ],

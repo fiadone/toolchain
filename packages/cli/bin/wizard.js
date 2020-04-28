@@ -15,7 +15,7 @@ if (!config || !fs.existsSync(config)) {
   process.exit(0)
 }
 
-const { heading, headingColor, info, infoColor, questions = [], handler } = require(config)
+const { header, headerColor, description, descriptionColor, questions = [], handler } = require(config)
 
 if (!handler || typeof handler !== 'function') {
   process.stdout.write(chalk.red(`${baseErrorString} The handler module should export a function.\n`))
@@ -23,15 +23,15 @@ if (!handler || typeof handler !== 'function') {
 }
 
 readline.clearScreenDown(process.stdout, () => {
-  // printing heading
-  if (heading) {
-    const headingStyle = chalk[headingColor] || chalk.white
-    process.stdout.write(headingStyle(`\n\n${figlet.textSync(heading, { horizontalLayout: 'full' })}\n\n`))
+  // printing header
+  if (header) {
+    const headerStyle = chalk[headerColor] || chalk.white
+    process.stdout.write(headerStyle(`\n\n${figlet.textSync(header, { horizontalLayout: 'full' })}\n\n`))
   }
-  // printing info
-  if (info) {
-    const infoStyle = chalk[infoColor] || chalk.white
-    process.stdout.write(infoStyle(`\n${info}\n\n`))
+  // printing description
+  if (description) {
+    const descriptionStyle = chalk[descriptionColor] || chalk.white
+    process.stdout.write(descriptionStyle(`\n${description}\n\n`))
     process.stdout.write('--------\n\n')
   }
   // launching wizard

@@ -1,8 +1,8 @@
 module.exports = {
-  heading: '@fiad',
-  headingColor: 'yellow',
-  info: 'Welcome to @fiad/project setup wizard and thanks for using it! 🍻\nCheck out the package page at https://git.io/Jftn0 to learn more about available modules.',
-  infoColor: 'blue',
+  header: '@fiad',
+  headerColor: 'yellow',
+  description: 'Welcome to @fiad/project setup wizard and thanks for using it! 🍻\nCheck out the package page at https://git.io/Jftn0 to learn more about available modules.',
+  descriptionColor: 'blue',
   questions: [
     {
       type: 'checkbox',
