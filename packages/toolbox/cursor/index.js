@@ -128,9 +128,9 @@ class Cursor {
       EventManager.on(['mousemove', 'touchmove'], window, Cursor.#onMove)
       EventManager.on('mouseenter', document, Cursor.#onEnter)
       EventManager.on(['mouseleave', 'touchleave'], document, Cursor.#onLeave)
-      EventManager.on(['mousedown', 'touchstart'], document, Cursor.#onDown)
-      EventManager.on(['mouseup', 'touchend'], document, Cursor.#onUp)
-      EventManager.on('mouseover', document, Cursor.#onOver)
+      EventManager.on(['mousedown', 'touchstart'], document.body, Cursor.#onDown)
+      EventManager.on(['mouseup', 'touchend'], document.body, Cursor.#onUp)
+      EventManager.on('mouseover', document.body, Cursor.#onOver)
     }
   }
 
@@ -143,9 +143,9 @@ class Cursor {
       EventManager.off(['mousemove', 'touchmove'], window, Cursor.#onMove)
       EventManager.off('mouseenter', document, Cursor.#onEnter)
       EventManager.off(['mouseleave', 'touchleave'], document, Cursor.#onLeave)
-      EventManager.off(['mousedown', 'touchstart'], document, Cursor.#onDown)
-      EventManager.off(['mouseup', 'touchend'], document, Cursor.#onUp)
-      EventManager.off('mouseover', document, Cursor.#onOver)
+      EventManager.off(['mousedown', 'touchstart'], document.body, Cursor.#onDown)
+      EventManager.off(['mouseup', 'touchend'], document.body, Cursor.#onUp)
+      EventManager.off('mouseover', document.body, Cursor.#onOver)
     }
   }
 
