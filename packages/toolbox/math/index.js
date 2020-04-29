@@ -36,7 +36,7 @@ export function clamp(v, min, max) {
 }
 
 /**
- * Calculates linear interpolation between two values
+ * Calculates the linear interpolant between two values
  * @param {number} min The bottom value
  * @param {number} max The top value
  * @param {number} r The interpolation ratio (0 to 1)

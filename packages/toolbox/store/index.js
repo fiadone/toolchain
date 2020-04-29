@@ -5,7 +5,7 @@
  */
 
 import EventsBus from '@fiad/toolbox/events/bus'
-import equals from '@fiad/toolbox/utils/equals'
+import equal from '@fiad/toolbox/utils/equal'
 
 class Store {
   /**
@@ -53,7 +53,7 @@ class Store {
   set(...args) {
     switch (typeof args[0]) {
       case 'string':
-        if (!equals(this.get(args[0]), args[1])) {
+        if (!equal(this.get(args[0]), args[1])) {
           this.#state[args[0]] = args[1]
           this.#bus.dispatch(args[0], { payload: { [args[0]]: args[1] } })
         }

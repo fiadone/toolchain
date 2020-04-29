@@ -4,7 +4,7 @@
  * @param {any} b
  * @returns {boolean}
  */
-export default function equals(a, b) {
+export default function equal(a, b) {
   if (typeof a !== typeof b) return false
 
   if (a instanceof HTMLElement && b instanceof HTMLElement) return a === b
