@@ -4,7 +4,7 @@ A simple collector of device info based on [ismobilejs](https://github.com/kaima
 
 ---
 
-## Get started
+## Usage
 
 ```js
 import { mobile, touch } from '@fiad/toolbox/detect'

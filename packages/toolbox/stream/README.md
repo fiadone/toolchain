@@ -18,7 +18,7 @@ Stream.log('Log message', {/* config */})
 Stream.throw('Error message', {/* config */})
 ```
 
-### Configuration object
+## Configuration
 
 A configuration object can be passed as second argument to both *log* and *throw* methods in order to configure and customize the output. The following properties are allowed:
 
@@ -46,7 +46,7 @@ Like *namespace*, it's a message prefix that identifies the logs scope, but more
 Sometimes the message alone may not be enough and the situation requires more details. In that case this property can be used to supply any kind (objects, arrays, etc.) of additional info.
 
 
-### Example
+## Example
 
 ```js
 import Stream from '@fiad/toolbox/stream'
@@ -66,9 +66,7 @@ const onLogout = () => {
 
 The code above will produce the following output console:
 
-```yml
-
-
+```
 [My app][sso] User logged in > {firstname: 'John', lastname: 'Doe'}
 
 [My app][sso] User logged out
