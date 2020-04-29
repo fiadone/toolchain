@@ -4,18 +4,40 @@ A consistent logger and error management system
 
 ---
 
+## Usage
+
+```js
+import Stream from '@fiad/toolbox/stream'
+
+// some requiring logs code
+```
+
+*Stream* is exported as a static class, so all methods can be invoked directly without any instantiation.
+
 ## Methods
 
 #### log
 
+It logs a formatted message in the console:
+
 ```js
-Stream.log('Log message', {/* config */})
+Stream.log(message, config)
 ```
 
 #### throw
 
+It throws an error:
+
 ```js
-Stream.throw('Error message', {/* config */})
+Stream.throw(message, code)
+```
+
+#### catchable
+
+It creates a high order function that implements the try/catch block and handles error logging:
+
+```js
+Stream.catchable(fn, config)
 ```
 
 ## Configuration
@@ -45,16 +67,23 @@ Like *namespace*, it's a message prefix that identifies the logs scope, but more
 
 Sometimes the message alone may not be enough and the situation requires more details. In that case this property can be used to supply any kind (objects, arrays, etc.) of additional info.
 
+#### style
 
-## Example
+It's an inline CSS string that allows to add some style to the log message.
+
+## Examples
 
 ```js
 import Stream from '@fiad/toolbox/stream'
 
 Stream.namespace = 'My app'
+```
 
+#### Logging
+
+```js
 const onLogin = user => {
-  Stream.log('User logged in', { context: 'sso', data: user })
+  Stream.log('User logged in', { context: 'sso', data: user, style: 'color: green;' })
 }
 
 const onLogout = () => {
@@ -72,4 +101,30 @@ The code above will produce the following console output:
 [My app][sso] User logged out
 ```
 
+#### Throwing/catching
 
+```js
+class Component {
+  constructor(id) {
+    this.el = id ? document.getElementById(id) : null
+
+    if (!this.el) {
+      Stream.throw('Construction failed: invalid id or missing element')
+    }
+  }
+}
+
+class ComponentFactory {
+  static create = Stream.catchable(id => {
+    return new Component(id)
+  }, { context: 'components' })
+}
+
+const a = ComponentFactory.create(false)
+```
+
+The code above will produce the following console output:
+
+```
+[My app][components] Construction failed: invalid id or missing element
+```

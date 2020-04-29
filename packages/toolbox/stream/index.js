@@ -38,36 +38,67 @@ class Stream {
    * @param {string} message The log message
    * @param {object} config The log configuration object
    */
-  static log(message, { type = 'info', data, context, namespace = Stream.namespace } = {}) {
-    const output = Stream.#buildMessage(message, context, namespace)
+  static log(message, { type = 'info', context, namespace = Stream.namespace, data, style } = {}) {
+    const output = `${style ? '%c ' : ''}${Stream.#buildMessage(message, context, namespace)}`
+    const args = style ? [style, data] : [data]
 
     switch (type) {
       case 'log':
       case 'info':
       case 'warn':
       case 'error':
-        console[type](output, data)
+        console[type](output, ...args)
         break
       default:
         if (typeof console[type] === 'function') {
           console.log(output)
-          console[type](data)
+          console[type](...args)
         } else {
-          console.log(output, data)
+          console.log(output, ...args)
         }
         break
     }
   }
 
   /**
-   * Throws a formatted error message
+   * Throws an error
    * @static
    * @param {string} message The error message
-   * @param {object} config The log configuration object
+   * @param {(string|number)} code The error code
    * @throws {string}
    */
-  static throw(message, { context, namespace = Stream.namespace } = {}) {
-    throw Stream.#buildMessage(message, context, namespace)
+  static throw(message, code) {
+    const error = new Error(message)
+
+    if (typeof code !== 'undefined') {
+      error.code = code
+    }
+
+    throw error
+  }
+
+  /**
+   * Creates a high order function that implements the try/catch block and handles error logging
+   * @param {function} fn The catchable function
+   * @param {object} config The log configuration object
+   * @returns {function}
+   */
+  static catchable(fn, config) {
+    return function() {
+      let res
+
+      try {
+        res = fn.apply(this, arguments)
+      } catch (err) {
+        const message = (typeof err.code !== 'undefined')
+          ? `${err.message} (${err.code})`
+          : err.message
+
+        Stream.log(message, { type: 'error', ...config })
+      }
+
+      return res
+    }
   }
 }
 
