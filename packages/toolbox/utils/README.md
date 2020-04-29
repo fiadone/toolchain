@@ -7,6 +7,7 @@ A collection of miscellaneous utility functions
 ## Contents
 
 * [debounce](./debounce)
-* [deepmerge](./deepmerge)
+* [deepMerge](./deepmerge)
 * [equals](./equals)
+* [memoize](./memoize)
 * [throttle](./throttle)

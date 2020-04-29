@@ -26,8 +26,8 @@ function emptyEntity(value) {
  * @param {object} config
  * @returns {(object|Array)}
  */
-function maybeClone(value, config) {
-  const clone = config && config.clone === true
+function maybeClone(value, config = {}) {
+  const { clone } = config
 
   return (clone && canMerge(value))
     ? deepMerge(emptyEntity(value), value, config)

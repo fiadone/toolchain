@@ -4,6 +4,8 @@
  * @param {number} ms The throttle time
  */
 export default function throttle(fn, ms) {
+  if (!ms || !parseInt(ms)) return fn
+
   let skip
 
   return function() {

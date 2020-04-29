@@ -3,7 +3,7 @@
  * @param {function} fn The function to memoize
  * @returns {function}
  */
-export function memoize(fn) {
+export default function memoize(fn) {
   if (typeof fn !== 'function') throw 'Memoization not allowed: the argument must be a function'
 
   const cache = {}
