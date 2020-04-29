@@ -42,7 +42,7 @@ Stream.catchable(fn, config)
 
 ## Configuration
 
-A configuration object can be passed as second argument to both *log* and *throw* methods in order to configure and customize the output. The following properties are allowed:
+A configuration object can be passed as second argument to *log* and *catchable* methods in order to configure and customize the output. The following properties are allowed:
 
 #### type
 
