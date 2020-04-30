@@ -12,9 +12,9 @@ import Cursor from '@fiad/toolbox/cursor'
 
 Once imported, *Cursor* can be used both to instantiate a custom cursor and to statically access globally collected pointing information. Learn more by taking a look to the examples below.
 
-### Methods
+## Methods
 
-#### constructor
+### constructor
 
 ```js
 const cursor = new Cursor(el, config)
@@ -26,7 +26,7 @@ const cursor = new Cursor(el, config)
 | config | object | A configuration object |
 
 
-__Configuration object__
+#### Configuration object
 
 | Property | Type | Description | Default |
 | --- | --- | --- | --- |
@@ -42,7 +42,7 @@ __Configuration object__
 | onRelease | function | A callback to be invoked on cursor release event. | undefined |
 
 
-__How it works__
+#### How it works
 
 When a new *Cursor* instance is created, the target element passed to the *constructor* will immediately start moving around the screen following the mouse pointer or touch movements according to the preferences defined in the configuration object. Moreover, some attributes will be automatically attached/detached to/from the element to let you manage some styles update:
 
@@ -53,7 +53,7 @@ When a new *Cursor* instance is created, the target element passed to the *const
 | data-cursor-hold | - | It indicates that a pointer down event (*mousedown* or *touchstart*) occurred. It will automatically removed on *mouseup* or *touchend*. |
 
 
-#### destroy
+### destroy
 
 ```js
 cursor.destroy()
@@ -61,7 +61,7 @@ cursor.destroy()
 It destroys all instance event listeners and removes all applied transformations.
 
 
-#### @static init
+### @static init
 
 ```js
 Cursor.init()
@@ -70,7 +70,7 @@ Cursor.init()
 It adds all event listeners aimed to globally collect pointing information. It's automatically called when a new instance of *Cursor* is created.
 
 
-#### @static get
+### @static get
 
 ```js
 Cursor.get()
@@ -96,7 +96,7 @@ const { x, y } = Cursor.get('coords')
 ```
 
 
-#### @static destroy
+### @static destroy
 
 ```js
 Cursor.destroy()
@@ -107,9 +107,9 @@ It removes all global event listeners.
 ⚠️ Attention: by destroying *Cursor* globally all the collected information will stop to be updated and no more events will be dispatched. Consequently, any *Cursor* instances will result broken.
 
 
-### Examples
+## Examples
 
-#### Implementing a custom cursor:
+### Implementing a custom cursor:
 
 HTML
 
@@ -160,7 +160,7 @@ SCSS
 ```
 
 
-#### Using globally collected pointing information:
+### Using globally collected pointing information:
 
 ```js
 import Cursor from '@fiad/toolbox/cursor'
