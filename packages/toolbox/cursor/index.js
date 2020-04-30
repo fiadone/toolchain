@@ -1,7 +1,7 @@
 /**
  * @module Cursor
  * @package @fiad/toolbox
- * @description A performing custom cursor handler
+ * @description A performing custom cursors handler
  */
 
 import gsap from 'gsap'
@@ -255,12 +255,24 @@ class Cursor {
   /**
    * Adds the data-cursor-visible attribute to the cursor element
    */
-  show = () => this.el.setAttribute('data-cursor-visible', '')
+  show = () => {
+    this.el.setAttribute('data-cursor-visible', '')
+
+    if (typeof this.config.onShow === 'function') {
+      this.config.onShow()
+    }
+  }
 
   /**
    * Removes the data-cursor-visible attribute from the cursor element
    */
-  hide = () => this.el.removeAttribute('data-cursor-visible')
+  hide = () => {
+    this.el.removeAttribute('data-cursor-visible')
+
+    if (typeof this.config.onHide === 'function') {
+      this.config.onHide()
+    }
+  }
 
   /**
    * Updates the cursor element position
@@ -278,6 +290,10 @@ class Cursor {
     this.coords = { x, y }
 
     gsap.set(this.el, { x, y, force3D: true })
+
+    if (typeof this.config.onMove === 'function') {
+      this.config.onMove(this.coords)
+    }
   }
 
   /**
@@ -290,17 +306,33 @@ class Cursor {
     } else {
       this.el.removeAttribute('data-cursor-hover')
     }
+
+    if (typeof this.config.onHover === 'function') {
+      this.config.onHover(trigger)
+    }
   }
 
   /**
    * Adds the data-cursor-hold attribute to the cursor element
    */
-  hold = () => this.el.setAttribute('data-cursor-hold', '')
+  hold = () => {
+    this.el.setAttribute('data-cursor-hold', '')
+
+    if (typeof this.config.onHold === 'function') {
+      this.config.onHold()
+    }
+  }
 
   /**
    * Removes the data-cursor-hold class from the cursor element
    */
-  release = () => this.el.removeAttribute('data-cursor-hold')
+  release = () => {
+    this.el.removeAttribute('data-cursor-hold')
+
+    if (typeof this.config.onRelease === 'function') {
+      this.config.onRelease()
+    }
+  }
 
   /**
    * Destroys the cursor instance
@@ -317,6 +349,10 @@ class Cursor {
     Cursor.#store.unobserve('visible', this.#toggleVisibility)
     Cursor.#store.unobserve('holding', this.#toggleHolding)
     Cursor.#store.unobserve('target', this.#checkTarget)
+
+    if (typeof this.config.onDestroy === 'function') {
+      this.config.onDestroy()
+    }
   }
 }
 
