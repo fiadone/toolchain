@@ -4,9 +4,20 @@ A collection of utility functions for strings manipulation
 
 ---
 
+## Get started
+
+```sh
+npm i @fiad/toolbox
+```
+
+```js
+import * as strings from '@fiad/toolbox/strings'
+```
+
+
 ## Functions list
 
-#### capitalize
+### capitalize
 
 It makes the first letter of (each word of) the given string uppercase:
 
@@ -16,7 +27,7 @@ import { capitalize } from '@fiad/toolbox/strings'
 capitalize('sample string') // Sample String
 ```
 
-#### uncapitalize
+### uncapitalize
 
 It makes the first letter of (each word of) the given string lowercase:
 
@@ -26,7 +37,7 @@ import { uncapitalize } from '@fiad/toolbox/strings'
 uncapitalize('Sample String') // sample string
 ```
 
-#### camelCase
+### camelCase
 
 It rewrites the given string in *camelCase*:
 
@@ -36,7 +47,7 @@ import { camelCase } from '@fiad/toolbox/strings'
 camelCase('sample string') // sampleString
 ```
 
-#### pascalCase
+### pascalCase
 
 It rewrites the given string in *PascalCase*:
 
@@ -46,7 +57,7 @@ import { pascalCase } from '@fiad/toolbox/strings'
 pascalCase('sample string') // SampleString
 ```
 
-#### snakeCase
+### snakeCase
 
 It rewrites the given string in *snake_case*:
 
@@ -56,7 +67,7 @@ import { snakeCase } from '@fiad/toolbox/strings'
 snakeCase('sample string') // sample_string
 ```
 
-#### kebabCase
+### kebabCase
 
 It rewrites the given string in *kebab-case*:
 

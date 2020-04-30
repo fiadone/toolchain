@@ -4,6 +4,16 @@ A collection of math utility functions
 
 ---
 
+## Get started
+
+```sh
+npm i @fiad/toolbox
+```
+
+```js
+import * as math from '@fiad/toolbox/math'
+```
+
 ## Functions list
 
 #### map

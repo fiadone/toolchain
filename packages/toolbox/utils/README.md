@@ -4,9 +4,20 @@ A collection of miscellaneous utility functions
 
 ---
 
+## Get started
+
+```sh
+npm i @fiad/toolbox
+```
+
+```js
+import * as utils from '@fiad/toolbox/utils'
+```
+
+
 ## Functions list
 
-#### debounce
+### debounce
 
 It handles function [debouncing](https://css-tricks.com/debouncing-throttling-explained-examples/):
 
@@ -23,7 +34,7 @@ const onResize = debounce(handler, debounceTime)
 window.addEventListener('resize', onResize)
 ```
 
-#### throttle
+### throttle
 
 It handles function [throttling](https://css-tricks.com/debouncing-throttling-explained-examples/):
 
@@ -40,7 +51,7 @@ const onClick = throttle(handler, throttleTime)
 document.addEventListener('click', onClick)
 ```
 
-#### equal
+### equal
 
 It checks if two entities are equal:
 
@@ -54,7 +65,7 @@ if (equal(a, b)) {
 }
 ```
 
-#### deepMerge
+### deepMerge
 
 It deeply merges two objects (or arrays):
 
@@ -66,7 +77,7 @@ import deepMerge from '@fiad/toolbox/utils/deepmerge'
 const c = deepMerge(a, b)
 ```
 
-#### memoize
+### memoize
 
 It allows to cache results of complex functions so that when they are recalled later the result will be returned directly from the internal cache without requiring a new execution
 

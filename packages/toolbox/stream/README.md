@@ -4,19 +4,25 @@ A consistent logger and error management system
 
 ---
 
-## Usage
+## Get started
+
+```sh
+npm i @fiad/toolbox
+```
 
 ```js
 import Stream from '@fiad/toolbox/stream'
-
-// some requiring logs code
 ```
+
+
+## Usage
 
 *Stream* is exported as a static class, so all methods can be invoked directly without any instantiation.
 
+
 ## Methods
 
-#### log
+### log
 
 It logs a formatted message in the console:
 
@@ -24,7 +30,7 @@ It logs a formatted message in the console:
 Stream.log(message, config)
 ```
 
-#### throw
+### throw
 
 It throws an error:
 
@@ -32,7 +38,7 @@ It throws an error:
 Stream.throw(message, code)
 ```
 
-#### catchable
+### catchable
 
 It creates a high order function that implements the try/catch block and handles error logging:
 
@@ -40,36 +46,19 @@ It creates a high order function that implements the try/catch block and handles
 Stream.catchable(fn, config)
 ```
 
+
 ## Configuration
 
 A configuration object can be passed as second argument to *log* and *catchable* methods in order to configure and customize the output. The following properties are allowed:
 
-#### type
+| Property | Type | Description |
+| --- | --- | --- |
+| type | string | It defines the log type. As *Stream* works as a *console* wrapper, all method names of the *[Console object](https://developer.mozilla.org/it/docs/Web/API/Console)* are allowed. |
+| namespace | string | It's a message prefix that identifies the main scope of logs. As it usually corresponds to the application name, it can also be set globally by setting the static property *Stream.namespace*. This way you can avoid declaring it in every configuration, but if you do, you can still overwrite it. |
+| context | string | Like *namespace*, it's a message prefix that identifies the logs scope, but more specifically (so it can't be set globally). It usually refers to a module or a feature of the application and it's show just after the *namespace*. |
+| data | any | Sometimes the message alone may not be enough and the situation requires more details. In that case this property can be used to supply any kind (objects, arrays, etc.) of additional info. |
+| style | string | It's an inline CSS string that allows to add some style to the log message. |
 
-It's a string that defines the log type. As *Stream* works as a *console* wrapper, all method names of the *[Console object](https://developer.mozilla.org/it/docs/Web/API/Console)* are allowed.
-
-#### namespace
-
-It's a message prefix that identifies the main scope of logs. As it usually corresponds to the application name, it can also be set globally, like follows:
-
-```js
-Stream.namespace = 'My app'
-```
-
-This way you can avoid declaring it in every configuration, but if you do, you can still overwrite it.
-
-#### context
-
-Like *namespace*, it's a message prefix that identifies the logs scope, but more specifically (so it can't be set globally). It usually refers to a module or a feature of the application and it's show just after the *namespace*.
-
-
-#### data
-
-Sometimes the message alone may not be enough and the situation requires more details. In that case this property can be used to supply any kind (objects, arrays, etc.) of additional info.
-
-#### style
-
-It's an inline CSS string that allows to add some style to the log message.
 
 ## Examples
 
@@ -79,7 +68,7 @@ import Stream from '@fiad/toolbox/stream'
 Stream.namespace = 'My app'
 ```
 
-#### Logging
+### Logging
 
 ```js
 const onLogin = user => {
@@ -101,7 +90,7 @@ The code above will produce the following console output:
 [My app][sso] User logged out
 ```
 
-#### Throwing/catching
+### Throwing/catching
 
 ```js
 class Component {

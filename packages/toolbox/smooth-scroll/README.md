@@ -4,6 +4,16 @@ A performing smooth scroll handler not affecting native scroll behaviors
 
 ---
 
+## Get started
+
+```sh
+npm i @fiad/toolbox
+```
+
+```js
+import SmoothScroll from '@fiad/toolbox/smooth-scroll'
+```
+
 ## Methods
 
 ### enable
@@ -12,7 +22,7 @@ A performing smooth scroll handler not affecting native scroll behaviors
 SmoothScroll.enable(config)
 ```
 
-It enables smooth scrolling according to the given preferences.
+It enables smooth scrolling according to the (optional) given preferences.
 
 ⚠️ *SmoothScroll* requires a specific DOM structure to properly work. Check out the [example](#example) below to lern more.
 

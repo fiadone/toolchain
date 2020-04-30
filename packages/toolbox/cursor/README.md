@@ -4,6 +4,16 @@ A performing custom cursors handler
 
 ---
 
+## Get started
+
+```sh
+npm i @fiad/toolbox
+```
+
+```js
+import Cursor from '@fiad/toolbox/cursor'
+```
+
 ## Usage
 
 Once imported, *Cursor* can be used both to instantiate a custom cursor and to statically access globally collected pointing information. Learn more by taking a look to the [examples](#examples) below.
