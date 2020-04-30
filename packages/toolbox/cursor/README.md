@@ -6,11 +6,7 @@ A performing custom cursors handler
 
 ## Usage
 
-```js
-import Cursor from '@fiad/toolbox/cursor'
-```
-
-Once imported, *Cursor* can be used both to instantiate a custom cursor and to statically access globally collected pointing information. Learn more by taking a look to the examples below.
+Once imported, *Cursor* can be used both to instantiate a custom cursor and to statically access globally collected pointing information. Learn more by taking a look to the [examples](#examples) below.
 
 ## Methods
 
@@ -19,6 +15,8 @@ Once imported, *Cursor* can be used both to instantiate a custom cursor and to s
 ```js
 const cursor = new Cursor(el, config)
 ```
+
+It creates a new *Cursor* instance.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -32,7 +30,7 @@ __CONFIGURATION OBJECT__
 | --- | --- | --- | --- |
 | origin | number[] | The position origin of the cursor (useful if a centering offset is needed). | [0.5, 0.5] |
 | z | number | The cursor z-index. | 9999 |
-| inertia | number | The lerping factor used to make cursor movements smoother (set to 1 for linear transformations.) | 0.2 |
+| inertia | number | The lerping factor used to make cursor movements smoother (set to 1 for linear transformations). | 0.2 |
 | triggers | string[] | The list of selectors to be observed around the DOM. | ['a', 'button', '[data-cursor]'] |
 | onShow | function | A callback to be invoked on cursor show event. | undefined |
 | onHide | function | A callback to be invoked on cursor hide event. | undefined |
