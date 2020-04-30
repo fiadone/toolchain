@@ -26,7 +26,7 @@ const cursor = new Cursor(el, config)
 | config | object | A configuration object |
 
 
-#### Configuration object
+#### CONFIGURATION OBJECT
 
 | Property | Type | Description | Default |
 | --- | --- | --- | --- |
@@ -42,7 +42,7 @@ const cursor = new Cursor(el, config)
 | onRelease | function | A callback to be invoked on cursor release event. | undefined |
 
 
-#### How it works
+#### HOW IT WORKS
 
 When a new *Cursor* instance is created, the target element passed to the *constructor* will immediately start moving around the screen following the mouse pointer or touch movements according to the preferences defined in the configuration object. Moreover, some attributes will be automatically attached/detached to/from the element to let you manage some styles update:
 
