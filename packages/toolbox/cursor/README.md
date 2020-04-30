@@ -5,22 +5,26 @@ A performing custom cursors handler
 ---
 
 ## Usage
+
 ```js
 import Cursor from '@fiad/toolbox/cursor'
 ```
-Once imported, *Cursor* can be used both to instantiate a custom cursor and to statically access globally collected pointing information. Learn more by taking a look to the examples below.
 
+Once imported, *Cursor* can be used both to instantiate a custom cursor and to statically access globally collected pointing information. Learn more by taking a look to the examples below.
 
 ### Methods
 
 #### constructor
+
 ```js
 const cursor = new Cursor(el, config)
 ```
+
 | Param | Type | Description |
 | --- | --- | --- |
 | el | HTMLElement | The DOM element to be used as cursor |
 | config | object | A configuration object |
+
 
 __Configuration object__
 
@@ -37,7 +41,9 @@ __Configuration object__
 | onHold | function | A callback to be invoked on cursor hold event. | undefined |
 | onRelease | function | A callback to be invoked on cursor release event. | undefined |
 
+
 __How it works__
+
 When a new *Cursor* instance is created, the target element passed to the *constructor* will immediately start moving around the screen following the mouse pointer or touch movements according to the preferences defined in the configuration object. Moreover, some attributes will be automatically attached/detached to/from the element to let you manage some styles update:
 
 | Attribute | Value | Description |
@@ -46,7 +52,9 @@ When a new *Cursor* instance is created, the target element passed to the *const
 | data-cursor-hover | the matched trigger selector | It indicates that the pointer is moving over a DOM element matching with one of the trigger selectors defined in the configuration object (or the default ones). |
 | data-cursor-hold | - | It indicates that a pointer down event (*mousedown* or *touchstart*) occurred. It will automatically removed on *mouseup* or *touchend*. |
 
+
 #### destroy
+
 ```js
 cursor.destroy()
 ```
@@ -54,18 +62,24 @@ It destroys all instance event listeners and removes all applied transformations
 
 
 #### @static init
+
 ```js
 Cursor.init()
 ```
+
 It adds all event listeners aimed to globally collect pointing information. It's automatically called when a new instance of *Cursor* is created.
 
+
 #### @static get
+
 ```js
 Cursor.get()
 ```
+
 It provides the globally collected pointing information at current time.
 
 Returned value:
+
 ```js
 {
   coords: { x: {number}, y: {number} },
@@ -74,24 +88,31 @@ Returned value:
   target: {(HTMLElement|null)}
 }
 ```
+
 It's also possible to get a single property from the object above, by passing its key as argument to the method. For example:
+
 ```js
 const { x, y } = Cursor.get('coords')
 ```
 
+
 #### @static destroy
+
 ```js
 Cursor.destroy()
 ```
+
 It removes all global event listeners.
 
 ⚠️ Attention: by destroying *Cursor* globally all the collected information will stop to be updated and no more events will be dispatched. Consequently, any *Cursor* instances will result broken.
+
 
 ### Examples
 
 #### Implementing a custom cursor:
 
 HTML
+
 ```html
 <div id="cursor">
   <span class="cursor-circle"></span>
@@ -99,6 +120,7 @@ HTML
 ```
 
 JS
+
 ```js
 import Cursor from '@fiad/toolbox/cursor'
 
@@ -107,6 +129,7 @@ const cursor = new Cursor(el)
 ```
 
 SCSS
+
 ```scss
 .cursor-circle {
   width: 48px;
@@ -136,7 +159,9 @@ SCSS
 }
 ```
 
+
 #### Using globally collected pointing information:
+
 ```js
 import Cursor from '@fiad/toolbox/cursor'
 import CanvasBackground from 'path/to/canvas/background'
