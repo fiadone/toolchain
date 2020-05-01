@@ -49,19 +49,19 @@ class EventsManager {
    */
   static #getSubscriptionData(args) {
     let callback
-    let config
+    let options
     let target
 
     if (typeof args[0] === 'function') {
       callback = args[0]
-      config = args[1] || {}
+      options = args[1] || {}
     } else if (EventsManager.#supportsEventListeners(args[0])) {
       target = args[0]
       callback = args[1]
-      config = args[2] || {}
+      options = args[2] || {}
     }
 
-    return { callback, config, target }
+    return { callback, options, target }
   }
 
   /**
@@ -70,9 +70,9 @@ class EventsManager {
    * @param {string} type The event type
    * @param {string} alias The event alias
    * @param {function} callback The callback to be subscribed
-   * @param {(object|null)} config The dispatching config
+   * @param {(object|null)} options The dispatching options
    */
-  #subscribeToBus(type, alias, callback, config) {
+  #subscribeToBus(type, alias, callback, options) {
     if (!this.#aliases.hasOwnProperty(alias)) {
       this.#aliases[alias] = type
     } else if (this.#aliases[alias] !== type) {
@@ -89,7 +89,7 @@ class EventsManager {
       return
     }
 
-    this.#bus.subscribe(alias, callback, config)
+    this.#bus.subscribe(alias, callback, options)
   }
 
   /**
@@ -110,7 +110,7 @@ class EventsManager {
    * @param {string} delegateTo The selector of elements to delegate the event to
    * @param {object} options The listeners options
    */
-  #addListener(alias, target, delegateTo, options) {
+  #addListener(alias, target, delegateTo, { passive = false, capture = false } = {}) {
     const type = this.#aliases[alias]
     const listenerKey = delegateTo ? `${type}:${alias}:${delegateTo}` : `${type}:${alias}`
     const listener = delegateTo
@@ -119,7 +119,7 @@ class EventsManager {
 
     // registering listener
     this.#listeners[listenerKey] = listener
-    target.addEventListener(type, this.#listeners[listenerKey], options)
+    target.addEventListener(type, this.#listeners[listenerKey], { passive, capture })
   }
 
   /**
@@ -130,12 +130,12 @@ class EventsManager {
    * @param {string} delegateTo The selector of elements to delegate the event to
    * @param {object} options The listeners options
    */
-  #removeListener(alias, target, delegateTo, options) {
+  #removeListener(alias, target, delegateTo, { passive = false, capture = false } = {}) {
     const type = this.#aliases[alias]
     const listenerKey = delegateTo ? `${type}:${alias}:${delegateTo}` : `${type}:${alias}`
 
     // destroying listener
-    target.removeEventListener(type, this.#listeners[listenerKey], options)
+    target.removeEventListener(type, this.#listeners[listenerKey], { passive, capture })
     delete this.#listeners[listenerKey]
   }
 
@@ -150,22 +150,18 @@ class EventsManager {
       return
     }
 
-    const {
-      callback,
-      config: { alias = type, delegateTo, ...config },
-      target
-    } = EventsManager.#getSubscriptionData(args)
-
+    const { callback, options, target } = EventsManager.#getSubscriptionData(args)
+    const { alias = type, delegateTo } = options
     const listenerKey = delegateTo ? `${type}:${alias}:${delegateTo}` : `${type}:${alias}`
 
     // handling subscription to the events bus
-    this.#subscribeToBus(type, alias, callback, config)
+    this.#subscribeToBus(type, alias, callback, options)
 
     if (
       target // it's a native event, so we need a listener that triggers the related custom event from the events bus
       && !this.#listeners.hasOwnProperty(listenerKey) // a listener doesn't exist yet
     ) {
-      this.#addListener(alias, target, delegateTo, config)
+      this.#addListener(alias, target, delegateTo, options)
     }
   }
 
@@ -182,12 +178,12 @@ class EventsManager {
 
     const {
       callback,
-      config: { alias = type, delegateTo, ...config },
+      options: { alias = type, delegateTo, ...options },
       target
     } = EventsManager.#getSubscriptionData(args)
 
     // handling un-subscription from the events bus
-    this.#unsubscribeFromBus(alias, callback, config)
+    this.#unsubscribeFromBus(alias, callback, options)
 
     if (
       target // it's a native event, so a listener has been registered

@@ -1,7 +1,7 @@
 /**
  * @module EventsBus
  * @package @fiad/toolbox/events
- * @description A custom events bus 
+ * @description A custom events bus
  */
 
 class EventsBus {
@@ -15,40 +15,38 @@ class EventsBus {
   /**
    * Arranges and executes a subscription callback
    * @param {Array} subscription The subscription data to be handled
-   * @param {(object|null)} customConfig The custom dispatching ustomC
+   * @param {any} customPayload A custom payload
    */
-  #handleSubscription([defaultConfig, callback], customConfig) {
-    const {
-      payloadFilter,
-      payload: originalPayload,
-      ...config
-    } = { ...defaultConfig, ...customConfig }
+  #handleSubscription([options = {}, callback], customPayload) {
+    const { payloadFilter, defaultPayload } = options
+    const rawPayload = (typeof customPayload !== 'undefined') ? customPayload : defaultPayload
+    let payload = rawPayload
 
-    const payload = typeof payloadFilter === 'function'
-      ? payloadFilter(originalPayload)
-      : originalPayload
+    if (typeof payloadFilter === 'function') {
+      payload = payloadFilter(payload)
+    }
 
-    callback(payload, config)
+    callback(payload, { ...options, rawPayload })
   }
 
   /**
    * Adds a callback to subscriptions
    * @param {string} type The event type
    * @param {function} callback The callback to be subscribed
-   * @param {(object|null)} config The dispatching config
+   * @param {(object|null)} options The dispatching options
    */
-  subscribe(type, callback, config) {
+  subscribe(type, callback, options) {
     if (typeof type !== 'string' || typeof callback !== 'function') {
       return
     }
-      
+
     if (!this.#subscriptions.hasOwnProperty(type)) {
       this.#subscriptions[type] = new Map()
     } else if (this.#subscriptions[type].has(callback)) {
       return
     }
 
-    this.#subscriptions[type].set(callback, config)
+    this.#subscriptions[type].set(callback, options)
   }
 
   /**
@@ -67,15 +65,15 @@ class EventsBus {
   /**
    * Executes all subscribed callbacks for given event type
    * @param {string} type The event type
-   * @param {object} config The callback config
+   * @param {any} payload The callback payload
    */
-  dispatch(type, config = {}) {
+  dispatch(type, payload) {
     if (typeof type !== 'string' || !this.#subscriptions.hasOwnProperty(type)) {
       return
     }
 
     this.#subscriptions[type]
-      .forEach((...subscription) => this.#handleSubscription(subscription, config))
+      .forEach((...subscription) => this.#handleSubscription(subscription, payload))
   }
 
   /**
@@ -90,22 +88,18 @@ class EventsBus {
 
   /**
    * Clears subscriptions
+   * @param {string} type The event type's subscriptions stack to be cleared
    */
-  clear() {
-    Object
-      .values(this.#subscriptions)
-      .forEach(map => map.clear())
-  }
-
-  /**
-   * Destroys dispatcher subscriptions
-   */
-  destroy() {
-    this.clear()
-
-    Object
-      .keys(this.#subscriptions)
-      .forEach(key => (delete this.#subscriptions[key]))
+  clear(type) {
+    if (typeof type === 'undefined') {
+      // clearing all subscriptions
+      Object
+        .values(this.#subscriptions)
+        .forEach(map => map.clear())
+    } else if (this.hasSubscriptions(type)) {
+      // clearing subscription related to the given event type only
+      this.#subscriptions[type].clear()
+    }
   }
 }
 

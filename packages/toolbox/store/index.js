@@ -55,7 +55,7 @@ class Store {
       case 'string':
         if (!equal(this.get(args[0]), args[1])) {
           this.#state[args[0]] = args[1]
-          this.#bus.dispatch(args[0], { payload: args[1] })
+          this.#bus.dispatch(args[0], args[1])
         }
         break
       case 'function':
