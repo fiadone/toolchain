@@ -4,6 +4,8 @@
  * @description A collection of share url generators
  */
 
+import QueryString from '@fiad/toolbox/utils/query-string'
+
 /**
  * Whatsapp share link generator
  * @param {object} data The data to be shared
@@ -63,4 +65,16 @@ export function linkedin({ url = window.location.href, title, description } = {}
 export function mail({ url = window.location.href, title, description } = {}) {
   const body = description ? `${url} ${description}` : url
   return `mailto:?subject=${title}&body=${body}`
+}
+
+/**
+ * Custom share link generator
+ * @param {object} data The data to be shared
+ */
+export function custom({ baseUrl, ...params } = {}) {
+  if (!baseUrl) {
+    return
+  }
+
+  return `${baseUrl}${QueryString.fromObject(params)}`
 }

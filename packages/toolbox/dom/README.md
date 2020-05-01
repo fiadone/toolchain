@@ -78,8 +78,8 @@ const el = getElement('target-id', options)
 __OPTIONS OBJECT__
 | Property | Type | Description | Default |
 | --- | --- | --- | --- |
-| context | *Element* | The root element to perform query from | *document* |
-| enhanced | *boolean* | It defines if the returned element should [be enhanced](#enhance) | *false* |
+| context | *Element* | The root element to perform query from. | *document* |
+| enhanced | *boolean* | It defines if the returned element should [be enhanced](#enhance). | *false* |
 
 
 ### getElements
