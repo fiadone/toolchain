@@ -210,7 +210,7 @@ class Cursor {
    * Updates the cursor element visibility state
    * @param {boolean} visible The current global cursor visibility state
    */
-  #toggleVisibility = ({ visible }) => {
+  #toggleVisibility = visible => {
     if (visible) {
       this.show()
     } else {
@@ -222,7 +222,7 @@ class Cursor {
    * Updates the cursor element holding state
    * @param {boolean} holding The current global cursor holding state
    */
-  #toggleHolding = ({ holding }) => {
+  #toggleHolding = holding => {
     if (holding) {
       this.hold()
     } else {
@@ -245,7 +245,7 @@ class Cursor {
    * Handles the update of the cursor hover state according to the event target match test
    * @param {(Element|HTMLDocument|null)} target The mouse/touch event target
    */
-  #checkTarget = ({ target }) => {
+  #checkTarget = target => {
     const { triggers = Cursor.defaultTriggers } = this.config
     const trigger = matches(target, triggers)
 
