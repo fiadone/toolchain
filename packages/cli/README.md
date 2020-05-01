@@ -6,7 +6,7 @@ A simple command line interface that helps in scaffolding and configuring operat
 
 ## COMMANDS LIST
 
-#### SCAFFOLD
+### scaffold
 
 Handles recursive files copying from a source directory to a destination one.
 
@@ -22,7 +22,7 @@ __Params:__
 
 ---
 
-##### INSTALL
+#### install
 
 Handles dependencies installation from npm repository.
 
@@ -53,7 +53,7 @@ __JSON manifest schema:__
 
 ---
 
-##### CONFIG
+#### config
 
 Handles package.json updates.
 
@@ -77,7 +77,7 @@ __Params:__
 
 ---
 
-##### WIZARD
+#### wizard
 
 A survey provider to collect user preferences (based on *[inquirer.js](https://github.com/SBoudrias/Inquirer.js)*).
 
