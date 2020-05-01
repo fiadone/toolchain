@@ -15,7 +15,7 @@ import * as utils from '@fiad/toolbox/utils'
 ```
 
 
-## Functions list
+## Utilities list
 
 ### debounce
 
@@ -90,5 +90,38 @@ const fn = (...args) => {
 
 const memoFn = memoize(fn)
 const result = memoFn(/* some arguments */)
+```
+
+### QueryString
+
+It handles query string transformations.
+
+```js
+import QueryString from '@fiad/toolbox/utils/query-string'
+```
+
+#### Methods
+
+__toObject__
+
+It takes the given query string (*window.location.search* as default) and converts it into an object.
+
+```js
+const params = QueryString.toObject('?resource=catalogue&token=JGwcicjA1Rl4whIBmrei')
+
+// { resource: 'catalogue', token: 'JGwcicjA1Rl4whIBmrei' }
+```
+
+__fromObject__
+
+It builds a query string starting from an object of parameters.
+
+```js
+const queryString = QueryString.fromObject({
+  resource: 'catalogue',
+  token: 'JGwcicjA1Rl4whIBmrei'
+})
+
+// ?resource=catalogue&token=JGwcicjA1Rl4whIBmrei
 ```
 
