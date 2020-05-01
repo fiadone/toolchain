@@ -100,7 +100,7 @@ It handles query string transformations.
 import QueryString from '@fiad/toolbox/utils/query-string'
 ```
 
-#### Methods
+#### METHODS:
 
 __toObject__
 

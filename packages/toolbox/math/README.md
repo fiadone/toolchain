@@ -16,7 +16,7 @@ import * as math from '@fiad/toolbox/math'
 
 ## Functions list
 
-#### map
+### map
 
 It maps a value across two ranges:
 
@@ -50,7 +50,7 @@ document.addEventListener('click', e => {
 })
 ```
 
-#### clamp
+### clamp
 
 It clamps a value in a range, i.e. it limits a value between two bounds (included):
 
@@ -64,7 +64,7 @@ const max = 1
 clamp(value, min, max) // 1
 ```
 
-#### lerp
+### lerp
 
 It calculates the linear interpolant between two values:
 
