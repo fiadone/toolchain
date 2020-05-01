@@ -38,7 +38,7 @@ class EventsManager {
   static #supportsEventListeners(target) {
     return target === window
       || target instanceof HTMLDocument
-      || target instanceof HTMLElement
+      || target instanceof Element
   }
 
   /**
@@ -106,7 +106,7 @@ class EventsManager {
    * Adds an event listener for the given event
    * @private
    * @param {string} alias The event alias
-   * @param {(Window|HTMLDocument|HTMLElement)} target The event target
+   * @param {(Window|HTMLDocument|Element)} target The event target
    * @param {string} delegateTo The selector of elements to delegate the event to
    * @param {object} options The listeners options
    */
@@ -126,7 +126,7 @@ class EventsManager {
    * Destroys an event listener if the events bus has no subscriptions for the given event
    * @private
    * @param {string} alias The event alias
-   * @param {(Window|HTMLDocument|HTMLElement)} target The event target
+   * @param {(Window|HTMLDocument|Element)} target The event target
    * @param {string} delegateTo The selector of elements to delegate the event to
    * @param {object} options The listeners options
    */

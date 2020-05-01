@@ -157,7 +157,7 @@ class Cursor {
 
   /**
    * @constructor
-   * @param {HTMLElement} el The custom cursor element
+   * @param {Element} el The custom cursor element
    * @param {object} options The cursor options
    */
   constructor(el, options) {
@@ -243,7 +243,7 @@ class Cursor {
 
   /**
    * Handles the update of the cursor hover state according to the event target match test
-   * @param {(HTMLElement|HTMLDocument|null)} target The mouse/touch event target
+   * @param {(Element|HTMLDocument|null)} target The mouse/touch event target
    */
   #checkTarget = ({ target }) => {
     const { triggers = Cursor.defaultTriggers } = this.config

@@ -30,24 +30,24 @@ It creates a new *Cursor* instance.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| el | HTMLElement | The DOM element to be used as cursor |
-| config | object | A configuration object |
+| el | *Element* | The DOM element to be used as cursor |
+| config | *object* | A configuration object |
 
 
 __CONFIGURATION OBJECT__
 
 | Property | Type | Description | Default |
 | --- | --- | --- | --- |
-| origin | number[] | The position origin of the cursor (useful if a centering offset is needed). | [0.5, 0.5] |
-| z | number | The cursor z-index. | 9999 |
-| inertia | number | The lerping factor used to make cursor movements smoother (set to 1 for linear transformations). | 0.2 |
-| triggers | string[] | The list of selectors to be observed around the DOM. | ['a', 'button', '[data-cursor]'] |
-| onShow | function | A callback to be invoked on cursor show event. | undefined |
-| onHide | function | A callback to be invoked on cursor hide event. | undefined |
-| onMove | function | A callback to be invoked on cursor move event. It receives the current cursor coords. | undefined |
-| onHover | function | A callback to be invoked on cursor hover event. It receives the matched trigger selector. | undefined |
-| onHold | function | A callback to be invoked on cursor hold event. | undefined |
-| onRelease | function | A callback to be invoked on cursor release event. | undefined |
+| origin | *number[]* | The position origin of the cursor (useful if a centering offset is needed). | *[0.5, 0.5]* |
+| z | *number* | The cursor z-index. | *9999* |
+| inertia | *number* | The lerping factor used to make cursor movements smoother (set to 1 for linear transformations). | *0.2* |
+| triggers | *string[]* | The list of selectors to be observed around the DOM. | *['a', 'button', '[data-cursor]']* |
+| onShow | *function* | A callback to be invoked on cursor show event. | *undefined* |
+| onHide | *function* | A callback to be invoked on cursor hide event. | *undefined* |
+| onMove | *function* | A callback to be invoked on cursor move event. It receives the current cursor coords. | *undefined* |
+| onHover | *function* | A callback to be invoked on cursor hover event. It receives the matched trigger selector. | *undefined* |
+| onHold | *function* | A callback to be invoked on cursor hold event. | *undefined* |
+| onRelease | *function* | A callback to be invoked on cursor release event. | *undefined* |
 
 
 __HOW IT WORKS__
@@ -93,7 +93,7 @@ Returned value:
   coords: { x: {number}, y: {number} },
   visible: {boolean},
   holding: {boolean},
-  target: {(HTMLElement|null)}
+  target: {(Element|null)}
 }
 ```
 
@@ -112,7 +112,7 @@ Cursor.destroy()
 
 It removes all global event listeners.
 
-⚠️ Attention: by destroying *Cursor* globally all the collected information will stop to be updated and no more events will be dispatched. Consequently, any *Cursor* instances will result broken.
+⚠️ Attention: by destroying *Cursor* globally all the collected information will stop to be updated and no more events will be dispatched. Consequently, any *Cursor* instance will result broken.
 
 
 ## Examples

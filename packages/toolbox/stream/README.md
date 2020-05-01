@@ -53,11 +53,11 @@ A configuration object can be passed as second argument to *log* and *catchable*
 
 | Property | Type | Description |
 | --- | --- | --- |
-| type | string | It defines the log type. As *Stream* works as a *console* wrapper, all method names of the *[Console object](https://developer.mozilla.org/it/docs/Web/API/Console)* are allowed. |
-| namespace | string | It's a message prefix that identifies the main scope of logs. As it usually corresponds to the application name, it can also be set globally by setting the static property *Stream.namespace*. This way you can avoid declaring it in every configuration, but if you do, you can still overwrite it. |
-| context | string | Like *namespace*, it's a message prefix that identifies the logs scope, but more specifically (so it can't be set globally). It usually refers to a module or a feature of the application and it's show just after the *namespace*. |
-| data | any | Sometimes the message alone may not be enough and the situation requires more details. In that case this property can be used to supply any kind (objects, arrays, etc.) of additional info. |
-| style | string | It's an inline CSS string that allows to add some style to the log message. |
+| type | *string* | It defines the log type. As *Stream* works as a *console* wrapper, all method names of the *[Console object](https://developer.mozilla.org/it/docs/Web/API/Console)* are allowed. |
+| namespace | *string* | It's a message prefix that identifies the main scope of logs. As it usually corresponds to the application name, it can also be set globally by setting the static property *Stream.namespace*. This way you can avoid declaring it in every configuration, but if you do, you can still overwrite it. |
+| context | *string* | Like *namespace*, it's a message prefix that identifies the logs scope, but more specifically (so it can't be set globally). It usually refers to a module or a feature of the application and it's show just after the *namespace*. |
+| data | *any* | Sometimes the message alone may not be enough and the situation requires more details. In that case this property can be used to supply any kind (objects, arrays, etc.) of additional info. |
+| style | *string* | It's an inline CSS string that allows to add some style to the log message. |
 
 
 ## Examples

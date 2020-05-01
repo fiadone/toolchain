@@ -8,7 +8,7 @@ import { clamp } from '@fiad/toolbox/math'
 
 /**
  * Returns a value between 0 and 1 that tells how much of the target element has currently scrolled over the viewport
- * @param {HTMLElement} el The target element
+ * @param {Element} el The target element
  * @returns {number}
  */
 export function getScrollRatio(el) {
@@ -20,7 +20,7 @@ export function getScrollRatio(el) {
 
 /**
  * Returns the size of the element portion intersecting the viewport
- * @param {HTMLElement} el The target element
+ * @param {Element} el The target element
  * @returns {number}
  */
 export function getIntersection(el) {
@@ -36,12 +36,12 @@ export function getIntersection(el) {
 
 /**
  * Decorates DOM element with utility methods
- * @param {HTMLElement} el The target element
+ * @param {Element} el The target element
  * @param {object} props Custom enhancing properties
- * @returns {HTMLElement}
+ * @returns {Element}
  */
 export function enhance(el, props = {}) {
-  if (!(el instanceof HTMLElement)) return null
+  if (!(el instanceof Element)) return null
 
   Object.assign(el, {
     ...props,
@@ -59,9 +59,9 @@ export function enhance(el, props = {}) {
 /**
  * Executes a querySelector over DOM and decorates results
  * @param {string} selector The selector of the element to query DOM of
- * @param {HTMLElement|HTMLDocument} context The root element the query starts from
+ * @param {Element|HTMLDocument} context The root element the query starts from
  * @param {boolean} enhanced Defines if returned element has to be enhanced
- * @returns {HTMLElement}
+ * @returns {Element}
  */
 export function getElement(selector, { context = document, enhanced = false } = {}) {
   const el = context.querySelector(selector)
@@ -72,9 +72,9 @@ export function getElement(selector, { context = document, enhanced = false } = 
 /**
  * Executes a querySelectorAll over DOM and decorates results
  * @param {string} selector The selector of the elements to query DOM of
- * @param {(HTMLElement|HTMLDocument)} context The root element the query starts from
+ * @param {(Element|HTMLDocument)} context The root element the query starts from
  * @param {boolean} enhanced Defines if returned element has to be enhanced
- * @returns {HTMLElement[]}
+ * @returns {Element[]}
  */
 export function getElements(selector, { context = document, enhanced = false } = {}) {
   const els = context.querySelectorAll(selector)
@@ -83,8 +83,8 @@ export function getElements(selector, { context = document, enhanced = false } =
 }
 
 /**
- * Executes a match test to verify if an element matches a collection of selectors
- * @param {HTMLElement} el The target element
+ * Performs a match test to verify if an element matches with a collection of selectors
+ * @param {Element} el The target element
  * @param {(string|string[])} selector The selector(s) to perform matching on
  * @returns {(boolean|string)}
  */
@@ -99,8 +99,8 @@ export function matches(el, selector) {
 }
 
 /**
- * Checks if an element has
- * @param {HTMLElement} el The target element
+ * Checks if an element has the given ancestor(s)
+ * @param {Element} el The target element
  * @param {(string|string[])} selector The ancestors selector(s)
  * @returns {boolean}
  */

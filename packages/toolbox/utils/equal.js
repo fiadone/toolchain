@@ -7,7 +7,7 @@
 export default function equal(a, b) {
   if (typeof a !== typeof b) return false
 
-  if (a instanceof HTMLElement && b instanceof HTMLElement) return a === b
+  if (a instanceof Element && b instanceof Element) return a === b
 
   return JSON.stringify(a) === JSON.stringify(b)
 }

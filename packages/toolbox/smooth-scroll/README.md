@@ -30,7 +30,7 @@ __CONFIGURATION OBJECT__
 
 | Property | Type | Description | Default |
 | --- | --- | --- | --- |
-| inertia | number | The lerping factor used to make scroll smoother (set to 1 for linear scrolling). | 0.2 |
+| inertia | *number* | The lerping factor used to make scroll smoother (set to 1 for linear scrolling). | *0.2* |
 
 
 ### disable
