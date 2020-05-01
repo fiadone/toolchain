@@ -67,9 +67,9 @@ It expects the same *options* object defined for *[generateUrl](#generateUrl)* w
 ## Supported attributes
 | Attribute | Default | Whatsapp | Telegram | Facebook | Twitter | Google+ | LinkedIn | E-mail |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| (data-) url | *window.location.href* | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
-| (data-) title | *undefined* | ✘ | ✘ | ✘ | ✘ | ✘ | ✔ | ✔ |
-| (data-) description | *undefined* | ✔ | ✔ | ✘ | ✔ | ✘ | ✔ | ✔ |
+| (data-) url | *window.location.href* | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| (data-) title | *undefined* | 🚫 | 🚫 | 🚫 | 🚫 | 🚫 | ✅ | ✅ |
+| (data-) description | *undefined* | ✅ | ✅ | 🚫 | ✅ | 🚫 | ✅ | ✅ |
 
 
 ## Examples
