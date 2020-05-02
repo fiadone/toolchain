@@ -114,8 +114,8 @@ class EventsManager {
     const type = this.#aliases[alias]
     const listenerKey = delegateTo ? `${type}:${alias}:${delegateTo}` : `${type}:${alias}`
     const listener = delegateTo
-      ? e => (e.target.closest(delegateTo) && this.#bus.dispatch(alias, { payload: e }))
-      : e => this.#bus.dispatch(alias, { payload: e })
+      ? e => (e.target.closest(delegateTo) && this.#bus.dispatch(alias, e))
+      : e => this.#bus.dispatch(alias, e)
 
     // registering listener
     this.#listeners[listenerKey] = listener
