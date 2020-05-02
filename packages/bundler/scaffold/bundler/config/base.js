@@ -25,7 +25,10 @@ module.exports = {
       {
         test: /\.(s)?css$/,
         loader: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { hmr: process.env.config !== 'build' }
+          },
           'css-loader',
           'postcss-loader',
           {

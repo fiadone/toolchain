@@ -21,7 +21,6 @@
     "postcss-import",
     "postcss-preset-env",
     "sass-loader",
-    "style-loader",
     "terser-webpack-plugin",
     "twig-loader",
     "webpack",
