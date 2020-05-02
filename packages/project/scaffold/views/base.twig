@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ title }}</title>
 
   {% block meta %}{% endblock %}
 
@@ -11,8 +12,8 @@
 
   {% block head %}{% endblock %}
 </head>
-<body>
-  {% include './partials/header.twig' with { sticky: true } %}
+<body class="{{ body_class }}">
+  {% include './partials/header.twig' %}
 
   <main id="content" data-scroll-wrapper>
     <div data-scroll-content>
@@ -21,7 +22,7 @@
     </div>
   </main>
 
-  {% include './partials/cookies-banner.twig' %}
+  {# {% include './partials/cookies-banner.twig' %} #}
 
   <script src="assets/vendors.js"></script>
   <script src="assets/app.js"></script>
