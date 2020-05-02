@@ -29,20 +29,20 @@
   $-property: map-get($specs, "property");
   $-breakpoints: map-get($specs, "breakpoints");
   $-value: map-get($specs, "value");
-  $-suffix: map-get($specs, "suffix");
+  $-prefix: map-get($specs, "prefix");
   // generating basic rules
   @if type-of($-property) == "map" {
     @each $prop-key, $prop-value in $-property {
       $-base-class: if($prop-key == "_", $base-class, $base-class + $prop-key);
       @include framework-rules($-base-class, (
-        "suffix": $-suffix,
+        "prefix": $-prefix,
         "property": $prop-value,
         "value": $-value
       ));
     }
   } @else if type-of($-value) == "map" {
     @each $mod, $value in $-value {
-      $-base-class: if($-suffix, $base-class + "-" + $-suffix  + "-" + $mod, $base-class + "-" + $mod);
+      $-base-class: if($-prefix, $-prefix + "\\:" + $base-class + "-" + $mod, $base-class + "-" + $mod);
       @include framework-rules($-base-class, (
         "property": $-property,
         "value": $value
@@ -54,14 +54,20 @@
     }
   }
   // generating responsive rules
-  @if global-variable-exists("breakpoints") and type-of($-breakpoints) == "list" {
-    @each $breakpoint in $-breakpoints {
-      @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}px) {
-        @include framework-rules($base-class, (
-          "suffix": $breakpoint,
-          "property": $-property,
-          "value": $-value
-        ));
+  @if global-variable-exists("breakpoints") {
+    @if type-of($-breakpoints) == 'string' {
+      $-breakpoints: append((), $-breakpoints);
+    }
+
+    @if type-of($-breakpoints) == "list" {
+      @each $breakpoint in $-breakpoints {
+        @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}px) {
+          @include framework-rules($base-class, (
+            "prefix": $breakpoint,
+            "property": $-property,
+            "value": $-value
+          ));
+        }
       }
     }
   }
