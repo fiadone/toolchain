@@ -17,7 +17,7 @@ function scaffold(src, dest = './', context) {
   return new Promise((resolve, reject) => {
     const complete = suspense(`Copying${context ? ` ${chalk.cyan(context)}` : ''} scaffold files`, { color: 'blue' })
 
-    fs.copy(src, dest, { overwrite: false })
+    fs.copy(src, dest)
       .then(() => {
         complete(true)
         resolve()
