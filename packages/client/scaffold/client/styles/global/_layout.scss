@@ -2,9 +2,12 @@ html {
   @include auto-scaling(375, 1440);
 }
 
+#content {
+  padding-top: rem(112);
+}
+
 .container {
   padding: 0 1rem;
-  overflow: auto;
   position: relative;
   margin: 0 auto;
 
@@ -12,3 +15,57 @@ html {
     max-width: 82rem;
   }
 }
+
+.off-container {
+  width: 100vw;
+  position: relative;
+  left: calc(-1 * (100vw - 100%) / 2);
+}
+
+.full-height {
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+@include framework-rules('flex', (
+  "property": (
+    "-align": "align-items",
+  ),
+  "value": (
+    "stretch": stretch,
+    "center": center,
+    "start": flex-start,
+    "end": flex-end
+  ),
+  "breakpoints": ("md")
+));
+
+@include framework-rules('flex', (
+  "property": (
+    "-justify": "justify-content",
+  ),
+  "value": (
+    "space-between": space-between,
+    "space-around": space-around,
+    "center": center,
+    "start": flex-start,
+    "end": flex-end
+  ),
+  "breakpoints": ("md")
+));
+
+@include framework-rules('flex', (
+  "property": "flex-direction",
+  "value": (
+    "row": row,
+    "row-reverse": row-reverse,
+    "col": column,
+    "col-reverse": column-reverse,
+  ),
+  "breakpoints": ("md")
+));
+
+@include grid(12, rem($scalar), $breakpoints);

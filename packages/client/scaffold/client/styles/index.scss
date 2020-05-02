@@ -9,15 +9,18 @@
 /* GLOBAL */
 /*========*/
 @import 'global/variables';
-@import 'global/helpers';
 @import 'global/typography';
 @import 'global/layout';
 
 /*============*/
 /* COMPONENTS */
 /*============*/
+@import 'components/icon';
+@import 'components/field';
+@import 'components/button';
 @import 'components/header';
 @import 'components/footer';
+@import 'components/cookies-banner';
 
 /*=======*/
 /* PAGES */

@@ -1,0 +1,15 @@
+.cookies-banner {
+  width: 100%;
+  padding: rem($scalar * 2);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  transform: translate3d(0, 100%, 0);
+  background-color: #EEEEEE;
+  transition: transform $duration;
+
+  &.visible {
+    transform: none;
+  }
+}

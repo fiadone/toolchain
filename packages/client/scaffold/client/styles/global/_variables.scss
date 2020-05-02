@@ -8,13 +8,13 @@ $breakpoints: (
   "xl": 1600
 );
 
-$md-breakpoints: map-merge($breakpoints, (
+$mq-breakpoints: map-merge($breakpoints, (
   "tablet": map-get($breakpoints, 'sm'),
   "desktop": map-get($breakpoints, 'md')
 ));
 
 $scalar: 8;
-$radius: 4;
+$radius: 8;
 
 /*===================*/
 /* THEMES AND COLORS */
@@ -22,10 +22,10 @@ $radius: 4;
 $colors: (
   "primary": #235789,
   "primary-contrast": #F9F8EF,
-  "secondary": #E7DFC6,
-  "secondary-contrast": #393D3F,
-  "tertiary": #DB5461,
-  "tertiary-contrast": #F9F8EF,
+  "secondary": #DB5461,
+  "secondary-contrast": #F9F8EF,
+  "tertiary": #E7DFC6,
+  "tertiary-contrast": #393D3F,
   "text-dark": #393D3F,
   "text-light": #F9F8EF,
   "border": #B9BDBF,

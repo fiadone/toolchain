@@ -1,11 +1,8 @@
 .header {
+  width: 100%;
   height: rem(80);
-  position: relative;
-  background-color: #EEEEEE;
-}
-
-.header--sticky {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 7;
+  background-color: #EEEEEE;
 }

@@ -8,6 +8,34 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+body {
+  font-size: rem($scalar * 2.25);
+  line-height: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+@for $i from 1 through 6 {
+  h#{$i}, .h#{$i} {
+    font-size: rem($scalar * (7 - $i));
+  }
+}
+
+p, .p {
+  font-size: inherit;
+  line-height: 1.4;
+}
+
+@include framework-rules('p', (
+  "property": "font-size",
+  "value": (
+    "-small": rem($scalar * 1.75),
+    "-big": rem($scalar * 2.5)
+  )
+));
+
 a {
   text-decoration: none;
   color: inherit;
