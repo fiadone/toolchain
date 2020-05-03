@@ -128,4 +128,4 @@ document.addEventListener('click', e => {
 })
 ```
 
-⚠️ Disclaimer: the examples above are only intended to demonstrate more clearly how the functions work. Use of the *matches* and *isDescendantOf* functions sparingly to prevent any loss of performance.
+> ⚠️ __Disclaimer__: the examples above are only intended to demonstrate more clearly how the functions work. Use of the *matches* and *isDescendantOf* functions sparingly to prevent any loss of performance.

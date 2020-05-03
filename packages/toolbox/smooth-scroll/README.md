@@ -24,7 +24,7 @@ SmoothScroll.enable(config)
 
 It enables smooth scrolling according to the (optional) given preferences.
 
-⚠️ *SmoothScroll* requires a specific DOM structure to properly work. Check out the [example](#example) below to lern more.
+> ⚠️ __Notice__: *SmoothScroll* requires a specific DOM structure to properly work. Check out the [example](#example) below to lern more.
 
 __CONFIGURATION OBJECT__
 

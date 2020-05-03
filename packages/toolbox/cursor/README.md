@@ -112,7 +112,7 @@ Cursor.destroy()
 
 It removes all global event listeners.
 
-⚠️ Attention: by destroying *Cursor* globally all the collected information will stop to be updated and no more events will be dispatched. Consequently, any *Cursor* instance will result broken.
+> ⚠️ __Attention__: by destroying *Cursor* globally all the collected information will stop to be updated and no more events will be dispatched. Consequently, any *Cursor* instance will result broken.
 
 
 ## Examples
