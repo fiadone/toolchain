@@ -1,7 +1,9 @@
 {
   "dependencies": [
+    "@fiad/design-system",
     "axios",
     "minireset.css",
-    "sass-mq"
+    "sass-mq",
+    "vanilla-lazyload"
   ]
 }
