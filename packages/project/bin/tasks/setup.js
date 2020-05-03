@@ -1,9 +1,9 @@
 const chalk = require('chalk')
 
 const init = require('./init')
+const config = require('./config')
 const scaffold = require('./scaffold')
 const install = require('./install')
-const config = require('./config')
 const inject = require('./inject')
 
 module.exports = function ({ modules = [] }) {

@@ -7,7 +7,7 @@
   },
   "author": "Andrea 'Fiad' Fiadone",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@fiad/cli": "^0.0.1",
     "chalk": "^4.0.0",
     "fs-extra": "^9.0.0",

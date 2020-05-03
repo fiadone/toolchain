@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const clean = require('./tasks/clean')
+const config = require('./tasks/config')
 const scaffold = require('./tasks/scaffold')
 const install = require('./tasks/install')
-const config = require('./tasks/config')
 
 clean()
   .then(config)
