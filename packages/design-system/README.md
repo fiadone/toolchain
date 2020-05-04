@@ -11,6 +11,12 @@ A collection of utilities to enhance styles development
 npm i @fiad/design-system
 ```
 
+#### Usage
+```scss
+/* main.scss */
+@import '@fiad/design-system'
+```
+
 ## Contents
 
 * [functions](https://github.com/fiadone/carpentry/tree/master/packages/design-system/functions)

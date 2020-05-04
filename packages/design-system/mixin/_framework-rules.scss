@@ -1,30 +1,8 @@
 /*
  * A generator of functional css classes
+ * @param $base-class The base rules class
  * @param $config The rules configuration map
- * @example
-    @include framework-rules("m", (
-      "breakpoints": ("sm", "md", "lg"),
-      "property": (
-        "_": "margin",
-        "t": "margin-top",
-        "r": "margin-right",
-        "b": "margin-bottom",
-        "l": "margin-left",
-      ),
-      "value": (
-        "0": 0,
-        "1": 8px,
-        "2": 16px,
-        "3": 24px,
-        "4": 32px,
-        "5": 40px,
-        "6": 48px,
-        "7": 56px,
-        "8": 64px
-      )
-    ));
  */
-
 @mixin framework-rules($base-class, $specs) {
   $-property: map-get($specs, "property");
   $-breakpoints: map-get($specs, "breakpoints");
@@ -60,10 +38,10 @@
     }
 
     @if type-of($-breakpoints) == "list" {
-      @each $breakpoint in $-breakpoints {
-        @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}px) {
+      @each $-key, $-size in $-breakpoints {
+        @media screen and (min-width: #{$-size}px) {
           @include framework-rules($base-class, (
-            "prefix": $breakpoint,
+            "prefix": $-key,
             "property": $-property,
             "value": $-value
           ));

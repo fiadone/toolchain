@@ -4,7 +4,8 @@
  * @param $gap The rows/columns spacing
  * @param $breakpoints The list of breakpoints to be used to make the grid responsive
  */
-@mixin grid($columns, $gap, $breakpoints) {
+
+@mixin grid($columns: 12, $gap: 1rem, $breakpoints: ("sm": 768, "md": 1024, "lg": 1366)) {
   .row {
     display: grid;
     grid-template-columns: repeat($columns, minmax(0, 1fr));
@@ -12,7 +13,7 @@
   }
 
   .col {
-    grid-column: span 12;
+    grid-column: span $columns;
   }
 
   @for $i from 1 through $columns {
