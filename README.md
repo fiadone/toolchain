@@ -4,6 +4,15 @@ A smart toolchain for modern front-end development
 
 ---
 
+## Get started
+
+#### Startup a new project
+```
+npx @fiad/project my-app
+```
+
+Check out the packages list below to learn more about toolchain's modules.
+
 ## Packages
 
 - [@fiad/bundler](./packages/bundler)
