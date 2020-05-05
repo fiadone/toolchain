@@ -8,10 +8,10 @@ $breakpoints: (
   "xl": 1600
 );
 
-$mq-breakpoints: map-merge($breakpoints, (
-  "tablet": map-get($breakpoints, 'sm'),
-  "desktop": map-get($breakpoints, 'md')
-));
+$mq-breakpoints: (
+  "tablet": 768px,
+  "desktop": 1024px
+);
 
 $scalar: 8;
 $radius: 8;
