@@ -1,6 +1,6 @@
 {
   "name": "@fiad/project",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "description": "A modular and scalable project boilerplate, configurable through a dead simple command line interface",
   "bin": {
     "project": "bin/index.js"
@@ -8,7 +8,7 @@
   "author": "Andrea 'Fiad' Fiadone",
   "license": "MIT",
   "dependencies": {
-    "@fiad/cli": "^0.0.1",
+    "@fiad/cli": "^1.0.4",
     "chalk": "^4.0.0",
     "fs-extra": "^9.0.0",
     "minimist": "^1.2.5"

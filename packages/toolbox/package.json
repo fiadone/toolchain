@@ -1,6 +1,6 @@
 {
   "name": "@fiad/toolbox",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "description": "A smart collection of tools and utilities for front-end development",
   "bin": {
     "toolbox": "bin/index.js"
@@ -15,7 +15,7 @@
     "ismobilejs": ">= 1.0.4"
   },
   "dependencies": {
-    "@fiad/cli": "^0.0.1",
+    "@fiad/cli": "^1.0.4",
     "gsap": ">= 3.2.6",
     "ismobilejs": ">= 1.0.4"
   },

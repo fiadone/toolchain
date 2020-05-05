@@ -1,6 +1,6 @@
 {
   "name": "@fiad/cli",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "description": "A simple command line interface that helps in scaffolding and configuring operations",
   "bin": {
     "cli": "bin/index.js"
