@@ -15,7 +15,9 @@
     "ismobilejs": ">= 1.0.4"
   },
   "dependencies": {
-    "@fiad/cli": "^0.0.1"
+    "@fiad/cli": "^0.0.1",
+    "gsap": ">= 3.2.6",
+    "ismobilejs": ">= 1.0.4"
   },
   "publishConfig": {
     "access": "public"
