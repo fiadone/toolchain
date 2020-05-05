@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const init = require('./init')
 const config = require('./config')
 const scaffold = require('./scaffold')
+const ignore = require('./ignore')
 const install = require('./install')
 const inject = require('./inject')
 
@@ -12,6 +13,7 @@ module.exports = function ({ modules = [] }) {
   init()
     .then(config)
     .then(scaffold)
+    .then(ignore)
     .then(install)
     .then(() => {
       // modules installation pipeline
