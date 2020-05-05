@@ -1,6 +1,6 @@
 {
   "name": "@fiad/client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A smart client application boilerplate that ensures clean files organization and must-haves",
   "bin": {
     "client": "bin/index.js"
