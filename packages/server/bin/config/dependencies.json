@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "axios",
+    "cors",
     "dotenv",
     "express",
     "express-session",
