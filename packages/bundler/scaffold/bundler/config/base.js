@@ -1,4 +1,5 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { src, distPath, staticPages } = require('../../bundler.config')
@@ -62,6 +63,9 @@ module.exports = {
     }
   },
   plugins: [
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false
+    }),
     new CopyPlugin([{
       from: src.staticPath,
       to: distPath
