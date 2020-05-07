@@ -2,6 +2,7 @@
   "devDependencies": [
     "@babel/core",
     "@babel/preset-env",
+    "babel-eslint",
     "babel-jest",
     "eslint",
     "jest",
