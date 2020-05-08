@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
+    "dev": "parcel index.html",
     "test": "jest --coverage --passWithNoTests",
     "publish": "lerna publish"
   },
@@ -14,6 +15,7 @@
     "@babel/preset-env": "^7.9.5",
     "babel-jest": "^25.4.0",
     "jest": "^25.3.0",
-    "lerna": "^3.20.2"
+    "lerna": "^3.20.2",
+    "parcel-bundler": "^1.12.4"
   }
 }
