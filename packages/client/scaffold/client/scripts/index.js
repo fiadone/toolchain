@@ -1,8 +1,12 @@
+import { browser } from '@fiad/toolbox/detect'
+import Application from './controllers/Application'
 import '../styles'
 
-import Application from './controllers/Application'
-
-Application.init()
+if (!browser.modern) {
+  document.body.classList.add('unsupported')
+} else {
+  Application.init()
+}
 
 // HMR support
 if (module.hot) {

@@ -9,7 +9,6 @@ module.exports = {
       name: 'modules',
       message: 'Which modules do you need?',
       choices: [
-        'toolbox',
         'client',
         'server'
       ]

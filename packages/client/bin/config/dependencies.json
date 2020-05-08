@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "@fiad/design-system",
+    "@fiad/toolbox",
     "axios",
     "minireset.css",
     "sass-mq",

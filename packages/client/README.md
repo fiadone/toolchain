@@ -15,3 +15,4 @@ npx @fiad/client
 
 - [@fiad/bundler](https://github.com/fiadone/carpentry/tree/master/packages/bundler)
 - [@fiad/design-system](https://github.com/fiadone/carpentry/tree/master/packages/design-system)
+- [@fiad/toolbox](https://github.com/fiadone/carpentry/tree/master/packages/toolbox)
