@@ -12,12 +12,14 @@
   "license": "MIT",
   "peerDependencies": {
     "gsap": ">= 3.2.6",
-    "ismobilejs": ">= 1.0.4"
+    "ismobilejs": ">= 1.0.4",
+    "ua-parser-js": ">= 0.7.21"
   },
   "dependencies": {
     "@fiad/cli": "^1.0.4",
-    "gsap": ">= 3.2.6",
-    "ismobilejs": ">= 1.0.4"
+    "gsap": "^3.2.6",
+    "ismobilejs": "^1.0.4",
+    "ua-parser-js": "^0.7.21"
   },
   "publishConfig": {
     "access": "public"

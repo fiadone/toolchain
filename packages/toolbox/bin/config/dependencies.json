@@ -2,6 +2,7 @@
   "dependencies": [
     "@fiad/toolbox",
     "gsap",
-    "ismobilejs"
+    "ismobilejs",
+    "ua-parser-js"
   ]
 }
