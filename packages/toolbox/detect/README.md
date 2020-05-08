@@ -1,6 +1,6 @@
 # @fiad/toolbox/detect
 
-A simple collector of device info based on [ismobilejs](https://github.com/kaimallea/isMobile)
+A simple collector of device info based on [ua-parser-js](https://github.com/faisalman/ua-parser-js) and [ismobilejs](https://github.com/kaimallea/isMobile)
 
 ---
 
@@ -11,11 +11,19 @@ npm i @fiad/toolbox
 ```
 
 ```js
-import { mobile, touch } from '@fiad/toolbox/detect'
+import { browser, engine, mobile, os, touch } from '@fiad/toolbox/detect'
 
 if (touch && mobile.phone.any) {
-  // scoped code
+  // scoped code for smartphones
+}
+
+if (browser.name === 'Chrome' && os.name === 'Mac OS') {
+  // scoped code for Chrome on Mac OS
+}
+
+if (browser.name === 'Edge' && (browser.major <= 18 || engine.name === 'Blink')) {
+  // scoped code for pre-chromium Edge
 }
 ```
 
-Please check out [ismobilejs](https://github.com/kaimallea/isMobile) documentation for more details on the *mobile* object.
+Please check out [ua-parser-js](https://github.com/faisalman/ua-parser-js) and [ismobilejs](https://github.com/kaimallea/isMobile) documentations for more details on the *browser*, *engine*, *os* and *mobile* objects.
