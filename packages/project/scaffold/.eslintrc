@@ -18,6 +18,11 @@
     "arrow-parens": ["error", "as-needed"],
     "block-scoped-var": "error",
     "comma-dangle": ["error", "never"],
+    "comma-spacing": ["error", {
+      "before": false,
+      "after": true
+    }],
+    "computed-property-spacing": ["error", "never"],
     "consistent-return": "error",
     "curly": "error",
     "dot-location": ["error", "property"],
@@ -35,7 +40,12 @@
       "args": "after-used",
       "ignoreRestSiblings": true
     }],
+    "object-curly-spacing": ["error", "always", {
+      "arraysInObjects": true,
+      "objectsInObjects": true
+    }],
     "prefer-const": "error",
+    "quotes": ["error", "single"],
     "semi": [2, "never"]
   }
 }
