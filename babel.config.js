@@ -1,3 +1,1 @@
-module.exports = {
-  presets: ['@babel/preset-env']
-}
+module.exports = require('./packages/bundler/scaffold/babel.config')

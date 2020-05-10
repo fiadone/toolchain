@@ -1,7 +1,6 @@
 .DS_Store
-.cache
+.dev
 coverage
-dist
 node_modules
 lerna-debug.log
 yarn-error.log
