@@ -8,9 +8,8 @@ import gsap from 'gsap'
 import Store from '@fiad/toolbox/store'
 import EventManager from '@fiad/toolbox/events'
 import debounce from '@fiad/toolbox/utils/debounce'
-import { touch } from '@fiad/toolbox/detect'
 import { lerp } from '@fiad/toolbox/math'
-import { matches } from '@fiad/toolbox/dom'
+import { matches, isDescendantOf } from '@fiad/toolbox/dom'
 
 class Cursor {
   /**
@@ -153,7 +152,7 @@ class Cursor {
    * The list of the cursor's default triggers
    * @type {Array}
    */
-  static defaultTriggers = ['a', 'button', '[data-cursor]']
+  static defaultTriggers = ['a', 'button']
 
   /**
    * @constructor
@@ -161,8 +160,6 @@ class Cursor {
    * @param {object} options The cursor options
    */
   constructor(el, options) {
-    Cursor.init()
-
     this.el = el
     this.coords = null
     this.config = {
@@ -174,14 +171,8 @@ class Cursor {
     this.#setup()
 
     EventManager.on('resize', window, this.#onResize)
-
-    Cursor.#store.observe('visible', this.#toggleVisibility)
-    Cursor.#store.observe('holding', this.#toggleHolding)
-    Cursor.#store.observe('target', this.#checkTarget)
-
-    if ((!touch || options.touch)) {
-      gsap.ticker.add(this.#requestMoveFrame)
-    }
+    Cursor.#store.observe('coords', this.#init)
+    Cursor.init()
   }
 
   /**
@@ -247,9 +238,29 @@ class Cursor {
    */
   #checkTarget = target => {
     const { triggers = Cursor.defaultTriggers } = this.config
-    const trigger = matches(target, triggers)
+    const trigger = matches(target, triggers) || isDescendantOf(target, triggers)
 
     this.hover(trigger)
+  }
+
+  /**
+   * Initializes cursor
+   * @param {object} coords The initial cursor coords
+   */
+  #init = coords => {
+    if (!Cursor.#store.get('visible')) {
+      return
+    }
+
+    Cursor.#store.unobserve('coords', this.#init)
+    Cursor.#store.observe('visible', this.#toggleVisibility)
+    Cursor.#store.observe('holding', this.#toggleHolding)
+    Cursor.#store.observe('target', this.#checkTarget)
+
+    this.move(coords, false, () => {
+      this.show()
+      gsap.ticker.add(this.#requestMoveFrame)
+    })
   }
 
   /**
@@ -278,8 +289,9 @@ class Cursor {
    * Updates the cursor element position
    * @param {object} coords The coords to move to the cursor to
    * @param {(number|boolean)} inertia The linear interpolation factor
+   * @param {function} callback A function to call on position update
    */
-  move = (coords, inertia) => {
+  move = (coords, inertia, callback) => {
     if (typeof coords !== 'object'
       || !coords.hasOwnProperty('x')
       || !coords.hasOwnProperty('y')) return
@@ -289,7 +301,13 @@ class Cursor {
 
     this.coords = { x, y }
 
-    gsap.set(this.el, { x, y, force3D: true })
+    gsap.set(this.el, {
+      x,
+      y,
+      force3D: true,
+      onComplete: callback,
+      onCompleteParams: [this.coords]
+    })
 
     if (typeof this.config.onMove === 'function') {
       this.config.onMove(this.coords)
@@ -339,10 +357,7 @@ class Cursor {
    */
   destroy() {
     gsap.set(this.el, { clearProps: 'position, top, left, z-index, transform, pointer-events' })
-
-    if ((!touch || options.touch)) {
-      gsap.ticker.remove(this.#requestMoveFrame)
-    }
+    gsap.ticker.remove(this.#requestMoveFrame)
 
     EventManager.off('resize', window, this.#onResize)
 
