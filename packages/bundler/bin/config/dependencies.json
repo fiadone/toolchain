@@ -11,6 +11,7 @@
     "babel-loader",
     "clean-webpack-plugin",
     "copy-webpack-plugin",
+    "core-js",
     "css-loader",
     "cssnano",
     "html-webpack-plugin",
