@@ -1,0 +1,11 @@
+{
+  "name": "",
+  "short_name": "",
+  "icons": [{
+      "src": "assets/images/favicon/google-touch-icon.png",
+      "sizes": "512x512"
+  }],
+  "background_color": "#090D0F",
+  "theme_color": "#090D0F",
+  "display": "fullscreen"
+}
