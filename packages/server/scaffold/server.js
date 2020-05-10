@@ -43,12 +43,6 @@ http
   .createServer(app)
   .listen(port, 'localhost', () => {
     console.log()
-    console.log(`
-    /*=============================================*/
-    /*                                             */
-    /*   App is running on http://localhost:${port}   */
-    /*                                             */
-    /*=============================================*/
-    `)
+    console.log(`App is running on http://localhost:${port}`)
     console.log()
   })
