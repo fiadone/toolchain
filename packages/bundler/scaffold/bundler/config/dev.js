@@ -11,11 +11,10 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(base.output.path, '..'),
-    hot: true,
+    writeToDisk: true,
     host: 'localhost',
     port: 3000,
-    historyApiFallback: true,
-    writeToDisk: true
+    hot: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

@@ -68,7 +68,8 @@ module.exports = {
     }),
     new CopyPlugin([{
       from: src.staticPath,
-      to: distPath
+      to: distPath,
+      ignore: ['.DS_Store', '.gitkeep']
     }]),
     new MiniCssExtractPlugin({
       filename: '[name].css',
