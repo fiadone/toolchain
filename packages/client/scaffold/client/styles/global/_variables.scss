@@ -51,8 +51,10 @@ $colors: (
 /*============*/
 /* TYPOGRAPHY */
 /*============*/
-$font-default: sans-serif;
-$font-icons: 'icons';
+$fonts: (
+  'default': sans-serif,
+  icons: 'icons'
+);
 
 /*============*/
 /* ANIMATIONS */

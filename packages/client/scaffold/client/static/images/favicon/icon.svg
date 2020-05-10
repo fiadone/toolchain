@@ -1,0 +1,12 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 64 64" xml:space="preserve">
+  <style>
+    .f { fill: #235789 }
+    .p { fill: #e7dfc6 }
+    @media (prefers-color-scheme: dark) {
+      .f { fill: #e7dfc6 }
+      .p { fill: #235789 }
+    }
+  </style>
+  <path class="f" d="M42.9 4.1h-8.8V31h5.8v4h-5.8v29h-4V0h12.8v4.1z"/>
+  <path class="p" d="M26.1 48.7L9.3 32l16.8-16.7v-4.9L4.5 32l21.6 21.6zM37.9 10.4v4.8L54.7 32 37.9 48.8v4.8L59.5 32z"/>
+</svg>

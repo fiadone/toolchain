@@ -2,5 +2,5 @@
 [class*=" icon-"] {
   @extend %icon;
 
-  font-family: $font-icons !important;
+  font-family: font('icons') !important;
 }

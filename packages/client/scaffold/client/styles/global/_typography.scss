@@ -1,5 +1,5 @@
 html {
-  font-family: $font-default;
+  font-family: font('default');
   font-variant-ligatures: none;
   text-size-adjust: none;
   text-rendering: optimizeLegibility;
@@ -39,4 +39,12 @@ p, .p {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
 }

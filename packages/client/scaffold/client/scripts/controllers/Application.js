@@ -1,11 +1,21 @@
 class Application {
   /**
-   * Initializes Application
-   * @static
+   * @constructor
+   * @param {any} props
    */
-  static init() {
+  constructor(props) {
+    this.props = props
     console.log('Application init')
   }
 }
 
-export default Application
+let instance
+
+export default {
+  init: props => {
+    if (!instance) {
+      instance = new Application(props)
+    }
+  },
+  get: () => instance
+}

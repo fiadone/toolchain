@@ -1,0 +1,11 @@
+@function size($size, $adjustment: 0) {
+  @return map-get($breakpoints, $size) + ($adjustment * 1px);
+}
+
+@function font($font) {
+  @return map-get($fonts, $font);
+}
+
+@function color($color) {
+  @return map-get($colors, $color);
+}
