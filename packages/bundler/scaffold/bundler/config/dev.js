@@ -4,7 +4,7 @@ const base = require('./base')
 
 module.exports = {
   ...base,
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   watch: true,
   watchOptions: {
     ignored: /node_modules/
