@@ -168,18 +168,19 @@ class Cursor {
       ...options
     }
 
-    this.#setup()
-
-    EventManager.on('resize', window, this.#onResize)
-    Cursor.#store.observe('coords', this.#init)
-    Cursor.init()
+    this.#setup(() => {
+      EventManager.on('resize', window, this.#onResize)
+      Cursor.#store.observe('coords', this.#init)
+      Cursor.init()
+    })
   }
 
   /**
    * Basic cursor styles setter
    * @private
+   * @param {function} callback A function to call on setup completion
    */
-  #setup = () => {
+  #setup = callback => {
     const { origin, z = 9999 } = this.config
 
     gsap.set(this.el, {
@@ -187,7 +188,8 @@ class Cursor {
       top: this.el.clientHeight * -origin[0],
       left: this.el.clientWidth * -origin[1],
       zIndex: z,
-      pointerEvents: 'none'
+      pointerEvents: 'none',
+      onComplete: callback
     })
   }
 
@@ -257,10 +259,10 @@ class Cursor {
     Cursor.#store.observe('holding', this.#toggleHolding)
     Cursor.#store.observe('target', this.#checkTarget)
 
-    this.move(coords, false, () => {
-      this.show()
+    this.move(coords, false, debounce(() => {
       gsap.ticker.add(this.#requestMoveFrame)
-    })
+      this.show()
+    }, 10))
   }
 
   /**
@@ -296,14 +298,13 @@ class Cursor {
       || !coords.hasOwnProperty('x')
       || !coords.hasOwnProperty('y')) return
 
-    const x = inertia ? lerp(this.coords.x, coords.x, inertia) : coords.x
-    const y = inertia ? lerp(this.coords.y, coords.y, inertia) : coords.y
-
-    this.coords = { x, y }
+    this.coords = {
+      x: inertia ? lerp(this.coords.x, coords.x, inertia) : coords.x,
+      y: inertia ? lerp(this.coords.y, coords.y, inertia) : coords.y
+    }
 
     gsap.set(this.el, {
-      x,
-      y,
+      ...this.coords,
       force3D: true,
       onComplete: callback,
       onCompleteParams: [this.coords]
