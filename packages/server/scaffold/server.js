@@ -5,6 +5,7 @@ require('dotenv').config()
 const path = require('path')
 const http = require('http')
 const express = require('express')
+const compression = require('compression')
 const logger = require('morgan')
 
 const session = require('./server/middlewares/session')
@@ -28,6 +29,8 @@ if (env === 'development') {
 }
 
 app.use(logger('tiny'))
+
+app.use(compression())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

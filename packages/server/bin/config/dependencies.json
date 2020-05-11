@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "axios",
+    "compression",
     "cors",
     "dotenv",
     "express",
