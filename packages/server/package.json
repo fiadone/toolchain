@@ -1,6 +1,6 @@
 {
   "name": "@fiad/server",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A smart node.js server application boilerplate that ensures clean files organization and must-haves",
   "bin": {
     "server": "bin/index.js"
