@@ -189,7 +189,7 @@ class Cursor {
       left: this.el.clientWidth * -origin[1],
       zIndex: z,
       pointerEvents: 'none',
-      onComplete: callback
+      onComplete: (typeof callback === 'function') ? callback : null
     })
   }
 
@@ -289,7 +289,7 @@ class Cursor {
 
   /**
    * Updates the cursor element position
-   * @param {object} coords The coords to move to the cursor to
+   * @param {object} coords The coords to move the cursor to
    * @param {(number|boolean)} inertia The linear interpolation factor
    * @param {function} callback A function to call on position update
    */
@@ -306,7 +306,7 @@ class Cursor {
     gsap.set(this.el, {
       ...this.coords,
       force3D: true,
-      onComplete: callback,
+      onComplete: (typeof callback === 'function') ? callback : null,
       onCompleteParams: [this.coords]
     })
 
