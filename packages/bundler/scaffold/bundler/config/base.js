@@ -57,7 +57,8 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]((?!(@fiad)).*)[\\/]/,
           name: 'vendors',
-          chunks: 'all'
+          chunks: 'all',
+          enforce: true
         }
       }
     }
