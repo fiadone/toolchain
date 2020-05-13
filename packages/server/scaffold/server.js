@@ -5,8 +5,8 @@ require('dotenv').config()
 const path = require('path')
 const http = require('http')
 const express = require('express')
+const helmet = require('helmet')
 const compression = require('compression')
-const logger = require('morgan')
 
 const session = require('./server/middlewares/session')
 
@@ -24,18 +24,19 @@ if (env === 'production') {
   app.set('trust proxy', 1)
 }
 
+app.disable('x-powered-by')
+
 if (env === 'development') {
   app.use(require('./server/middlewares/webpack-dev')(port))
+  app.use(require('morgan')('tiny'))
 }
 
-app.use(logger('tiny'))
-
+app.use(helmet())
 app.use(compression())
+app.use(session())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use(session())
 
 app.use(express.static('public'))
 
@@ -45,7 +46,5 @@ app.use('/', defaultCtrl())
 http
   .createServer(app)
   .listen(port, 'localhost', () => {
-    console.log()
-    console.log(`App is running on http://localhost:${port}`)
-    console.log()
+    process.stdout.write(`\nApp is running on http://localhost:${port}\n\n`)
   })
