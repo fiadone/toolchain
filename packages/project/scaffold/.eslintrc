@@ -7,7 +7,10 @@
     "worker": true,
     "jest": true
   },
-  "extends": ["eslint:recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 9,
@@ -45,6 +48,7 @@
       "objectsInObjects": true
     }],
     "prefer-const": "error",
+    "prettier/prettier": "error",
     "quotes": ["error", "single"],
     "semi": [2, "never"]
   }

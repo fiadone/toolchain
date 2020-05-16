@@ -5,6 +5,9 @@
     "babel-eslint",
     "babel-jest",
     "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-prettier",
+    "husky",
     "jest",
     "prettier"
   ]

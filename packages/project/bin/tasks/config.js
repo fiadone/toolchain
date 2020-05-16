@@ -9,7 +9,9 @@ module.exports = async function () {
     await config.add('license', 'UNLICENSED', null, true)
     await config.add('test', 'jest --coverage --passWithNoTests', 'scripts', true)
     await config.add('prettify', 'prettier', 'scripts', true)
+    await config.add('lint', 'eslint client server', 'scripts', true)
     await config.add('browserslist', ['defaults'], null, true)
+    await config.add('husky', { hooks: { 'pre-commit': 'npm run lint --silent' } })
   } catch (err) {
     process.stdout.write(chalk.red(`${err}\n`))
   }
