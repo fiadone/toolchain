@@ -12,7 +12,7 @@ module.exports = async function () {
     await config.add('lint', 'eslint client server --quiet', 'scripts', true)
     await config.add('postlint', 'echo Lint passed 👍', 'scripts', true)
     await config.add('browserslist', ['defaults'], null, true)
-    await config.add('husky', { hooks: { 'pre-commit': 'npm run lint --silent && npm run prettify' } }, null, true)
+    await config.add('husky', { hooks: { 'pre-commit': 'npm run lint --silent' } }, null, true)
   } catch (err) {
     process.stdout.write(chalk.red(`${err}\n`))
   }
