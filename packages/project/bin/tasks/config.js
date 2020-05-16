@@ -10,6 +10,7 @@ module.exports = async function () {
     await config.add('test', 'jest --coverage --passWithNoTests', 'scripts', true)
     await config.add('prettify', 'prettier . --write', 'scripts', true)
     await config.add('lint', 'eslint client server --quiet', 'scripts', true)
+    await config.add('postlint', 'echo Lint passed 👍', 'scripts', true)
     await config.add('browserslist', ['defaults'], null, true)
     await config.add('husky', { hooks: { 'pre-commit': 'npm run lint --silent && npm run prettify' } }, null, true)
   } catch (err) {
