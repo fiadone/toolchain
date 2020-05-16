@@ -9,5 +9,9 @@ export default function equal(a, b) {
 
   if (a instanceof Element && b instanceof Element) return a === b
 
-  return JSON.stringify(a) === JSON.stringify(b)
+  try {
+    return JSON.stringify(a) === JSON.stringify(b)
+  } catch (err) {
+    return false
+  }
 }
