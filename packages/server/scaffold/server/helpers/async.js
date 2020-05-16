@@ -29,7 +29,7 @@ function withAuthorization(config, jwt) {
 }
 
 /**
- * Decorates config with transformResponse in order to provide a result shorthand 
+ * Decorates config with transformResponse in order to provide a result shorthand
  * @param {object} config The axios config
  */
 function withResponseSuccess(config) {

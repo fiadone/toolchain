@@ -11,11 +11,7 @@ function getConfig(port) {
     ...config,
     entry: {
       ...config.entry,
-      app: [
-        'webpack/hot/dev-server',
-        'webpack-hot-middleware/client?reload=true&timeout=1000',
-        config.entry.app
-      ]
+      app: ['webpack/hot/dev-server', 'webpack-hot-middleware/client?reload=true&timeout=1000', config.entry.app]
     },
     output: {
       ...config.output,
