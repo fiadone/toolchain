@@ -2,5 +2,8 @@
 .dev
 coverage
 node_modules
+index.html
+index.js
 lerna-debug.log
+style.css
 yarn-error.log
