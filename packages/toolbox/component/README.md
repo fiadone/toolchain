@@ -27,9 +27,9 @@ class MyCustomComponent extends Component {
 }
 ```
 
-### Methods
+## Methods
 
-#### constructor
+### constructor
 
 ```js
 const instance = new Component(el, config)
@@ -37,7 +37,7 @@ const instance = new Component(el, config)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| el | *Element* | The *DOM* element to mount the component on. |
+| el | *Element* | The *DOM* element to attach the component to. |
 | config | *object* | The component configuration object. It's aimed to contain any option eventually needed by a specific implementation. |
 
 __Configuration object__
@@ -49,7 +49,7 @@ Even though the *config* argument can host any property needed by the component 
 | defaultProps | *object* | The default component's properties. |
 | autoInit | *boolean* | If set to *false*, it prevents the *init* method to be automatically invoked by component's *constructor*. |
 
-#### init
+### init
 
 ```js
 instance.init()
@@ -57,7 +57,7 @@ instance.init()
 
 It initializes the component. This method is aimed, for example, to host event listeners declarations. By default, it is automatically invoked by the *constructor*.
 
-#### destroy
+### destroy
 
 ```js
 instance.destroy()
@@ -122,16 +122,16 @@ To make dynamic data-binding easier, some *data-* attributes can be used to defi
 
 | Attribute | Target | Description | Example |
 | --- | --- | --- | --- |
-| data-[foo] | *root* | It defines a property named *foo* that will be accessible by *this.props.foo* within the component instance. The value of this property will be the attribute value eventually processed by *JSON.parse*. | data-error="Unathorized" |
+| data-foo | *root* | It defines a property named *foo* that will be accessible by *this.props.foo* within the component instance. The value of this property will be the attribute value eventually processed by *JSON.parse*. | data-error="Unathorized" |
 | data-ref | *child nodes* | It defines a reference to a child node named *submit* that will be accessible by *this.refs.submit* within the component instance. The value of this property will be the *Element* instance the data-attribute is defined on. | data-ref="submit" |
 
-### Helpers
+## Helpers
 
 Along with the *data-* attributes just seen above, the *data-component* attribute can be used too. It allows to automatically create a component instance for each *DOM* node that references to it. This attribute, however, doesn't work alone, but requires some helpers usage.
 
-#### attachComponents
+### attachComponents
 
-It performs a query over the *DOM* to retrieve all the elements that requires a *Component* to be attached on. So a *Component* instance is iteratively created and attached to the queried elements.
+It performs a query over the *DOM* to retrieve all the elements that requires a component to be attached on. So a *Component* instance is iteratively created and attached to the queried elements.
 
 | Argument | Type | Description | Default |
 | --- | --- | --- | --- |
@@ -146,7 +146,7 @@ __Return value__
 
 The function returns a *Map* containing all the created element-component relations. Each element of this *Map* will have a *DOM Element* as key and the *Component* instance attached to it as value.
 
-__Example__
+#### Example
 
 HTML
 
@@ -183,7 +183,7 @@ function Page() {
 }
 ```
 
-#### detachComponents
+### detachComponents
 
 At some point, it may be needed to destroy some components, for example after a page transition in a client-based navigation context. In that case, this method can rush to help. It simply invokes the *destroy* method on each *Component* instance previously created.
 
@@ -206,26 +206,27 @@ application.on('pagetransition', nextPage => {
 
 ## State management
 
-As seen so far, *Component* is mostly a stateless module, at least until you start tricking with its properties. Anyway, if a state-based implementation is required, a more convenient way to get it is by using the *[@fiad/toolbox/store](../store/README.md)* module. Here below a simple example:
+As seen so far, *Component* is mostly a stateless module, at least until you start tricking with its properties. Anyway, if a state-based implementation is required, a more convenient way to get it is by using the *[@fiad/toolbox/store](https://github.com/fiadone/carpentry/blob/master/packages/toolbox/store/README.md)* module. Here below a simple example:
 
 ```js
 import Store from '@fiad/toolbox/store'
 import Component from '@fiad/toolbox/component'
 
 export default class ComponentWithState extends Component {
+  // ...
 
-  #onSomePropUpdate = value => {
+  onSomePropUpdate = value => {
     console.log('someProp updated:', value)
   }
 
   init() {
     const { initialState = {} } = this.config
     this.state = new Store(initialState)
-    this.state.observe('someProp', this.#onSomePropUpdate)
+    this.state.observe('someProp', this.onSomePropUpdate)
   }
 
   destroy() {
-    this.state.unobserve('someProp', this.#onSomePropUpdate)
+    this.state.unobserve('someProp', this.onSomePropUpdate)
   }
 }
 ```
