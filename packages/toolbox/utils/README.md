@@ -77,6 +77,52 @@ import deepMerge from '@fiad/toolbox/utils/deepmerge'
 const c = deepMerge(a, b)
 ```
 
+### diff
+
+It recursively retrieves the differences between two objects:
+
+```js
+import diff from '@fiad/toolbox/utils/diff'
+
+const a = {
+  id: 1,
+  total: 2,
+  items: ['a', 'b'],
+  config: {
+    someProp: 'lorem',
+    otherProp: 'ispum'
+  }
+}
+
+const b = {
+  id: 1,
+  total: 3,
+  items: ['a', 'b', 'c'],
+  config: {
+    someProp: 'lorem',
+    otherProp: 'dolor'
+  }
+}
+
+const c = diff(a, b)
+```
+
+The returned value will be:
+```json
+{
+  "total": [2, 3],
+  "items": [["a", "b"], ["a", "b", "c"]],
+  "config": {
+    "otherProp": ["ispum", "dolor"]
+  }
+}
+```
+
+As just seen, unchanged properties are ignored and each difference is returned as an *array* where the first element is the original value from *a* and the second one is the changed value in *b*.
+
+💡 Notice: the comparison will only work with plain objects. The attempt to compare different kinds of items (arrays, class instances, etc.) will always return *[a, b]*.
+
+
 ### memoize
 
 It allows to cache results of complex functions so that when they are recalled later the result will be returned directly from the internal cache without requiring a new execution
