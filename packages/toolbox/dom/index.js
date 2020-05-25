@@ -5,17 +5,25 @@
  */
 
 import { clamp } from '@fiad/toolbox/math'
+import { camelCase } from '../strings'
 
 /**
- * Returns a value between 0 and 1 that tells how much of the target element has currently scrolled over the viewport
- * @param {Element} el The target element
- * @returns {number}
+ * Retrieves a filtered dataset from the given DOM element
+ * @param {Element} el The element to retrieve dataset from
+ * @param {string} prefix The prefix used to filter the dataset
+ * @returns {object} The dataset collection
  */
-export function getScrollRatio(el) {
-  const { top } = el.getBoundingClientRect()
-  const ratio = (window.innerHeight - top) / (window.innerHeight + el.clientHeight)
+export function getDataset(el, prefix) {
+  if (!prefix && el.dataset) return el.dataset
 
-  return clamp(ratio, 0, 1)
+  const regexp = new RegExp(`data-${prefix ? `${prefix}-` : ''}`)
+  const attributes = el.getAttributeNames().filter(name => name.match(regexp))
+
+  return attributes.reduce((acc, name) => {
+    const key = camelCase(name.replace(regexp))
+    acc[key] = el.getAttribute(name)
+    return acc
+  }, {})
 }
 
 /**
@@ -35,6 +43,18 @@ export function getIntersection(el) {
 }
 
 /**
+ * Returns a value between 0 and 1 that tells how much of the target element has currently scrolled over the viewport
+ * @param {Element} el The target element
+ * @returns {number}
+ */
+export function getScrollRatio(el) {
+  const { top } = el.getBoundingClientRect()
+  const ratio = (window.innerHeight - top) / (window.innerHeight + el.clientHeight)
+
+  return clamp(ratio, 0, 1)
+}
+
+/**
  * Decorates DOM element with utility methods
  * @param {Element} el The target element
  * @param {object} props Custom enhancing properties
@@ -43,15 +63,21 @@ export function getIntersection(el) {
 export function enhance(el, props = {}) {
   if (!(el instanceof Element)) return null
 
-  Object.assign(el, {
-    ...props,
-    scrollRatio: function() {
-      return getScrollRatio(this)
-    },
-    intersection: function() {
-      return getIntersection(this)
-    }
-  })
+  if (!el.enhanced) {
+    Object.assign(el, {
+      ...props,
+      enhanced: true,
+      getDataset: function(prefix) {
+        return getDataset(this, prefix)
+      },
+      getIntersection: function() {
+        return getIntersection(this)
+      },
+      getScrollRatio: function() {
+        return getScrollRatio(this)
+      }
+    })
+  }
 
   return el
 }

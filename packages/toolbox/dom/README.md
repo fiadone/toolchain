@@ -16,18 +16,31 @@ import * as dom from '@fiad/toolbox/dom'
 
 ## Functions list
 
-### getScrollRatio
+### getDataset
 
-It retrieves how much the given element has been scrolled into viewport.
+It retrieves the dataset from the given element. It also allows to filter the *data-* attributes according to a given prefix.
 
-```js
-import { getScrollRatio } from '@fiad/toolbox/dom'
-
-const el = document.getElementById('target-id')
-const scrollRatio = getScrollRatio(el)
+HTML
+```html
+<article id="article" data-author-name="John Doe" data-author-avatar="//url-to-avatar"></article>
 ```
 
-The return value will be a number between 0 and 1 (inclusive) where 0 means that the element has not yet entered the viewport (i.e. *el.getBoundingClientRect().top* is greater than the sum of *window.innerHeight* and *window.scrollTop*), while 1 indicates that the element has already completely passed through the viewport (i.e. *el.getBoundingClientRect().bottom* is less than or equal to 0).
+JS
+```js
+import { getDataset } from '@fiad/toolbox/dom'
+
+const article = document.getElementById('article')
+const author = getDataset(el, 'author')
+```
+
+The *author* const will look like:
+
+```json
+{
+  "name": "John Doe",
+  "avatar": "//url-to-avatar"
+}
+```
 
 
 ### getIntersection
@@ -48,6 +61,20 @@ The return value will be an object containing the following properties:
 - *ratio*: same as *size*, but between 0 and 1 (inclusive)
 
 
+### getScrollRatio
+
+It retrieves how much the given element has been scrolled into viewport.
+
+```js
+import { getScrollRatio } from '@fiad/toolbox/dom'
+
+const el = document.getElementById('target-id')
+const scrollRatio = getScrollRatio(el)
+```
+
+The return value will be a number between 0 and 1 (inclusive) where 0 means that the element has not yet entered the viewport (i.e. *el.getBoundingClientRect().top* is greater than the sum of *window.innerHeight* and *window.scrollTop*), while 1 indicates that the element has already completely passed through the viewport (i.e. *el.getBoundingClientRect().bottom* is less than or equal to 0).
+
+
 ### enhance
 
 It decorates the given element with *scrollRatio* and *intersection* getters and optionally with the given custom properties.
@@ -61,8 +88,9 @@ const enhancedEl = enhance(el, { customProp: 'value' })
 
 The return value will be an *Element* instance decorated with the given custom properties and the following getters:
 
-- *getScrollRatio*: applies *[dom.getScrollRatio](#getScrollRatio)* on *this*
+- *getDataset*: applies *[dom.getDataset](#getDataset)* on *this*
 - *getIntersection*: applies *[dom.getIntersection](#getIntersection)* on *this*
+- *getScrollRatio*: applies *[dom.getScrollRatio](#getScrollRatio)* on *this*
 
 
 ### getElement
