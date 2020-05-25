@@ -22,6 +22,7 @@ npx @fiad/toolbox
 
 ## Contents
 
+* [component](./component)
 * [cursor](./cursor)
 * [detect](./detect)
 * [dom](./dom)
