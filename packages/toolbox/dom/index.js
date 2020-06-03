@@ -11,17 +11,27 @@ import { camelCase } from '../strings'
  * Retrieves a filtered dataset from the given DOM element
  * @param {Element} el The element to retrieve dataset from
  * @param {string} prefix The prefix used to filter the dataset
+ * @param {Array} exclude The attributes to be excluded
  * @returns {object} The dataset collection
  */
-export function getDataset(el, prefix) {
-  if (!prefix && el.dataset) return el.dataset
+export function getDataset(el, prefix, exclude = []) {
+  if (!prefix && el.dataset) {
+    return Object
+      .entries(el.dataset)
+      .filter(([key]) => !exclude.includes(key))
+      .reduce((acc, [key, value]) => Object.assign(acc, { [key]: value }), {})
+  }
 
   const regexp = new RegExp(`data-${prefix ? `${prefix}-` : ''}`)
   const attributes = el.getAttributeNames().filter(name => name.match(regexp))
 
   return attributes.reduce((acc, name) => {
-    const key = camelCase(name.replace(regexp))
-    acc[key] = el.getAttribute(name)
+    const key = camelCase(name.replace(regexp, ''))
+
+    if (!exclude.includes(key)) {
+      acc[key] = el.getAttribute(name)
+    }
+
     return acc
   }, {})
 }
