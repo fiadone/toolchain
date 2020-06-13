@@ -67,11 +67,17 @@ module.exports = {
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false
     }),
-    new CopyPlugin([{
-      from: src.staticPath,
-      to: distPath,
-      ignore: ['.DS_Store', '.gitkeep']
-    }]),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: src.staticPath,
+          to: distPath,
+          globOptions: {
+            ignore: ['.DS_Store', '.gitkeep']
+          }
+        }
+      ]
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[name].css'
