@@ -20,8 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.twig$/,
-        loader: 'twig-loader',
-        options: { allowInlineIncludes: true }
+        loader: 'twig-loader'
       },
       {
         test: /\.(s)?css$/,
