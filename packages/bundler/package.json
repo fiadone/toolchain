@@ -1,6 +1,6 @@
 {
   "name": "@fiad/bundler",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A webpack based bundler featuring babel, sass/scss support, and postcss",
   "bin": {
     "bundler": "bin/index.js"
