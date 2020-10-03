@@ -10,6 +10,7 @@ module.exports = {
     app: path.resolve(src.scriptsPath, 'index.js')
   },
   mode: process.env.NODE_ENV,
+  devtool: 'source-map',
   output: {
     path: distPath,
     filename: '[name].js',
@@ -23,17 +24,34 @@ module.exports = {
         loader: 'twig-loader'
       },
       {
+        test: /\.(ttf|eot|woff|woff2|svg|jpg|png)$/,
+        loader: 'file-loader',
+        include: [path.join(src.staticPath, 'fonts'), path.join(src.staticPath, 'images')],
+        options: {
+          name: filename => filename.replace(`${src.staticPath}/`, ''),
+          esModule: false
+        }
+      },
+      {
         test: /\.(s)?css$/,
         loader: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: { hmr: process.env.config !== 'build' }
           },
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          'resolve-url-loader',
           'postcss-loader',
           {
             loader: 'sass-loader',
-            options: { sourceMap: process.env.config !== 'build' }
+            query: {
+              sourceMap: true
+            }
           }
         ]
       },
@@ -47,7 +65,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.css', '.scss'],
     alias: {
-      '@root': path.resolve(__dirname, '../../')
+      '@root': path.resolve(__dirname, '../../'),
+      '@styles': src.stylesPath,
+      '@scripts': src.scriptsPath,
+      '@static': src.staticPath
     }
   },
   optimization: {

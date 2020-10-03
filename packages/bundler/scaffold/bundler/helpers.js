@@ -14,9 +14,12 @@ function generateStaticPages(config) {
     return new HtmlWebpackPlugin({
       template: template,
       templateParameters: compilation => {
-        compilation.fileDependencies.add(mock)
-        delete require.cache[require.resolve(mock)]
-        return require(mock)
+        const data = Array.isArray(mock) ? mock : [mock]
+        return data.reduce((acc, entry) => {
+          compilation.fileDependencies.add(entry)
+          delete require.cache[require.resolve(entry)]
+          return { ...acc, ...require(entry) }
+        }, {})
       },
       filename: `../${name}.html`,
       inject: false
