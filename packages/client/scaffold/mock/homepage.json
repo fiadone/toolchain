@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Homepage",
+    "description": "Lorem ipsum"
+  },
   "body_class": "homepage",
   "title": "Homepage"
 }

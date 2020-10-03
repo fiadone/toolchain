@@ -49,7 +49,7 @@ html {
     "start": flex-start,
     "end": flex-end
   ),
-  "breakpoints": ("md")
+  "breakpoints": $breakpoints
 ));
 
 @include framework-rules('flex', (
@@ -63,7 +63,7 @@ html {
     "start": flex-start,
     "end": flex-end
   ),
-  "breakpoints": ("md")
+  "breakpoints": $breakpoints
 ));
 
 @include framework-rules('flex', (
@@ -74,7 +74,7 @@ html {
     "col": column,
     "col-reverse": column-reverse,
   ),
-  "breakpoints": ("md")
+  "breakpoints": $breakpoints
 ));
 
 /*=============*/
