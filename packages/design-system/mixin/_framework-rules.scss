@@ -3,7 +3,7 @@
  * @param $base-class The base rules class
  * @param $config The rules configuration map
  */
-@mixin framework-rules($base-class, $specs) {
+ @mixin framework-rules($base-class, $specs) {
   $-property: map-get($specs, "property");
   $-breakpoints: map-get($specs, "breakpoints");
   $-value: map-get($specs, "value");
@@ -38,7 +38,8 @@
     }
 
     @if type-of($-breakpoints) == "list" {
-      @each $-key, $-size in $-breakpoints {
+      @each $-key in $-breakpoints {
+        $-size: map-get($breakpoints, $-key);
         @media screen and (min-width: #{$-size}px) {
           @include framework-rules($base-class, (
             "prefix": $-key,

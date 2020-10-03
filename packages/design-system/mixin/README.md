@@ -173,12 +173,14 @@ SCSS:
     "8": 64px             // .m[property]-8
   ),
   "breakpoints": (
-    "sm": 768,            // .sm:m[property]-[value]
-    "md": 1024,           // .md:m[property]-[value]
-    "lg": 1366            // .lg:m[property]-[value]
+    "sm",                 // .sm:m[property]-[value]
+    "md",                 // .md:m[property]-[value]
+    "lg"                  // .lg:m[property]-[value]
   )
 ));
 ```
+
+> ⚠️ __Notice__: the "breakpoints" property will only work if the global variable $breakpoints is defined.
 
 HTML:
 
@@ -263,5 +265,54 @@ HTML:
     8 columns cell with 2 columns offset from 1366px
   -->
   <div class="col md:size-10 md:start-2 lg:size-8 lg:start-3"></div>
+</div>
+```
+
+### Flex Grid
+
+It generates a simple grid system (based on *CSS flex*).
+
+__Definition__:
+
+```scss
+@include flex-grid($columns, $gap, $breakpoints);
+```
+
+| Argument | Description | Default |
+| --- | --- | --- |
+| $columns | The grid size, i.e. the number of column subdivisions. | *12* |
+| $gap | The gap between columns and rows. | *1rem* |
+| $breakpoints | The breakpoints to be handled to generate responsive rules. | *("sm": 768, "md": 1024, "lg": 1366)* |
+
+__Usage__:
+
+SCSS:
+
+```scss
+@include grid();
+```
+
+HTML:
+
+```html
+<div class="row">
+  <!--
+    12 columns cells under 768px
+    6 columns cells under 1024px
+    4 columns cells under 1366px
+    3 columns cells from 1366px
+  -->
+  <div class="col sm:size-6 md:size-4 lg:size-3"></div>
+  <div class="col sm:size-6 md:size-4 lg:size-3"></div>
+  <div class="col sm:size-6 md:size-4 lg:size-3"></div>
+  <div class="col sm:size-6 md:size-4 lg:size-3"></div>
+</div>
+<div class="row">
+  <!--
+    12 columns cell under 1024px
+    10 columns cell with 1 column offset under 1366px
+    8 columns cell with 2 columns offset from 1366px
+  -->
+  <div class="col md:size-10 md:offset-2 lg:size-8 lg:offset-3"></div>
 </div>
 ```

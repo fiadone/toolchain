@@ -1,0 +1,86 @@
+/*
+ * A simple grid generator
+ * @param $columns The number of available slots in a row
+ * @param $gap The rows/columns spacing
+ * @param $breakpoints The list of breakpoints to be used to make the grid responsive
+ */
+
+@mixin flex-grid($columns: 12, $gap: 1rem, $breakpoints: ("sm": 768, "md": 1024, "lg": 1366)) {
+  .row {
+    display: flex;
+    width: calc(100% + (2 * #{$gap}));
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: -#{$gap};
+  }
+
+  .row--center {
+    align-items: center;
+  }
+
+  .row--bottom {
+    align-items: flex-end;
+  }
+
+  .row--stretch {
+    align-items: stretch;
+  }
+
+  .col {
+    padding: 0 $gap;
+    flex-shrink: 0;
+  }
+
+  .size-0 {
+    width: 0;
+  }
+
+  @for $i from 1 through $columns {
+    .size-#{$i} {
+      width: #{$i / $columns * 100%};
+    }
+
+    @if ($columns - $i) >= 2 {
+      @for $j from 1 through ($columns - $i) {
+        .size-#{$i}.offset-#{$j} {
+          margin-left: #{$j / $columns * 100%};
+        }
+      }
+    }
+  }
+
+  @each $key, $size in $breakpoints {
+    @media screen and (min-width: #{$size}px) {
+      @for $i from 1 through $columns {
+
+        @if ($columns - $i) >= 2 {
+          @for $j from 1 through ($columns - $i) {
+            .size-#{$i}.#{$key}\:offset-#{$j} {
+              margin-left: #{$j / $columns * 100%};
+            }
+          }
+        }
+
+        .#{$key}\:size-#{$i} {
+          width: #{$i / $columns * 100%};
+        }
+
+        @if ($columns - $i) >= 2 {
+          @for $j from 1 through ($columns - $i) {
+            .#{$key}\:size-#{$i}.offset-#{$j} {
+              margin-left: #{$j / $columns * 100%};
+            }
+          }
+
+          @for $j from 1 through ($columns - $i) {
+            .#{$key}\:size-#{$i}.#{$key}\:offset-#{$j} {
+              margin-left: #{$j / $columns * 100%};
+            }
+          }
+        }
+      }
+    }
+  }
+}
