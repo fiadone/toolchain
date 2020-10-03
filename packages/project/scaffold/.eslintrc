@@ -27,7 +27,7 @@
     }],
     "computed-property-spacing": ["error", "never"],
     "consistent-return": "error",
-    "curly": "error",
+    "curly": ["error", "multi-line"],
     "dot-location": ["error", "property"],
     "eqeqeq": ["error", "always"],
     "max-classes-per-file": ["error", 1],

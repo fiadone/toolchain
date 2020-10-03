@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#090D0F">
 
-  <title>{{ title }}</title>
-
-  {% block meta %}{% endblock %}
+  {% block meta %}
+    <title>{{ meta.title }}</title>
+    <meta name="description" content="{{ meta.description }}">
+  {% endblock %}
 
   <link rel="stylesheet" href="assets/app.css">
   <link rel="icon" href="assets/images/favicon/icon.svg">
