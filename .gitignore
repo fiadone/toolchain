@@ -1,8 +1,8 @@
-./index.html
-./index.js
-./style.css
-.DS_Store
+/index.html
+/index.js
+/style.css
 .dev
+.DS_Store
 coverage
 node_modules
 lerna-debug.log
