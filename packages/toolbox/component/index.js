@@ -51,7 +51,7 @@ class Component {
       const { ref: key } = el.dataset
 
       if (acc[key]) {
-        if (!Array.isArray()) {
+        if (!Array.isArray(acc[key])) {
           acc[key] = [acc[key]]
         }
 
