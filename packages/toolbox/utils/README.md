@@ -51,6 +51,21 @@ const onClick = throttle(handler, throttleTime)
 document.addEventListener('click', onClick)
 ```
 
+### delegate
+
+It delegates an event to the elements matching to the given selector:
+
+```js
+import delegate from '@fiad/toolbox/utils/delegate'
+
+const gallery = document.getElementById('gallery')
+const handler = () => {
+  // something to do on click
+}
+
+gallery.addEventListener('click', delegate(handler, 'img'))
+```
+
 ### equal
 
 It checks if two entities are equal:
@@ -171,3 +186,76 @@ const queryString = QueryString.fromObject({
 // ?resource=catalogue&token=JGwcicjA1Rl4whIBmrei
 ```
 
+### string
+
+It handles string transformations.
+
+#### Functions list:
+
+__capitalize__
+
+It makes the first letter of (each word of) the given string uppercase:
+
+```js
+import { capitalize } from '@fiad/toolbox/utils/string'
+
+capitalize('sample string') // Sample String
+```
+
+__camelCase__
+
+It rewrites the given string in *camelCase*:
+
+```js
+import { camelCase } from '@fiad/toolbox/utils/string'
+
+camelCase('sample string') // sampleString
+```
+
+__pascalCase__
+
+It rewrites the given string in *PascalCase*:
+
+```js
+import { pascalCase } from '@fiad/toolbox/utils/string'
+
+pascalCase('sample string') // SampleString
+```
+
+__snakeCase__
+
+It rewrites the given string in *snake_case*:
+
+```js
+import { snakeCase } from '@fiad/toolbox/utils/string'
+
+snakeCase('sample string') // sample_string
+```
+
+__kebabCase__
+
+It rewrites the given string in *kebab-case*:
+
+```js
+import { kebabCase } from '@fiad/toolbox/utils/string'
+
+kebabCase('sample string') // sample-string
+```
+
+__words__
+
+It splits the given string into an array of trimmed words:
+
+```js
+import { words } from '@fiad/toolbox/utils/string'
+
+words('sample string ') // ['sample', 'string']
+```
+
+It also allows to apply a transformation to each word by passing a filter function as second argument:
+
+```js
+import { words, capitalize } from '@fiad/toolbox/utils/string'
+
+words('sample string', capitalize) // ['Sample', 'String']
+```

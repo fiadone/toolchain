@@ -1,4 +1,3 @@
-import { getElements, getDataset } from '../dom'
 import Component from './'
 
 /**
@@ -7,11 +6,11 @@ import Component from './'
  * @param {(HTMLDocument|Element)} root The components root element
  * @returns {Map} The component instances collection
  */
-export function attachComponents(components = {}, root = document) {
+export function attach(components = {}, root = document) {
   const instances = new Map()
 
-  getElements('[data-component]', { context: root }).forEach(el => {
-    const { component: key } = getDataset(el)
+  root.querySelectorAll('[data-component]').forEach(el => {
+    const { component: key } = el.dataset
     const component = key ? components[key] : null
 
     if (!component || (!(component.prototype instanceof Component) && !component.handler)) return
@@ -35,7 +34,7 @@ export function attachComponents(components = {}, root = document) {
  * Detaches components from DOM elements
  * @param {Map} components The component instances map
  */
-export function detachComponents(components) {
+export function detach(components) {
   if (!(components instanceof Map)) return
 
   components.forEach((component, el) => {

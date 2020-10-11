@@ -4,7 +4,7 @@
  * @description A simple state management handler
  */
 
-import EventsBus from '@fiad/toolbox/events/bus'
+import EventsBus from '@fiad/toolbox/events-bus'
 import equal from '@fiad/toolbox/utils/equal'
 
 class Store {

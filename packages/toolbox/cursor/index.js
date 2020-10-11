@@ -6,10 +6,7 @@
 
 import gsap from 'gsap'
 import Store from '@fiad/toolbox/store'
-import EventManager from '@fiad/toolbox/events'
 import debounce from '@fiad/toolbox/utils/debounce'
-import { lerp } from '@fiad/toolbox/math'
-import { matches, isDescendantOf } from '@fiad/toolbox/dom'
 
 class Cursor {
   /**
@@ -123,13 +120,22 @@ class Cursor {
    * @static
    */
   static init() {
-    if (!Cursor.#initialized) {
-      EventManager.on(['mousemove', 'touchmove'], window, Cursor.#onMove)
-      EventManager.on('mouseenter', document, Cursor.#onEnter)
-      EventManager.on(['mouseleave', 'touchleave'], document, Cursor.#onLeave)
-      EventManager.on(['mousedown', 'touchstart'], document, Cursor.#onDown)
-      EventManager.on(['mouseup', 'touchend'], document, Cursor.#onUp)
-      EventManager.on('mouseover', document, Cursor.#onOver)
+    if (Cursor.#initialized) return
+
+    const { touchEvents } = this.config
+
+    window.addEventListener('mousemove', Cursor.#onMove)
+    document.addEventListener('mouseenter', Cursor.#onEnter)
+    document.addEventListener('mouseleave', Cursor.#onLeave)
+    document.addEventListener('mousedown', Cursor.#onDown)
+    document.addEventListener('mouseup', Cursor.#onUp)
+    document.addEventListener('mouseover', Cursor.#onOver)
+
+    if (touchEvents) {
+      window.addEventListener('touchmove', Cursor.#onMove)
+      document.addEventListener('touchleave', Cursor.#onLeave)
+      document.addEventListener('touchstart', Cursor.#onDown)
+      document.addEventListener('touchend', Cursor.#onUp)
     }
   }
 
@@ -138,13 +144,22 @@ class Cursor {
    * @static
    */
   static destroy() {
-    if (Cursor.#initialized) {
-      EventManager.off(['mousemove', 'touchmove'], window, Cursor.#onMove)
-      EventManager.off('mouseenter', document, Cursor.#onEnter)
-      EventManager.off(['mouseleave', 'touchleave'], document, Cursor.#onLeave)
-      EventManager.off(['mousedown', 'touchstart'], document, Cursor.#onDown)
-      EventManager.off(['mouseup', 'touchend'], document, Cursor.#onUp)
-      EventManager.off('mouseover', document, Cursor.#onOver)
+    if (!Cursor.#initialized) return
+
+    const { touchEvents } = this.config
+
+    window.removeEventListener('mousemove', Cursor.#onMove)
+    document.removeEventListener('mouseenter', Cursor.#onEnter)
+    document.removeEventListener('mouseleave', Cursor.#onLeave)
+    document.removeEventListener('mousedown', Cursor.#onDown)
+    document.removeEventListener('mouseup', Cursor.#onUp)
+    document.removeEventListener('mouseover', Cursor.#onOver)
+
+    if (touchEvents) {
+      window.removeEventListener('touchmove', Cursor.#onMove)
+      document.removeEventListener('touchleave', Cursor.#onLeave)
+      document.removeEventListener('touchstart', Cursor.#onDown)
+      document.removeEventListener('touchend', Cursor.#onUp)
     }
   }
 
@@ -169,7 +184,7 @@ class Cursor {
     }
 
     this.#setup(() => {
-      EventManager.on('resize', window, this.#onResize)
+      window.addEventListener('resize', this.#onResize)
       Cursor.#store.observe('coords', this.#init)
       Cursor.init()
     })
@@ -240,7 +255,8 @@ class Cursor {
    */
   #checkTarget = target => {
     const { triggers = Cursor.defaultTriggers } = this.config
-    const trigger = matches(target, triggers) || isDescendantOf(target, triggers)
+    const selectors = triggers.join(', ')
+    const trigger = target.matches(selectors) || target.closest(selectors)
 
     this.hover(trigger)
   }
@@ -299,8 +315,8 @@ class Cursor {
       || !coords.hasOwnProperty('y')) return
 
     this.coords = {
-      x: inertia ? lerp(this.coords.x, coords.x, inertia) : coords.x,
-      y: inertia ? lerp(this.coords.y, coords.y, inertia) : coords.y
+      x: inertia ? gsap.utils.interpolate(this.coords.x, coords.x, inertia) : coords.x,
+      y: inertia ? gsap.utils.interpolate(this.coords.y, coords.y, inertia) : coords.y
     }
 
     gsap.set(this.el, {
@@ -360,7 +376,7 @@ class Cursor {
     gsap.set(this.el, { clearProps: 'position, top, left, z-index, transform, pointer-events' })
     gsap.ticker.remove(this.#requestMoveFrame)
 
-    EventManager.off('resize', window, this.#onResize)
+    window.removeEventListener('resize', this.#onResize)
 
     Cursor.#store.unobserve('visible', this.#toggleVisibility)
     Cursor.#store.unobserve('holding', this.#toggleHolding)

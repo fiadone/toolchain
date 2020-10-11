@@ -4,7 +4,7 @@
  * @description A simple component base class
  */
 
-import { getElements, getDataset } from '../dom'
+import { attach, detach } from './helpers'
 
 class Component {
   /**
@@ -27,7 +27,7 @@ class Component {
    * Retrieves component props from DOM
    */
   #retrieveProps() {
-    const dataset = getDataset(this.root)
+    const { dataset } = this.root
 
     return Object.entries(dataset).reduce((acc, [key, value]) => {
       if (!key.match(/^component/)) {
@@ -45,8 +45,10 @@ class Component {
    * Retrieves component refs from DOM
    */
   #retrieveRefs() {
-    return getElements('[data-ref]', { context: this.root }).reduce((acc, el) => {
-      const { ref: key } = getDataset(el)
+    const refs = this.root.querySelectorAll('[data-ref]')
+
+    return Array.from(refs).reduce((acc, el) => {
+      const { ref: key } = el.dataset
 
       if (acc[key]) {
         if (!Array.isArray()) {
@@ -74,3 +76,4 @@ class Component {
 }
 
 export default Component
+export { attach, detach }

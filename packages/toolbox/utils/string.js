@@ -1,17 +1,13 @@
 /**
- * @module strings
- * @package @fiad/toolbox
- * @description A collection of utility functions for strings manipulation
- */
-
-/**
  * Splits given string into an array of words
  * @private
  * @param {string} string The string to be splitted
- * @returns {string} The transformed string
+ * @param {function} filter A function that applies a transformation to each word
+ * @returns {Array} The array of the words composing the original string
  */
-function deconstruct(string) {
-  return string.split(' ').map(word => word.trim())
+export function words(string, filter) {
+  const words = string.split(' ').map(word => word.trim())
+  return (typeof filter === 'function') ? words.map(filter) : words
 }
 
 /**
@@ -22,21 +18,8 @@ function deconstruct(string) {
  * capitalize('my string') --> 'My String'
  */
 export function capitalize(string) {
-  return deconstruct(string)
+  return words(string)
     .map(entry => (entry.charAt(0).toUpperCase() + entry.slice(1)))
-    .join(' ')
-}
-
-/**
- * Makes the first letter of the given string lowercase
- * @param {string} string The string to be transformed
- * @returns {string} The transformed string
- * @example
- * uncapitalize('My String') --> 'my string'
- */
-export function uncapitalize(string) {
-  return deconstruct(string)
-    .map(entry => (entry.charAt(0).toLowerCase() + entry.slice(1)))
     .join(' ')
 }
 
@@ -48,7 +31,7 @@ export function uncapitalize(string) {
  * camelCase('my string') --> 'myString'
  */
 export function camelCase(string) {
-  return deconstruct(string)
+  return words(string)
     .map((word, i) => (i > 0) ? capitalize(word.toLowerCase()) : word.toLowerCase())
     .join('')
 }
@@ -72,7 +55,7 @@ export function pascalCase(string) {
  * snakeCase('my string') --> 'my_string'
  */
 export function snakeCase(string) {
-  return deconstruct(string)
+  return words(string)
     .map(word => word.toLowerCase())
     .join('_')
 }
@@ -85,7 +68,7 @@ export function snakeCase(string) {
  * kebabCase('my string') --> 'my-string'
  */
 export function kebabCase(string) {
-  return deconstruct(string)
+  return words(string)
     .map(word => word.toLowerCase())
     .join('-')
 }

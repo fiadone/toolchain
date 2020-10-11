@@ -129,7 +129,7 @@ To make dynamic data-binding easier, some *data-* attributes can be used to defi
 
 Along with the *data-* attributes just seen above, the *data-component* attribute can be used too. It allows to automatically create a component instance for each *DOM* node that references to it. This attribute, however, doesn't work alone, but requires some helpers usage.
 
-### attachComponents
+### attach
 
 It performs a query over the *DOM* to retrieve all the elements that requires a component to be attached on. So a *Component* instance is iteratively created and attached to the queried elements.
 
@@ -156,12 +156,12 @@ HTML
 
 JS
 ```js
-import { attachComponents } from '@fiad/toolbox/component/helpers'
+import { attach } from '@fiad/toolbox/component'
 import MyComponent from './components/MyComponent'
 // ...
 
 function Page() {
-  this.components = attachComponents({
+  this.components = attach({
     MyComponent,
     // ...
   })
@@ -173,7 +173,7 @@ or, if MyComponent requires some configuration:
 
 ```js
 function Page() {
-  this.components = attachComponents({
+  this.components = attach({
     MyComponent: {
       handler: MyComponent,
       ...config // any property will be passed to MyComponent constructor
@@ -183,7 +183,7 @@ function Page() {
 }
 ```
 
-### detachComponents
+### detach
 
 At some point, it may be needed to destroy some components, for example after a page transition in a client-based navigation context. In that case, this method can rush to help. It simply invokes the *destroy* method on each *Component* instance previously created.
 
@@ -194,11 +194,11 @@ At some point, it may be needed to destroy some components, for example after a 
 __Use case__
 
 ```js
-import { detachComponents } from '@fiad/toolbox/component/helpers'
+import { detach } from '@fiad/toolbox/component'
 // ...
 
 application.on('pagetransition', nextPage => {
-  detachComponents(currentPage.components)
+  detach(currentPage.components)
   // ...
 })
 ```

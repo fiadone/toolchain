@@ -5,97 +5,114 @@
  */
 
 import gsap from 'gsap'
-import { getElement } from '@fiad/toolbox/dom'
-import EventsManager from '@fiad/toolbox/events'
-import debounce from '@fiad/toolbox/utils/debounce'
-import { lerp } from '@fiad/toolbox/math'
 
 class SmoothScroll {
   /**
-   * @constructor
-   * @param {(object|null)} config The configuration object
+   * The scroll container
+   * @type {HTMLElement}
+   * @private
    */
-  constructor({ inertia = 0.2 } = {}) {
-    this.root = getElement('[data-scroll-root]') || document.body
-    this.wrapper = getElement('[data-scroll-wrapper]')
-    this.content = getElement('[data-scroll-content]')
-    this.y = window.scrollY
-    this.inertia = inertia
-  }
+  #container = document.querySelector('[data-smooth-scroll]')
+
+  /**
+   * The current scroll position
+   * @type {number}
+   * @private
+   */
+  #scrollTop = document.documentElement.scrollTop
+
+  /**
+   * The on scroll handler
+   * @type {function}
+   * @private
+   */
+  #onScroll
 
   /**
    * Root element height setter
    */
-  setRootHeight = () => {
-    gsap.set(this.root, { height: this.content.clientHeight })
+  #setRootHeight = () => {
+    gsap.set(document.body, { height: this.#container.clientHeight })
   }
-
-  /**
-   * Resize event handler
-   */
-  onResize = debounce(this.setRootHeight, 300)
 
   /**
    * Request animation frame handler
    */
-  requestScrollFrame = () => {
-    this.y = lerp(this.y, window.scrollY, this.inertia)
-    gsap.set(this.content, { y: -this.y, force3D: true })
+  #requestScrollFrame = () => {
+    const factor = 1 - this.intensity
+    const y = gsap.utils.interpolate(this.#scrollTop, document.documentElement.scrollTop, factor)
+    this.scrollTo(y)
   }
 
   /**
    * Initializes component
    */
-  init() {
-    if (this.wrapper && this.content) {
-      this.enabled = true
-      this.setRootHeight()
+  #init = () => {
+    if (!this.#container) return
 
-      gsap.set(document.body, { overscrollBehavior: 'none' })
-      gsap.set(this.wrapper, {
-        width: '100%',
-        height: '100%',
-        position: 'fixed',
-        top: 0,
-        left: 0
-      })
+    this.#setRootHeight()
 
-      EventsManager.on('resize', window, this.onResize)
-      gsap.ticker.add(this.requestScrollFrame)
+    gsap.set(document.body, { overscrollBehavior: 'none' })
+    gsap.set(this.#container, {
+      width: '100%',
+      overflow: 'hidden',
+      position: 'fixed',
+      top: 0,
+      left: 0
+    })
+
+    window.addEventListener('resize', this.#setRootHeight)
+    gsap.ticker.add(this.#requestScrollFrame)
+  }
+
+  /**
+   * @constructor
+   * @param {(object|null)} config The configuration object
+   */
+  constructor({ intensity = 0.85, onScroll } = {}) {
+    this.intensity = intensity
+
+    if (typeof onScroll === 'function') {
+     this.#onScroll = onScroll
     }
+
+    this.#init()
+  }
+
+  /**
+   * Scroll top getter
+   */
+  get scrollTop() {
+    return this.#scrollTop
+  }
+
+  /**
+   * Updates scroll position
+   * @param {number} y
+   */
+  scrollTo = y => {
+    if (y === this.y || typeof y !== 'number') return
+
+    this.#scrollTop = y
+
+    gsap.set(this.#container, {
+      overflow: 'hidden',
+      position: 'fixed',
+      y: -this.#scrollTop,
+      force3D: true,
+      onComplete: this.#onScroll
+    })
   }
 
   /**
    * Destroys component
    */
-  destroy() {
-    if (this.enabled) {
-      EventsManager.off('resize', window, this.onResize)
-
-      gsap.ticker.remove(this.requestScrollFrame)
-      gsap.set(this.root, { clearProps: 'height, overflow-behavior' })
-      gsap.set(this.wrapper, { clearProps: 'width, height, position, top, left' })
-      gsap.set(this.target, { clearProps: 'x, y' })
-    }
+  destroy = () => {
+    window.removeEventListener('resize', this.#setRootHeight)
+    gsap.ticker.remove(this.#requestScrollFrame)
+    gsap.set(document.body, { clearProps: 'height, overscrollBehavior' })
+    gsap.set(this.#container, { clearProps: 'width, height, position, top, left' })
   }
 }
 
-/**
- * Exporting as singleton
- */
-let instance = null
-
-export default {
-  enable: config => {
-    if (!instance) {
-      instance = new SmoothScroll(config)
-      instance.init()
-    }
-  },
-  disable: () => {
-    if (instance) {
-      instance.destroy()
-      instance = null
-    }
-  }
-}
+export default SmoothScroll

@@ -4,9 +4,8 @@
  * @description A simple social sharing management utility
  */
 
-import Stream from '@fiad/toolbox/stream'
-import { capitalize } from '@fiad/toolbox/strings'
-import EventsManager from '@fiad/toolbox/events'
+import delegate from '@fiad/toolbox/utils/delegate'
+import { capitalize } from '@fiad/toolbox/utils/string'
 import * as generators from './generators'
 
 class ShareManager {
@@ -16,7 +15,7 @@ class ShareManager {
    * @static
    * @param {Event} e The triggered click event
    */
-  static #onTriggerClick(e) {
+  static #onTriggerClick = delegate(e => {
     e.preventDefault()
 
     ShareManager.share(
@@ -28,19 +27,19 @@ class ShareManager {
           return acc
         }, {})
     )
-  }
+  }, '[data-share-target]')
   /**
    * Enables a listener to handle clicks on trigger elements
    */
   static listenClicks() {
-    EventsManager.on('click', document.body, ShareManager.#onTriggerClick, { delegateTo: '[data-share-target]' })
+    document.body.addEventListener('click', ShareManager.#onTriggerClick)
   }
 
   /**
    * Disables the listener that handles clicks on trigger elements
    */
   static unlistenClicks() {
-    EventsManager.off('click', document.body, ShareManager.#onTriggerClick, { delegateTo: '[data-share-target]' })
+    document.body.removeEventListener('click', ShareManager.#onTriggerClick)
   }
 
   /**
@@ -49,16 +48,6 @@ class ShareManager {
    */
   static generateUrl({ target, ...data } = {}) {
     const generator = target ? generators[target] : generators.custom
-
-    if (!generator) {
-      Stream.log('Unable to generate share link: invalid arguments.', {
-        type: 'warn',
-        namespace: '@fiad',
-        context: 'share'
-      })
-      return
-    }
-
     return generator(data)
   }
 
