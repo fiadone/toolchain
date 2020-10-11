@@ -122,21 +122,16 @@ class Cursor {
   static init() {
     if (Cursor.#initialized) return
 
-    const { touchEvents } = this.config
-
     window.addEventListener('mousemove', Cursor.#onMove)
+    window.addEventListener('touchmove', Cursor.#onMove)
     document.addEventListener('mouseenter', Cursor.#onEnter)
     document.addEventListener('mouseleave', Cursor.#onLeave)
+    document.addEventListener('touchleave', Cursor.#onLeave)
     document.addEventListener('mousedown', Cursor.#onDown)
+    document.addEventListener('touchstart', Cursor.#onDown)
     document.addEventListener('mouseup', Cursor.#onUp)
+    document.addEventListener('touchend', Cursor.#onUp)
     document.addEventListener('mouseover', Cursor.#onOver)
-
-    if (touchEvents) {
-      window.addEventListener('touchmove', Cursor.#onMove)
-      document.addEventListener('touchleave', Cursor.#onLeave)
-      document.addEventListener('touchstart', Cursor.#onDown)
-      document.addEventListener('touchend', Cursor.#onUp)
-    }
   }
 
   /**
@@ -146,21 +141,16 @@ class Cursor {
   static destroy() {
     if (!Cursor.#initialized) return
 
-    const { touchEvents } = this.config
-
     window.removeEventListener('mousemove', Cursor.#onMove)
+    window.removeEventListener('touchmove', Cursor.#onMove)
     document.removeEventListener('mouseenter', Cursor.#onEnter)
     document.removeEventListener('mouseleave', Cursor.#onLeave)
+    document.removeEventListener('touchleave', Cursor.#onLeave)
     document.removeEventListener('mousedown', Cursor.#onDown)
+    document.removeEventListener('touchstart', Cursor.#onDown)
     document.removeEventListener('mouseup', Cursor.#onUp)
+    document.removeEventListener('touchend', Cursor.#onUp)
     document.removeEventListener('mouseover', Cursor.#onOver)
-
-    if (touchEvents) {
-      window.removeEventListener('touchmove', Cursor.#onMove)
-      document.removeEventListener('touchleave', Cursor.#onLeave)
-      document.removeEventListener('touchstart', Cursor.#onDown)
-      document.removeEventListener('touchend', Cursor.#onUp)
-    }
   }
 
   /**
