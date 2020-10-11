@@ -246,7 +246,7 @@ class Cursor {
   #checkTarget = target => {
     const { triggers = Cursor.defaultTriggers } = this.config
     const selectors = triggers.join(', ')
-    const trigger = target.matches(selectors) || target.closest(selectors)
+    const trigger = target ? (target.matches(selectors) || target.closest(selectors)) : null
 
     this.hover(trigger)
   }
