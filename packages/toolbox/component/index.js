@@ -17,10 +17,6 @@ class Component {
     this.config = config
     this.props = { ...config.defaultProps, ...this.#retrieveProps() }
     this.refs = this.#retrieveRefs()
-
-    if (config.autoInit !== false) {
-      this.init()
-    }
   }
 
   /**
@@ -29,8 +25,8 @@ class Component {
   #retrieveProps() {
     const { dataset } = this.root
 
-    return Object.entries(dataset).reduce((acc, [key, value]) => {
-      if (!key.match(/^component/)) {
+    return Object.entries(dataset || {}).reduce((acc, [key, value]) => {
+      if (!key.match(/^(component|ref)/)) {
         try {
           acc[key] = JSON.parse(value)
         } catch(err) {
@@ -45,9 +41,13 @@ class Component {
    * Retrieves component refs from DOM
    */
   #retrieveRefs() {
-    const refs = this.root.querySelectorAll('[data-ref]')
+    const refs = Array.from(this.root.querySelectorAll('[data-ref]')).filter(ref => {
+      const isSubcomponentRoot = ref.matches('[data-component]')
+      const parentComponent = isSubcomponentRoot ? null : ref.closest('[data-component]')
+      return !parentComponent || parentComponent === this.root
+    })
 
-    return Array.from(refs).reduce((acc, el) => {
+    return refs.reduce((acc, el) => {
       const { ref: key } = el.dataset
 
       if (acc[key]) {
@@ -63,16 +63,6 @@ class Component {
       return acc
     }, {})
   }
-
-  /**
-   * Component initializer
-   */
-  init() {}
-
-  /**
-   * Component destructor
-   */
-  destroy() {}
 }
 
 export default Component

@@ -7,24 +7,29 @@ import Component from './'
  * @returns {Map} The component instances collection
  */
 export function attach(components = {}, root = document) {
-  const instances = new Map()
+  const instances = {}
 
   root.querySelectorAll('[data-component]').forEach(el => {
-    const { component: key } = el.dataset
-    const component = key ? components[key] : null
+    const { component: name } = el.dataset
+    const component = name ? components[name] : null
 
     if (!component || (!(component.prototype instanceof Component) && !component.handler)) return
 
     let C = component
     let config = {}
+    let key = `${name.charAt(0).toLowerCase()}${name.slice(1)}`
 
     if (!(C.prototype instanceof Component)) {
-      const { handler, ...rest } = component
+      const { key: alias, handler, ...rest } = component
       C = handler
       config = rest
+
+      if (alias) {
+        key = alias
+      }
     }
 
-    instances.set(el, new C(el, config))
+    instances[key] = new C(el, config)
   })
 
   return instances
@@ -32,13 +37,11 @@ export function attach(components = {}, root = document) {
 
 /**
  * Detaches components from DOM elements
- * @param {Map} components The component instances map
+ * @param {object} components The component instances map
  */
-export function detach(components) {
-  if (!(components instanceof Map)) return
-
-  components.forEach((component, el) => {
-    component.destroy()
-    components.delete(el)
+export function detach(components = {}) {
+  Object.entries(components).forEach(([key, component]) => {
+    try { component.destroy() } catch {}
+    delete components[key]
   })
 }

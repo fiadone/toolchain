@@ -47,23 +47,6 @@ Even though the *config* argument can host any property needed by the component 
 | Property | Type | Description |
 | --- | --- | --- |
 | defaultProps | *object* | The default component's properties. |
-| autoInit | *boolean* | If set to *false*, it prevents the *init* method to be automatically invoked by component's *constructor*. |
-
-### init
-
-```js
-instance.init()
-```
-
-It initializes the component. This method is aimed, for example, to host event listeners declarations. By default, it is automatically invoked by the *constructor*.
-
-### destroy
-
-```js
-instance.destroy()
-```
-
-It destroys the component instance. This method is aimed, for example, to remove the previously declared event listeners.
 
 
 ## Built-in properties
@@ -101,17 +84,27 @@ The component's referring child nodes. It collects all component's root descenda
 
 __Use case__
 
+```html
+<div data-component="MyComponent">
+  <button type="button" data-ref="button">
+</div>
+```
+
 ```js
-init() {
-  const { button } = this.refs
+class MyComponent extends Component {
+  // ...
 
-  button.addEventListener('click' /* ... */)
-}
+  init() {
+    const { button } = this.refs
 
-destroy() {
-  const { button } = this.refs
+    button.addEventListener('click' /* ... */)
+  }
 
-  button.removeEventListener('click' /* ... */)
+  destroy() {
+    const { button } = this.refs
+
+    button.removeEventListener('click' /* ... */)
+  }
 }
 ```
 
@@ -144,7 +137,7 @@ A component can be mapped in the *components* argument in two different ways, ac
 
 __Return value__
 
-The function returns a *Map* containing all the created element-component relations. Each element of this *Map* will have a *DOM Element* as key and the *Component* instance attached to it as value.
+The function returns an object wrapping all the created instances. By default, the key of each instance is its component class name in *camelCase*. It can be easily overwritten by the *key* property in the component configuration model provided by the *attach* helper. Take a look to the example below to learn more.
 
 #### Example
 
@@ -152,6 +145,8 @@ HTML
 
 ```html
 <div data-component="MyComponent">
+  ...
+</div>
 ```
 
 JS
@@ -165,6 +160,8 @@ function Page() {
     MyComponent,
     // ...
   })
+
+  // the instance will be accessible by this.components.myComponent
 }
 
 ```
@@ -175,21 +172,24 @@ or, if MyComponent requires some configuration:
 function Page() {
   this.components = attach({
     MyComponent: {
+      key: 'myAlias',
       handler: MyComponent,
       ...config // any property will be passed to MyComponent constructor
     },
     // ...
   })
+
+  // the instance will be accessible by this.components.myAlias
 }
 ```
 
 ### detach
 
-At some point, it may be needed to destroy some components, for example after a page transition in a client-based navigation context. In that case, this method can rush to help. It simply invokes the *destroy* method on each *Component* instance previously created.
+At some point, it may be needed to destroy some components, for example after a page transition in a client-based navigation context. In that case, this method can rush to help. It simply tries to invoke a *destroy* method on each *Component* instance previously created and then removes it from the components map. So remember that defining the *destroy* method in your custom components can always be considered a best practice, expecially if they come along with some event listeners that you want to prevent to persist in memory after component deletion.
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| components | *Map* | The *Component* instances map. |
+| components | *object* | The *Component* instances map. |
 
 __Use case__
 
@@ -197,7 +197,7 @@ __Use case__
 import { detach } from '@fiad/toolbox/component'
 // ...
 
-application.on('pagetransition', nextPage => {
+application.on('pagetransition', (currentPage, nextPage) => {
   detach(currentPage.components)
   // ...
 })
@@ -213,16 +213,15 @@ import Store from '@fiad/toolbox/store'
 import Component from '@fiad/toolbox/component'
 
 export default class ComponentWithState extends Component {
-  // ...
+  constructor(...args) {
+    super(...args)
+
+    this.state = new Store(this.config.initialState || {})
+    this.state.observe('someProp', this.onSomePropUpdate)
+  }
 
   onSomePropUpdate = value => {
     console.log('someProp updated:', value)
-  }
-
-  init() {
-    const { initialState = {} } = this.config
-    this.state = new Store(initialState)
-    this.state.observe('someProp', this.onSomePropUpdate)
   }
 
   destroy() {
