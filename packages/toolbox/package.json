@@ -1,6 +1,6 @@
 {
   "name": "@fiad/toolbox",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "A smart collection of tools and utilities for front-end development",
   "bin": {
     "toolbox": "bin/index.js"
