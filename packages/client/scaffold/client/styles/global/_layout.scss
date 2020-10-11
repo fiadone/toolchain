@@ -5,6 +5,16 @@ html {
   @include auto-scaling(375, 1440);
 }
 
+body {
+  transition-property: opacity, visibility;
+  transition-duration: $duration;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 #content {
   padding-top: rem(112); // fixed header compensation
 }
@@ -31,6 +41,11 @@ html {
 .full-height {
   height: 100%;
 }
+
+/*=============*/
+/* GRID SYSTEM */
+/*=============*/
+@include grid(12, rem($scalar), $breakpoints);
 
 /*===============*/
 /* FLEX WRAPPERS */
@@ -77,7 +92,24 @@ html {
   "breakpoints": $breakpoints
 ));
 
-/*=============*/
-/* GRID SYSTEM */
-/*=============*/
-@include grid(12, rem($scalar), $breakpoints);
+/*=================*/
+/* UTILITY CLASSES */
+/*=================*/
+@include framework-rules('m', (
+  "property": (
+    "t": "margin-top",
+    "b": "margin-bottom"
+  ),
+  "value": (
+    0: 0,
+    1: rem($scalar),
+    2: rem($scalar * 2),
+    3: rem($scalar * 3),
+    4: rem($scalar * 4),
+    5: rem($scalar * 5),
+    6: rem($scalar * 6),
+    7: rem($scalar * 7),
+    8: rem($scalar * 8)
+  ),
+  "breakpoints": $breakpoints
+));
