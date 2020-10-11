@@ -39,20 +39,10 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: { hmr: process.env.config !== 'build' }
           },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          },
+          'css-loader',
           'resolve-url-loader',
           'postcss-loader',
-          {
-            loader: 'sass-loader',
-            query: {
-              sourceMap: true
-            }
-          }
+          'sass-loader'
         ]
       },
       {

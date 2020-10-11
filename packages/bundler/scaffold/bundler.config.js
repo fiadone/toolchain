@@ -7,7 +7,7 @@ module.exports = {
     stylesPath: path.join(__dirname, 'client/styles'),
     staticPath: path.join(__dirname, 'client/static')
   },
-  distPath: path.join(__dirname, 'public/assets'),
+  distPath: path.join(__dirname, 'public/assets')
   /*=====================================================================*/
   /* Uncomment the following code to enable static html pages generation */
   /*=====================================================================*/
