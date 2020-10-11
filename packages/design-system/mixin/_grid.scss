@@ -10,6 +10,19 @@
     display: grid;
     grid-template-columns: repeat($columns, minmax(0, 1fr));
     grid-gap: $gap;
+    align-items: start;
+  }
+
+  .row--center {
+    align-items: center;
+  }
+
+  .row--bottom {
+    align-items: end;
+  }
+
+  .row--stretch {
+    align-items: stretch;
   }
 
   .col {

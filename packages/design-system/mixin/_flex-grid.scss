@@ -33,10 +33,6 @@
     flex-shrink: 0;
   }
 
-  .size-0 {
-    width: 0;
-  }
-
   @for $i from 1 through $columns {
     .size-#{$i} {
       width: #{$i / $columns * 100%};
