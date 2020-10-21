@@ -6,6 +6,7 @@
     "dotenv",
     "express",
     "express-session",
+    "helmet",
     "minimist",
     "morgan",
     "multer",
