@@ -13,10 +13,15 @@ const session = require('./server/middlewares/session')
 const apiCtrl = require('./server/controllers/api')
 const defaultCtrl = require('./server/controllers/default')
 
+const helmetConfig = require('./helmet.config')
+
 const env = process.env.NODE_ENV
 const app = express()
 const port = 3000
 
+/*==========*/
+/* SETTINGS */
+/*==========*/
 app.set('view engine', 'twig')
 app.set('views', path.join(__dirname, 'views'))
 
@@ -26,12 +31,16 @@ if (env === 'production') {
 
 app.disable('x-powered-by')
 
+/*=============*/
+/* MIDDLEWARES */
+/*=============*/
+app.use(require('morgan')('tiny'))
+
 if (env === 'development') {
   app.use(require('./server/middlewares/webpack-dev')(port))
-  app.use(require('morgan')('tiny'))
 }
 
-app.use(helmet({ contentSecurityPolicy: false }))
+app.use(helmet(helmetConfig))
 app.use(compression())
 app.use(session())
 
@@ -40,6 +49,9 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(express.static('public'))
 
+/*=========*/
+/* ROUTING */
+/*=========*/
 app.use('/api', apiCtrl())
 app.use('/', defaultCtrl())
 
