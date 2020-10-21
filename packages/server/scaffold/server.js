@@ -31,7 +31,7 @@ if (env === 'development') {
   app.use(require('morgan')('tiny'))
 }
 
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: false }))
 app.use(compression())
 app.use(session())
 
