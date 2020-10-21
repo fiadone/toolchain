@@ -14,8 +14,7 @@ module.exports = {
   output: {
     path: distPath,
     filename: '[name].js',
-    chunkFilename: '[name].js',
-    jsonpFunction: 'jsonpFunction'
+    chunkFilename: '[name].js'
   },
   module: {
     rules: [
@@ -34,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.(s)?css$/,
-        loader: [
+        use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: { hmr: process.env.config !== 'build' }
