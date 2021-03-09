@@ -2,6 +2,8 @@
 
 A modular and scalable project boilerplate, configurable through a dead simple command line interface
 
+### 🚫 <span style="color:indianred">This package is no longer available</span>
+
 ---
 
 ## Get started

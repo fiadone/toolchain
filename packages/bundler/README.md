@@ -2,6 +2,8 @@
 
 A [webpack](https://webpack.js.org/) based bundler featuring [babel](https://babeljs.io/), [sass/scss](https://sass-lang.com/) support, and [postcss](https://postcss.org/)
 
+### ⚠ <span style="color:indianred">This package has been deprecated</span>
+
 ---
 
 ## Get started

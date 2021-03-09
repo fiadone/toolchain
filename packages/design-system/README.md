@@ -2,6 +2,8 @@
 
 A collection of utilities to enhance styles development
 
+### ⚠ <span style="color:indianred">This package has been deprecated</span>
+
 ---
 
 ## Get started

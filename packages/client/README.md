@@ -2,6 +2,8 @@
 
 A smart client application boilerplate that ensures clean files organization and must-haves
 
+### 🚫 <span style="color:indianred">This package is no longer available</span>
+
 ---
 
 ## Get started

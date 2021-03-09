@@ -2,6 +2,8 @@
 
 A smart collection of tools and utilities for front-end development
 
+### 🛫 <span style="color:lightblue">This package has been migrated [here](https://github.com/fiadone/toolbox)</span>
+
 ---
 
 ## Get started

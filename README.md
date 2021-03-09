@@ -1,24 +1,18 @@
-# @fiad/carpentry
+# @fiad/toolchain
 
 A smart toolchain for modern front-end development
 
+### 🚧 <span style="color:indianred">Deprecation warning</span>
+Almost all packages listed in this monorepo have been deprecated or are no longer available. If you're searching for a project scaffolder or boilerplate, take a look at [@fiad/carpentry](https://github.com/fiadone/carpentry).
+
 ---
-
-## Get started
-
-#### Startup a new project
-```
-npx @fiad/project my-app
-```
-
-Check out the packages list below to learn more about toolchain's modules.
 
 ## Packages
 
-- [@fiad/bundler](./packages/bundler)
-- [@fiad/cli](./packages/cli)
-- [@fiad/client](./packages/client)
-- [@fiad/design-system](./packages/design-system)
-- [@fiad/project](./packages/project)
-- [@fiad/server](./packages/server)
-- [@fiad/toolbox](./packages/toolbox)
+- [@fiad/bundler](./packages/bundler) ⚠ Deprecated
+- [@fiad/cli](./packages/cli) ⚠ Deprecated
+- ~~[@fiad/client](./packages/client)~~ 🚫 No longer available
+- [@fiad/design-system](./packages/design-system) ⚠ Deprecated
+- ~~[@fiad/project](./packages/project)~~ 🚫 No longer available
+- ~~[@fiad/server](./packages/server)~~ 🚫 No longer available
+- [@fiad/toolbox](https://github.com/fiadone/toolbox) 🛫 Migrated
