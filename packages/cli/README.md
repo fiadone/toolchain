@@ -1,7 +1,7 @@
 # @fiad/cli
 
 A simple command line interface that helps in scaffolding and configuring operations
-### ⚠ <span style="color:indianred">This package has been deprecated</span>
+### 🚫 <span style="color:indianred">This package is no longer available</span>
 
 ---
 

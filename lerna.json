@@ -1,7 +1,5 @@
 {
   "packages": [
-    "packages/bundler",
-    "packages/cli",
     "packages/design-system"
   ],
   "npmClient": "yarn",

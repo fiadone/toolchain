@@ -2,7 +2,7 @@
 
 A collection of utilities to enhance styles development
 
-### ⚠ <span style="color:indianred">This package has been deprecated</span>
+### ⚠ <span style="color:indianred">This package has been deprecated in favor of [@fiad/stitchery](https://github.com/fiadone/stitchery)</span>
 
 ---
 
